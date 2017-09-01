@@ -1,0 +1,16 @@
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">MULTI SELECT</span>
+        <span>MultiSelect is used to select multiple items from a collection.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+
+    <p-multiSelect [options]="cars" [(ngModel)]="selectedCars"></p-multiSelect>
+
+    <p>Selected Cars: {{selectedCars}}</p>
+
+  </div>
+</div>

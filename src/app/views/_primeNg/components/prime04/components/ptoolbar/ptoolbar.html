@@ -1,0 +1,26 @@
+<div class="content-section introduction">
+    <div>
+        <span class="feature-title">Toolbar</span>
+        <span>Toolbar is a grouping component for buttons and other content.</span>
+    </div>
+</div>
+
+<div class="content-section implementation">
+    <p-toolbar>
+        <div class="ui-toolbar-group-left">
+            <button pButton type="button" label="New" icon="fa-plus"></button>
+            <button pButton type="button" label="Open" icon="fa-folder-open" class="ui-button-success"></button>
+
+            <i class="fa fa-bars"></i>
+
+            <p-splitButton label="Save" icon="fa-check" [model]="items" styleClass="ui-button-warning"></p-splitButton>
+        </div>
+
+        <div class="ui-toolbar-group-right">
+            <button pButton type="button" icon="fa-search"></button>
+            <i class="fa fa-bars"></i>
+            <button pButton type="button" icon="fa-refresh"></button>
+            <button pButton type="button" icon="fa-trash" class="ui-button-danger"></button>
+        </div>
+   </p-toolbar>
+</div>

@@ -10,51 +10,77 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     path: '',
-    component: FullLayout,
-    data: {
-      title: 'Home'
-    },
-    children: [
-      {
-        path: 'dashboard',
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule'
-      },
-      {
-        path: 'components',
-        loadChildren: './views/components/components.module#ComponentsModule'
-      },
-      {
-        path: 'icons',
-        loadChildren: './views/icons/icons.module#IconsModule'
-      },
-      {
-        path: 'widgets',
-        loadChildren: './views/widgets/widgets.module#WidgetsModule'
-      },
-      {
-        path: 'charts',
-        loadChildren: './views/chartjs/chartjs.module#ChartJSModule'
-      }
-    ]
-  },
-  {
-    path: 'pages',
     component: SimpleLayout,
     data: {
-      title: 'Pages'
+      title: 'Base'
     },
     children: [
       {
         path: '',
-        loadChildren: './views/pages/pages.module#PagesModule',
+        loadChildren: './views/_base/pages.module#PagesModule',
       }
     ]
-  }
+  },
+  {
+    path: 'gate',
+    component: FullLayout,
+    data: {
+      title: 'Gates'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/_core/general/general.module#GeneralModule'
+      },
+    ]
+  },
+  {
+    path: 'coreui',
+    component: FullLayout,
+    data: {
+      title: 'CoreUI'
+    },
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: './views/_coreUI/dashboard/dashboard.module#DashboardModule'
+      },
+      {
+        path: 'components',
+        loadChildren: './views/_coreUI/components/components.module#ComponentsModule'
+      },
+      {
+        path: 'icons',
+        loadChildren: './views/_coreUI/icons/icons.module#IconsModule'
+      },
+      {
+        path: 'widgets',
+        loadChildren: './views/_coreUI/widgets/widgets.module#WidgetsModule'
+      },
+      {
+        path: 'charts',
+        loadChildren: './views/_coreUI/chartjs/chartjs.module#ChartJSModule'
+      }
+    ]
+  },
+  {
+    path: 'prime',
+    component: FullLayout,
+    data: {
+      title: 'PrimeNg'
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/_primeNg/prime.module#PrimeModule'
+      },
+    ]
+  },
 ];
 
 @NgModule({

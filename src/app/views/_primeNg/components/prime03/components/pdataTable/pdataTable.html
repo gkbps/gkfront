@@ -1,0 +1,651 @@
+<p-growl [value]="msgs"></p-growl>
+
+<!-- PLAIN DATATABLES -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">PLAIN DATATABLE</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+      <h3 class="first">Basic</h3>
+      <p-dataTable [value]="carsLoading" [loading]="loading" loadingIcon="fa-spinner">
+          <p-column field="vin" header="Vin"></p-column>
+          <p-column field="year" header="Year"></p-column>
+          <p-column field="brand" header="Brand"></p-column>
+          <p-column field="color" header="Color"></p-column>
+      </p-dataTable>
+
+      <h3>Dynamic Columns - Basic</h3>
+      <p-dataTable [value]="cars" [loading]="loading">
+          <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+      </p-dataTable>
+
+      <h3>Dynamic Columns - Ng-template</h3>
+      <p-dataTable [value]="cars">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color">
+            <ng-template let-col let-car="rowData" pTemplate="body">
+                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+            </ng-template>
+        </p-column>
+        <p-column styleClass="col-button">
+            <ng-template pTemplate="header">
+                <button type="button" pButton icon="fa-refresh"></button>
+            </ng-template>
+            <ng-template let-car="rowData" pTemplate="body">
+                <button type="button" pButton (click)="selectCar(car)" icon="fa-search"></button>
+            </ng-template>
+        </p-column>
+      </p-dataTable>
+
+      <h6>Dynamic Columns - Customise)</h6>
+
+
+  </div>
+</div>
+<br />
+<!-- ./PLAIN DATATABLES -->
+
+<!-- HEADER ON THE FLY -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">CUSTOMIZED HEADER ON THE FLY</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <p-dataTable [value]="cars">
+        <p-header>
+            <div style="text-align:left">
+                <p-multiSelect [options]="columnOptions" [(ngModel)]="cols"></p-multiSelect>
+            </div>
+        </p-header>
+        <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./HEADER ON THE FLY -->
+
+<!-- LAZY LOADING -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">DATA LAZY LOADING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <p-dataTable [value]="cars" [scrollable]="true" [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="totalRecords">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./LAZY LOADING -->
+
+<!-- HEADER, FOOTER AND GROUPING -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">HEADER, FOOTER AND GROUPING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <h3>Header And Footer</h3>
+    <p-dataTable [value]="cars">
+        <p-header>List of Cars</p-header>
+        <p-footer>Choose from the list.</p-footer>
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+
+    <h3>Column Grouping</h3>
+    <p-dataTable [value]="sales">
+        <p-headerColumnGroup>
+            <p-row>
+                <p-column header="Brand" rowspan="3"></p-column>
+                <p-column header="Sale Rate" colspan="4"></p-column>
+            </p-row>
+            <p-row>
+                <p-column header="Sales" colspan="2"></p-column>
+                <p-column header="Profits" colspan="2"></p-column>
+            </p-row>
+            <p-row>
+                <p-column header="Last Year"></p-column>
+                <p-column header="This Year"></p-column>
+                <p-column header="Last Year"></p-column>
+                <p-column header="This Year"></p-column>
+            </p-row>
+        </p-headerColumnGroup>
+
+        <p-column field="brand"></p-column>
+        <p-column field="lastYearSale"></p-column>
+        <p-column field="thisYearSale"></p-column>
+        <p-column field="lastYearProfit"></p-column>
+        <p-column field="thisYearProfit"></p-column>
+
+        <p-footerColumnGroup>
+            <p-row>
+                <p-column footer="Totals:" colspan="3"></p-column>
+                <p-column footer="$506,202"></p-column>
+                <p-column footer="$531,020"></p-column>
+            </p-row>
+        </p-footerColumnGroup>
+    </p-dataTable>
+
+    <h3>Row Grouping</h3>
+    <h4>Row Grouping (1)</h4>
+    <p-dataTable [value]="cars" sortField="brand" rowGroupMode="subheader" groupField="brand">
+        <p-header>Subheader</p-header>
+        <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['brand']}}</ng-template>
+        <p-column field="color" header="Color"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="vin" header="Vin"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h4>Row Grouping (2)</h4>
+    <p-dataTable [value]="cars" sortField="brand" rowGroupMode="rowspan">
+        <p-header>RowSpan</p-header>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="vin" header="Vin"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h4>Row Grouping (3)</h4>
+    <p-dataTable [value]="cars" sortField="brand" rowGroupMode="subheader" groupField="brand" expandableRowGroups="true">
+        <p-header>Subheader</p-header>
+        <ng-template pTemplate="rowgroup" let-rowData>{{rowData['brand']}}</ng-template>
+        <p-column field="color" header="Color"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="vin" header="Vin"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h4>Row Grouping (4)</h4>
+    <p-dataTable [value]="cars" sortField="brand" rowGroupMode="subheader" groupField="brand" expandableRowGroups="true"
+            [sortableRowGroup]="false">
+        <p-header>Toggleable Row Groups with Footers</p-header>
+        <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['brand']}}</ng-template>
+        <p-column field="color" header="Color"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="price" header="Price">
+            <ng-template let-col let-car="rowData" pTemplate="body">
+                <span>{{car[col.field] | currency:'USD':true:'.0-0'}}</span>
+            </ng-template>
+        </p-column>
+        <ng-template pTemplate="rowgroupfooter" let-car>
+            <td colspan="3" style="text-align:right">Total Price</td>
+            <td>{{calculateGroupTotal(car['brand']) | currency:'USD':true:'.0-0' }}</td>
+        </ng-template>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./HEADER, FOOTER AND GROUPING -->
+
+<!-- PAGINATOR -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">DATA LAZY LOADING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <h3>Paginator (Basic)</h3>
+    <p-dataTable [value]="cars" [rows]="10" [paginator]="true">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h3>Paginator (First)</h3>
+    <p-dataTable [value]="cars" [rows]="10" [paginator]="true" [(first)]="first">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+
+    <button type="button" pButton (click)="reset()" label="Reset"></button>
+  </div>
+</div>
+<br />
+<!-- ./PAGINATOR -->
+
+<!-- SORTING -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">SORTING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <h6>Sorting (Single)</h6>
+    <p-dataTable [value]="cars" sortField="year" [sortOrder]="1">
+        <p-column field="vin" header="Vin" sortable="true"></p-column>
+        <p-column field="year" header="Year" sortable="true"></p-column>
+        <p-column field="brand" header="Brand" sortable="true"></p-column>
+        <p-column field="color" header="Color" sortable="true"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h6>Sorting (Multi)</h6>
+    <p-dataTable [value]="cars" [multiSortMeta]="multiSortMeta">
+        <p-column field="vin" header="Vin" sortable="true"></p-column>
+        <p-column field="year" header="Year" sortable="custom" (sortFunction)="mysort($event)"></p-column>
+        <p-column field="brand" header="Brand" sortable="true"></p-column>
+        <p-column field="color" header="Color" sortable="true"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+
+<!-- FILTERING -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">SORTING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+      </div>
+      <p-dataTable [value]="carsFilter" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt>
+          <p-header>List of Cars</p-header>
+          <p-column field="vin" header="Vin (startsWith)" [filter]="true" filterPlaceholder="Search"></p-column>
+          <p-column field="year" header="Year ({{yearFilter||'No Filter'}})" [filter]="true" filterMatchMode="equals">
+              <ng-template pTemplate="filter" let-col>
+                  <i class="fa fa-close" (click)="yearFilter=null;dt.filter(null,col.field,col.filterMatchMode)"></i>
+                  <p-slider [style]="{'width':'100%','margin-top':'8px'}" [(ngModel)]="yearFilter" [min]="1970" [max]="2010" (onSlideEnd)="dt.filter($event.value,col.field,col.filterMatchMode)"></p-slider>
+              </ng-template>
+          </p-column>
+          <p-column field="brand" header="Brand (Custom)" [filter]="true" filterMatchMode="equals">
+              <ng-template pTemplate="filter" let-col>
+                  <p-dropdown [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
+              </ng-template>
+          </p-column>
+          <p-column field="color" header="Color (Custom)" [filter]="true" filterMatchMode="in">
+              <ng-template pTemplate="filter" let-col>
+                  <p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
+              </ng-template>
+          </p-column>
+      </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./FILTERING -->
+
+<!-- SELECT -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">SELECT</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <h3>Single select</h3>
+    <p-dataTable [value]="carsSelect" selectionMode="single" [(selection)]="selectedCar" dataKey="vin">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h3>Multiple select (Mac: Command+Click)</h3>
+    <p-dataTable [value]="carsSelect" selectionMode="multiple" [(selection)]="selectedCars" dataKey="vin">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h3>Multiple select (Checkbox)</h3>
+    <p-dataTable [value]="carsSelect" [(selection)]="selectedCars" dataKey="vin">
+        <p-column selectionMode="multiple"></p-column>
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./SELECT -->
+
+<!-- CONTEXT MENU -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">CONTEXT MENU</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <p-dataTable [value]="cars" selectionMode="single" [(selection)]="selectedCar" [contextMenu]="cm">
+        <p-header>Right Click on Rows for ContextMenu</p-header>
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+  </div>
+</div>
+<br />
+<!-- ./CONTEXT MENU -->
+
+<!-- EDITING -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">EDITING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <h4>Editing (Standard)</h4>
+    <p-dataTable [value]="cars" [editable]="true">
+        <p-column field="vin" header="Vin" [editable]="true"></p-column>
+        <p-column field="year" header="Year" [editable]="true"></p-column>
+        <p-column field="brand" header="Brand" [editable]="true"></p-column>
+        <p-column field="color" header="Color" [editable]="true"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h4>Editing (Customize)</h4>
+    <p-dataTable [value]="cars" [editable]="true">
+        <p-column field="vin" header="Vin" [editable]="true"></p-column>
+        <p-column field="year" header="Year" [editable]="true"></p-column>
+        <p-column field="brand" header="Brand" [editable]="true" [style]="{'overflow':'visible'}">
+            <ng-template let-col let-car="rowData" pTemplate="editor">
+                <p-dropdown [(ngModel)]="car[col.field]" [options]="brands" [autoWidth]="false" [style]="{'width':'100%'}" required="true"></p-dropdown>
+            </ng-template>
+        </p-column>
+        <p-column field="color" header="Color" [editable]="true"></p-column>
+        <p-column field="saleDate" header="Sale Date" [editable]="true" [style]=" {'overflow':'visible' }">
+            <ng-template let-col let-car="rowData" pTemplate="body">
+                 {{car[col.field]|date }}
+            </ng-template>
+            <ng-template let-col let-car="rowData" pTemplate="editor">
+                <p-calendar [(ngModel)]="car[col.field]"></p-calendar>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+
+  </div>
+</div>
+<br />
+<!-- ./EDITING -->
+
+<!-- EXPANDABLE ROWS -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">EXPANDABLE ROWS</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <p-dataTable [value]="cars" expandableRows="true">
+        <p-column expander="true" [style]="{'width':'22px'}"></p-column>
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+        <ng-template let-car pTemplate="rowexpansion">
+            <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3" style="text-align:center">
+                        <img src="assets/showcase/images/demo/car/{{car.brand}}.png">
+                    </div>
+                    <div class="ui-grid-col-9">
+                        <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2 label">Vin: </div>
+                                <div class="ui-grid-col-10">{{car.vin}}</div>
+                            </div>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2 label">Year: </div>
+                                <div class="ui-grid-col-10">{{car.year}}</div>
+                            </div>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2 label">Brand: </div>
+                                <div class="ui-grid-col-10">{{car.brand}}</div>
+                            </div>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2 label">Color: </div>
+                                <div class="ui-grid-col-10">{{car.color}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./EXPANDABLE ROWS -->
+
+<!-- COLUMN RESIZE -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">COLUMN RESIZE</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <h3>COLUMN RESIZE</h3>
+    <p-dataTable [value]="cars" [resizableColumns]="true">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h3>Reszie (With %)</h3>
+    <p-dataTable [value]="cars" [resizableColumns]="true">
+        <p-column field="vin" header="Vin" [style]="{'width':'20%'}"></p-column>
+        <p-column field="year" header="Year" [style]="{'width':'30%'}"></p-column>
+        <p-column field="brand" header="Brand" [style]="{'width':'15%'}"></p-column>
+        <p-column field="color" header="Color" [style]="{'width':'35%'}"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./EXPANDABLE ROWS -->
+
+<!-- COLUMN REORDER -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">COLUMN REORDER</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+    <p-dataTable [value]="cars" [reorderableColumns]="true">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./COLUMN REORDER -->
+
+<!-- EXPORT -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">EXPORT</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+  <div class="content-section implementation">
+    <p-dataTable #dt [value]="cars">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()"></button>
+  </div>
+</div>
+<br />
+<!-- ./EXPORT -->
+
+<!-- SCROLLING -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">SCROLLING</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+  <div class="content-section implementation">
+    <h3>Scrolling 1</h3>
+    <p-dataTable [value]="cars3" [scrollable]="true" scrollHeight="200px">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h3>Scrolling 2</h3>
+    <p-dataTable [value]="cars3" [scrollable]="true" scrollHeight="200px" frozenWidth="100px" scrollWidth="600px">
+        <p-column field="vin" header="Vin" frozen="true"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+    <br />
+
+    <h3>Scrolling 3</h3>
+    <p-dataTable [value]="cars3" [frozenValue]="frozenCars" [scrollable]="true" scrollHeight="200px">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./SCROLLING -->
+
+<!-- RESPONSIVE -->
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">RESPONSIVE</span>
+        <span>DataTable displays data in tabular format.</span>
+    </div>
+  </div>
+  <div class="content-section implementation">
+    <p-dataTable [value]="cars" [responsive]="true">
+        <p-column field="vin" header="Vin"></p-column>
+        <p-column field="year" header="Year"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" [style]="{'overflow':'visible'}">
+            <ng-template let-col let-car="rowData">
+                <p-dropdown></p-dropdown>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+  </div>
+</div>
+<br />
+<!-- ./RESPONSIVE -->
+
+<!-- CRUD -->
+<div class="content-section">
+
+  <div class="content-section introduction">
+      <div>
+          <span class="feature-title">CRUD</span>
+          <span>This samples demonstrates a CRUD implementation using various PrimeNG components.</span>
+      </div>
+  </div>
+
+  <div class="content-section implementation">
+      <p-dataTable [value]="carsCRUD" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+          <p-header>CRUD for Cars</p-header>
+          <p-column field="vin" header="Vin" [sortable]="true"></p-column>
+          <p-column field="year" header="Year" [sortable]="true"></p-column>
+          <p-column field="brand" header="Brand" [sortable]="true"></p-column>
+          <p-column field="color" header="Color" [sortable]="true"></p-column>
+          <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></p-footer>
+      </p-dataTable>
+
+      <p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+          <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="carCRUD">
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="vin">Vin</label></div>
+                  <div class="ui-grid-col-8"><input pInputText id="vin" [(ngModel)]="carCRUD.vin" /></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="year">Year</label></div>
+                  <div class="ui-grid-col-8"><input pInputText id="year" [(ngModel)]="carCRUD.year" /></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="brand">Brand</label></div>
+                  <div class="ui-grid-col-8"><input pInputText id="brand" [(ngModel)]="carCRUD.brand" /></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="color">Color</label></div>
+                  <div class="ui-grid-col-8"><input pInputText id="color" [(ngModel)]="carCRUD.color" /></div>
+              </div>
+          </div>
+          <p-footer>
+              <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                  <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+                  <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+              </div>
+          </p-footer>
+      </p-dialog>
+  </div>
+
+</div>
+<!-- ./CRUD -->

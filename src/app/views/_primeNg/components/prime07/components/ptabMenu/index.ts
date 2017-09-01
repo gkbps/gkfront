@@ -1,0 +1,1 @@
+export * from './ptabMenu.component';

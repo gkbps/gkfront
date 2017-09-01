@@ -1,0 +1,42 @@
+
+<p-growl [value]="msgs"></p-growl>
+
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">CAROUSEL</span>
+        <span>Carousel displays content using a slide effect featuring responsive mode, swipe support for touch enabled devices and various customization options.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+
+    <p-carousel headerText="Cars" [value]="cars">
+        <ng-template let-car pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">Vin</div>
+                    <div class="ui-grid-col-6">{{car.vin}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">Year</div>
+                    <div class="ui-grid-col-6">{{car.year}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6">Color</div>
+                    <div class="ui-grid-col-6">{{car.color}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12">
+                        <button type="button" pButton icon="fa-search" (click)="selectCar(car)"></button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+
+  </div>
+</div>

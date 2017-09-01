@@ -1,0 +1,85 @@
+<div class="content-section">
+  <div class="content-section introduction">
+    <div>
+        <span class="feature-title">TREE</span>
+        <span>Tree is used to display hierarchical data.</span>
+    </div>
+  </div>
+
+  <div class="content-section implementation">
+
+    <p-growl [value]="msgs"></p-growl>
+
+    <h3 class="first">Basic</h3>
+    <p-tree [value]="filesTree1"></p-tree>
+
+    <h3>Single Selection</h3>
+    <p-tree [value]="filesTree2" selectionMode="single" [(selection)]="selectedFile"
+        (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"></p-tree>
+    <div style="margin-top:8px; color:#000 !important;">Selected Node: {{selectedFile ? selectedFile.label : 'none'}}</div>
+
+    <h3>Multiple Selection with Metakey</h3>
+    <p-tree [value]="filesTree3" selectionMode="multiple" [(selection)]="selectedFiles"
+        (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"></p-tree>
+    <div style="color:#000 !important;">Selected Nodes: <span *ngFor="let file of selectedFiles">{{file.label}} </span></div>
+
+    <h3>Multiple Selection with Checkbox</h3>
+    <p-tree [value]="filesTree4" selectionMode="checkbox" [(selection)]="selectedFiles2"></p-tree>
+    <div style="color:#000 !important;">Selected Nodes: <span *ngFor="let file of selectedFiles2">{{file.label}} </span></div>
+
+    <h3>Lazy Loading</h3>
+    <p-tree [value]="lazyFiles" (onNodeExpand)="nodeExpand($event)" [style]="{'max-height':'200px','overflow':'auto'}"></p-tree>
+
+    <h3>Template</h3>
+    <p-tree [value]="filesTree5">
+        <ng-template let-node pTemplate="default">
+            <input [(ngModel)]="node.label" type="text" style="width:100%">
+        </ng-template>
+    </p-tree>
+
+    <h3>Context Menu</h3>
+    <p-tree [value]="filesTree6" selectionMode="single" [(selection)]="selectedFile2" [contextMenu]="cm"></p-tree>
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
+
+    <h3>DragDrop</h3>
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-3">
+            <h4>Files</h4>
+            <p-tree [value]="filesTree7" draggableNodes="true" droppableNodes="true" dragdropScope="files"></p-tree>
+        </div>
+
+        <div class="ui-g-12 ui-md-1" style="text-align:center">
+            <i class="fa fa-exchange" style="font-size:36px;margin-top: 28px;"></i>
+        </div>
+
+        <div class="ui-g-12 ui-md-3">
+            <h4>Server 1</h4>
+            <p-tree [value]="filesTree8" draggableNodes="true" droppableNodes="true" dragdropScope="files"></p-tree>
+        </div>
+
+        <div class="ui-g-12 ui-md-1" style="text-align:center">
+            <i class="fa fa-exchange" style="font-size:36px;margin-top: 28px;"></i>
+        </div>
+
+        <div class="ui-g-12 ui-md-3">
+            <h4>Server 2</h4>
+            <p-tree [value]="filesTree9" draggableNodes="true" droppableNodes="true" dragdropScope="other"></p-tree>
+        </div>
+
+        <div class="ui-g-12 ui-md-1">
+
+        </div>
+    </div>
+
+    <h3>Programatic Tree Expansion</h3>
+    <p-tree #expandingTree [value]="filesTree10"></p-tree>
+    <div style="margin-top: 8px">
+        <button pButton type="button" label="Expand all" (click)="expandAll()"></button>
+        <button pButton type="button" label="Collapse all" (click)="collapseAll()"></button>
+    </div>
+
+    <h3>Horizontal Tree</h3>
+    <p-tree [value]="filesTree11" layout="horizontal" selectionMode="single" [(selection)]="selectedFile3" ></p-tree>
+    <div style="margin-top:8px; color:#000 !important;">Selected Node: {{selectedFile3 ? selectedFile3.label : 'none'}}</div>
+  </div>
+</div>
