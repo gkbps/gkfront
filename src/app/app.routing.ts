@@ -26,7 +26,6 @@ export const routes: Routes = [
       }
     ]
   },
-  /*
   {
     path: 'home',
     component: FullLayout,
@@ -36,11 +35,10 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './views/_core/home/home.module#HomeModule'
+        loadChildren: './views/_core/home.module#HomeModule'
       },
     ]
   },
-  */  
   {
     path: 'coreui',
     component: FullLayout,
