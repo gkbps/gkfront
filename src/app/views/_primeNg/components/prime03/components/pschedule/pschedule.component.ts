@@ -21,6 +21,7 @@ export class MyEvent {
 
 export class PSchedule implements OnInit {
 
+
   events: any[];
 
     header: any;
@@ -31,60 +32,22 @@ export class PSchedule implements OnInit {
 
     idGen: number = 100;
 
-    constructor(private eventService: EventService, private cd: ChangeDetectorRef) { }
+    constructor(private eventService: EventService) { }
 
     ngOnInit() {
-        //this.eventService.getEvents().then(events => {this.events = events;});
+        this.eventService.getEvents().then(events => {this.events = events;});
 
-        // this.events = this.eventService.getEvents();
-        /*
-        this.events = [
-            {
-                "title": "All Day Event",
-                "start": "2016-01-01"
-            },
-            {
-                "title": "Long Event",
-                "start": "2016-01-07",
-                "end": "2016-01-10"
-            },
-            {
-                "title": "Repeating Event",
-                "start": "2016-01-09T16:00:00"
-            },
-            {
-                "title": "Repeating Event",
-                "start": "2016-01-16T16:00:00"
-            },
-            {
-                "title": "Conference",
-                "start": "2016-01-11",
-                "end": "2016-01-13"
-            }
-        ];
-        */
         this.header = {
-    			left: 'prev,next today',
-    			center: 'title',
-    			right: 'month,agendaWeek,agendaDay',
-    		};
-
-    }
-
-    loadEvents(event) {
-        let start = event.view.start
-        let end = event.view.end
-        // this.events = this.eventService.getEvents().then(events => {this.events = events;});
-        this.events = this.eventService.getEvents();
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		};
     }
 
     handleDayClick(event) {
         this.event = new MyEvent();
         this.event.start = event.date.format();
         this.dialogVisible = true;
-
-        //trigger detection manually as somehow only moving the mouse quickly after click triggers the automatic detection
-        this.cd.detectChanges();
     }
 
     handleEventClick(e) {
@@ -93,11 +56,11 @@ export class PSchedule implements OnInit {
 
         let start = e.calEvent.start;
         let end = e.calEvent.end;
-        if (e.view.name === 'month') {
+        if(e.view.name === 'month') {
             start.stripTime();
         }
 
-        if (end) {
+        if(end) {
             end.stripTime();
             this.event.end = end.format();
         }
@@ -110,7 +73,7 @@ export class PSchedule implements OnInit {
 
     saveEvent() {
         //update
-        if (this.event.id) {
+        if(this.event.id) {
             let index: number = this.findEventIndexById(this.event.id);
             if(index >= 0) {
                 this.events[index] = this.event;
@@ -128,7 +91,7 @@ export class PSchedule implements OnInit {
 
     deleteEvent() {
         let index: number = this.findEventIndexById(this.event.id);
-        if (index >= 0) {
+        if(index >= 0) {
             this.events.splice(index, 1);
         }
         this.dialogVisible = false;
@@ -136,8 +99,8 @@ export class PSchedule implements OnInit {
 
     findEventIndexById(id: number) {
         let index = -1;
-        for (let i = 0; i < this.events.length; i++) {
-            if (id == this.events[i].id) {
+        for(let i = 0; i < this.events.length; i++) {
+            if(id == this.events[i].id) {
                 index = i;
                 break;
             }

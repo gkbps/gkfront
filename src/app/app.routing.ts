@@ -26,19 +26,21 @@ export const routes: Routes = [
       }
     ]
   },
+  /*
   {
-    path: 'gate',
+    path: 'home',
     component: FullLayout,
     data: {
-      title: 'Gates'
+      title: 'Home'
     },
     children: [
       {
         path: '',
-        loadChildren: './views/_core/general/general.module#GeneralModule'
+        loadChildren: './views/_core/home/home.module#HomeModule'
       },
     ]
   },
+  */  
   {
     path: 'coreui',
     component: FullLayout,
@@ -65,12 +67,29 @@ export const routes: Routes = [
       {
         path: 'charts',
         loadChildren: './views/_coreUI/chartjs/chartjs.module#ChartJSModule'
+      },
+      {
+        path: 'invoice',
+        loadChildren: './views/_coreUI/invoice/invoice.module#InvoiceModule'
+      },
+      {
+        path: 'inbox',
+        loadChildren: './views/_coreUI/email/inbox/inbox.module#InboxModule'
+      },
+      {
+        path: 'message',
+        loadChildren: './views/_coreUI/email/message/message.module#MessageModule'
+      },
+      {
+        path: 'compose',
+        loadChildren: './views/_coreUI/email/compose/compose.module#ComposeModule'
       }
+
     ]
   },
   {
     path: 'prime',
-    component: FullLayout,
+    component: SimpleLayout,
     data: {
       title: 'PrimeNg'
     },

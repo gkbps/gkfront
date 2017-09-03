@@ -23,6 +23,16 @@ app-root {
   flex: 0 0 $footer-height;
 }
 
+.app-simple-footer {
+  // flex: 0 0 $footer-height;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  //height:30px;
+  width:100%;
+  //background:#999;
+}
+
 .app-body {
   display: flex;
   flex-direction: row;
@@ -291,6 +301,13 @@ app-root {
     width: 100%;
   }
 
+  .app-simple-footer {
+    position: fixed;
+    bottom: 0;
+    z-index: $zindex-sticky;
+    width: 100%;
+  }
+
   .app-body {
     margin-bottom: $footer-height;
   }
@@ -353,7 +370,7 @@ app-root {
     }
   }
 
-  .main, .app-footer {
+  .main, .app-footer .app-simple-footer {
     margin-left: 0 !important;
   }
 

@@ -1,105 +1,165 @@
 <div class="sidebar">
+
+  <div class="sidebar-header">
+  <img class="img-avatar" src="assets/img/avatars/8.jpg" alt="Avatar">
+    <div>
+      <strong>JOHN DOE</strong>
+    </div>
+    <div class="text-muted">
+      <small>Founder &amp; CEO</small>
+    </div>
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+      <button type="button" class="btn btn-link">
+        <i class="icon-settings"></i>
+      </button>
+      <button type="button" class="btn btn-link">
+        <i class="icon-speech"></i>
+      </button>
+      <button type="button" class="btn btn-link">
+        <i class="icon-user"></i>
+      </button>
+    </div>
+  </div>
+
   <nav class="sidebar-nav">
     <ul class="nav">
+
+      <!-- GENERAL -->
       <li class="nav-title">
         GENERAL
       </li>
       <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> Company</a>
+        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-home"></i> Company</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-puzzle"></i> Bulletin Board</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-pin"></i> Bulletin Board</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Policies & Procedures</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-book-open"></i> Policies & Procedures</a>
           </li>
         </ul>
       </li>
+      <!-- ./GENERAL -->
+
+      <!-- MY TRAYS -->
       <li class="divider"></li>
       <li class="nav-title">
         MY TRAY
       </li>
       <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> My Approval</a>
+        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-drawer"></i> My Approval</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-puzzle"></i> Inbox</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="fa fa-square-o"></i> Inbox</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Outbox</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="fa fa-check-square-o"></i> Outbox</a>
           </li>
         </ul>
       </li>
       <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> My Request</a>
+        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-layers"></i> My Request</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-puzzle"></i> Draft</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="fa fa-file-o"></i> Draft</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> In progress</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="fa fa-spinner"></i> In progress</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Documenting</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="fa fa-star-half-o"></i> Documenting</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Finished</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="fa fa-star-o"></i> Finished</a>
           </li>
         </ul>
       </li>
+      <!-- ./MY TRAYS -->
+
+      <!-- CORE UI -->
       <li class="divider"></li>
       <li class="nav-title">
         Core UI
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
       </li>
+
       <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
         <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> Components</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-puzzle"></i> Buttons</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/buttons']"><i class="icon-puzzle"></i> Buttons</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-puzzle"></i> Social Buttons</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/social-buttons']"><i class="icon-puzzle"></i> Social Buttons</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/cards']"><i class="icon-puzzle"></i> Cards</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/cards']"><i class="icon-puzzle"></i> Cards</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/forms']"><i class="icon-puzzle"></i> Forms</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/forms']"><i class="icon-puzzle"></i> Forms</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/modals']"><i class="icon-puzzle"></i> Modals</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/modals']"><i class="icon-puzzle"></i> Modals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/switches']"><i class="icon-puzzle"></i> Switches</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/switches']"><i class="icon-puzzle"></i> Switches</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tables']"><i class="icon-puzzle"></i> Tables</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/tables']"><i class="icon-puzzle"></i> Tables</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/tabs']"><i class="icon-puzzle"></i> Tabs</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/tabs']"><i class="icon-puzzle"></i> Tabs</a>
           </li>
         </ul>
       </li>
+
       <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
         <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Icons</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i class="icon-star"></i> Font Awesome<span class="badge badge-secondary">4.7</span></a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/icons/font-awesome']"><i class="icon-star"></i> Font Awesome<span class="badge badge-secondary">4.7</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-star"></i> Simple Line Icons</a>
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/icons/simple-line-icons']"><i class="icon-star"></i> Simple Line Icons</a>
           </li>
         </ul>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/widgets']"><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/widgets']"><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-pie-chart"></i> Charts</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/charts']"><i class="icon-pie-chart"></i> Charts</a>
       </li>
+
+      <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+        <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> UI Kits</a>
+        <ul class="nav-dropdown-items">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/invoice']"><i class="icon-pie-chart"></i> Invoice</a>
+          </li>
+
+          <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+            <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-speech"></i> Email</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/inbox']"><i class="icon-speech"></i> Inbox</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/message']"><i class="icon-speech"></i> Message</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/compose']"><i class="icon-speech"></i> Compose</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </li>
+
       <li class="nav-item nav-dropdown" appNavDropdown>
         <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Pages</a>
         <ul class="nav-dropdown-items">
@@ -117,13 +177,80 @@
           </li>
         </ul>
       </li>
+      <!-- ./CORE UI -->
+
+      <!-- PRIME NG -->
       <li class="divider"></li>
       <li class="nav-title">
         PrimeNg
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/prime']"><i class="icon-star"></i> PrimeNg</a>
-      </li>            
+      </li>
+      <!-- ./PRIME NG -->
+
+      <!-- LABEL -->
+      <li class="divider"></li>
+      <li class="nav-title">
+          Labels
+      </li>
+      <li class="nav-item hidden-cn">
+      	<a class="nav-label" href="#">
+      		<i class="fa fa-circle text-danger"></i> Label danger
+      	</a>
+      </li>
+      <li class="nav-item hidden-cn">
+      	<a class="nav-label" href="#">
+      		<i class="fa fa-circle text-info"></i> Label info
+      	</a>
+      </li>
+      <li class="nav-item hidden-cn">
+      	<a class="nav-label" href="#">
+      		<i class="fa fa-circle text-warning"></i> Label warning
+      	</a>
+      </li>
+      <!-- ./LABEL -->
+
+      <!-- SYSTEM UTILIZATION -->
+      <li class="divider"></li>
+      <li class="nav-title">
+          System Utilization
+      </li>
+      <li class="nav-item px-3 hidden-cn">
+      	<div class="text-uppercase mb-1">
+      		<small>
+      			<b>CPU Usage</b>
+      		</small>
+      	</div>
+      	<div class="progress progress-xs">
+      		<div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      	</div>
+      	<small class="text-muted">348 Processes. 1/4 Cores.</small>
+      </li>
+      <li class="nav-item px-3 hidden-cn">
+      	<div class="text-uppercase mb-1">
+      		<small>
+      			<b>Memory Usage</b>
+      		</small>
+      	</div>
+      	<div class="progress progress-xs">
+      		<div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+      	</div>
+      	<small class="text-muted">11444GB/16384MB</small>
+      </li>
+      <li class="nav-item px-3 hidden-cn">
+      	<div class="text-uppercase mb-1">
+      		<small>
+      			<b>SSD 1 Usage</b>
+      		</small>
+      	</div>
+      	<div class="progress progress-xs">
+      		<div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+      	</div>
+      	<small class="text-muted">243GB/256GB</small>
+      </li>
+      <!-- ./SYSTEM UTILIZATION -->
+
     </ul>
   </nav>
 </div>

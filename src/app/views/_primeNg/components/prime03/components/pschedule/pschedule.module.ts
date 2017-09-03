@@ -1,14 +1,12 @@
 // Components
 import { PSchedule } from './pschedule.component';
-
 import { routing } from './pschedule.routing';
+
 // External modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
-
-
 
 import { EventService } from './event.service';
 
@@ -28,8 +26,6 @@ import { CheckboxModule } from 'primeng/primeng';
     CommonModule,
     FormsModule,
     // RouterModule,
-    
-    
     routing,
 
     ScheduleModule,

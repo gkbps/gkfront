@@ -1,11 +1,11 @@
 {
-  "name": "coreui-angular",
-  "version": "1.0.0-alpha.6",
-  "description": "Open Source Bootstrap Admin Template",
+  "name": "gk-frontend-starter",
+  "version": "1.0.0-alpha.1",
+  "description": "CoreUI and PrimeNg Admin Template",
   "author": "",
-  "url": "http://coreui.io",
-  "copyright": "Copyright 2017 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
+  "url": "http://gkbps.io",
+  "copyright": "Combined 2017 by GK|BPS",
+  "license": "The Unlicense",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -1,0 +1,29 @@
+.sidebar {
+    color: rgb(255, 255, 255);
+    padding: 0px;
+    overflow: hidden;
+    background: rgb(42, 44, 54);
+}
+
+.sidebar .sidebar-header {
+    // height: 200px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .sidebar-header + .sidebar-nav {
+    height: calc((100vh - 55px) - 200px);
+}
+
+.sidebar .sidebar-header .img-avatar {
+    width: 85px;
+    margin: 20px auto 10px;
+    border-radius: 50em;
+}
+
+.img-avatar {
+    border-radius: 50em;
+    // border: 2px solid #ffffff;
+}

@@ -8,17 +8,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
 
-
-
 import { TerminalModule } from 'primeng/primeng';
+import { TerminalService } from './terminal.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     // RouterModule,
-    
-    
     routing,
 
     TerminalModule,
@@ -27,6 +24,7 @@ import { TerminalModule } from 'primeng/primeng';
     PTerminal,
   ],
   providers: [
+    TerminalService,
   ],
 })
 export class PTerminalModule {

@@ -2,6 +2,7 @@
 .sidebar {
   padding: $sidebar-padding;
   overflow: hidden;
+  font-size: 13px;
   color: $sidebar-color;
   background: $sidebar-bg;
   @include borders($sidebar-borders);

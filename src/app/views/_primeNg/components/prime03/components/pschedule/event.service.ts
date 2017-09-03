@@ -76,7 +76,7 @@ export class EventService {
         };
 
     getEvents() {
-      return this.events.data;
+      return Promise.resolve(this.events.data);
 
       /*
       return this.http.get('showcase/resources/data/scheduleevents.json')
