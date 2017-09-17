@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MenubarModule, MenuItem } from 'primeng/primeng';
 
@@ -12,8 +13,9 @@ export class Prime implements OnInit {
 
   items: MenuItem[];
 
-  constructor() {
-  }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
 
@@ -404,7 +406,9 @@ export class Prime implements OnInit {
       },
     ];
 
-
   }
 
+  return() {
+    this.router.navigate(['/main']);  
+  }
 }

@@ -14,28 +14,31 @@ export class TCodeService {
 
   /*****************************************************************************
    * TO PROCESS APPLICATION TCODE OR TRANSFORM A TCODE TO BE ACTIONABLE URL
-   * extractPrefix(mjeXX)-> mje
-   * extractAction(mjeXX)-> XX
-   * urlLead(mjeXX)      -> /pages/tcode/mje/mjeXX
-   * urlForm(mjeXX, id)  -> /pages/tcode/mje/mjeXX/123
-   * urlHome(mjeXX)      -> /pages/tcode/mje
+   * tcodeXXX
+   *
+   * Example
+   * - extractPrefix(mjeXXX)-> mje
+   * - extractAction(mjeXXX)-> XXX
+   * - urlLead(mjeXXX)      -> /pages/tcode/mje/mjeXXX
+   * - urlForm(mjeXXX, id)  -> /pages/tcode/mje/mjeXXX/123
+   * - urlHome(mjeXXX)      -> /pages/tcode/mje
    *****************************************************************************/
-  private url: string = '/pages/tcode/';        // Home of application Tcode
+  private url: string = '/';        // Home of application Tcode
 
   // Extract prefix from tcode
   extractPrefix(tcode: string): string {
-    return tcode.substring(0, (tcode.length - 2)).toLowerCase();
+    return tcode.substring(0, (tcode.length - 3)).toLowerCase();
   }
 
   // Extract action from tcode
   extractAction(tcode: string): string {
-    return tcode.substring(tcode.length - 2).toLowerCase();
+    return tcode.substring(tcode.length - 3).toLowerCase();
   }
 
   // editable
   formEditable(tcode: string): boolean {
     const action = this.extractAction(tcode);
-    return ((action == '11') || (action == '13'));
+    return ((action == '011') || (action == '013'));
   }
 
   // URL redirect to LEAD

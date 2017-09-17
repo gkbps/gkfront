@@ -6,7 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 // Import Containers
 import {
   FullLayout,
-  SimpleLayout
+  SimpleLayout,
+
+  MainLayout,
+  MineLayout,
+  CoreUILayout,
 } from './containers';
 
 export const routes: Routes = [
@@ -49,8 +53,50 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'main',
+    component: MainLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/main/main.module#MainModule'
+      },
+    ]
+  },
+  {
+    path: 'mine',
+    component: MineLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/mine/mine.module#MineModule'
+      },
+    ]
+  },
+  {
+    path: 'system',
+    component: SimpleLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: 'System'
+    },
+    children: [
+      {
+        path: 'prime',
+        loadChildren: './views/_primeNg/prime.module#PrimeModule'
+      },
+    ]
+  },
+  {
     path: 'coreui',
-    component: FullLayout,
+    component: CoreUILayout,
     canActivateChild: [AuthGuard],
     data: {
       title: 'Core UI'
@@ -72,34 +118,6 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './views/_primeNg/prime.module#PrimeModule'
-      },
-    ]
-  },
-  {
-    path: 'home',
-    component: FullLayout,
-    canActivateChild: [AuthGuard],
-    data: {
-      title: 'Home'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: './views/_core/home.module#HomeModule'
-      },
-    ]
-  },
-  {
-    path: 'system',
-    component: SimpleLayout,
-    canActivateChild: [AuthGuard],
-    data: {
-      title: 'System'
-    },
-    children: [
-      {
-        path: 'prime',
         loadChildren: './views/_primeNg/prime.module#PrimeModule'
       },
     ]

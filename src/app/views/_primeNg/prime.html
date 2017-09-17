@@ -4,6 +4,8 @@
       <span>PrimeNg Library Demonstration</span>
   </div>
 </div>
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items">
+  <button pButton label="Return" icon="fa-sign-out" (click)="return()"></button>
+</p-menubar>
 
 <router-outlet></router-outlet>

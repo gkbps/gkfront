@@ -35,7 +35,7 @@ export class LoginComponent {
     this.securityService.logOut();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
 
     this.form = fb.group({
       'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -62,6 +62,7 @@ export class LoginComponent {
     this.authenticationService.login(this.model.username, this.model.password, this.model.token)
       .subscribe(
         data => {
+          console.log(this.returnUrl);
           this.router.navigate([this.returnUrl]);
         },
         error => {

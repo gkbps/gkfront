@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { MenubarModule, MenuItem } from 'primeng/primeng';
+import { MenubarModule, MenuItem, ButtonModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -16,6 +16,7 @@ import { MenubarModule, MenuItem } from 'primeng/primeng';
     routing,
 
     MenubarModule,
+    ButtonModule,
     Prime00Module,
   ],
   declarations: [

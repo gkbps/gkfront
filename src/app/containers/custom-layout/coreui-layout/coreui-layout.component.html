@@ -1,0 +1,143 @@
+<app-header></app-header>
+<div class="app-body">
+  <app-sidebar>
+
+    <!-- CORE UI -->
+    <li class="divider"></li>
+    <li class="nav-title">
+      Core UI
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> Components</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/buttons']"><i class="icon-puzzle"></i> Buttons</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/social-buttons']"><i class="icon-puzzle"></i> Social Buttons</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/cards']"><i class="icon-puzzle"></i> Cards</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/forms']"><i class="icon-puzzle"></i> Forms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/modals']"><i class="icon-puzzle"></i> Modals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/switches']"><i class="icon-puzzle"></i> Switches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/tables']"><i class="icon-puzzle"></i> Tables</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/components/tabs']"><i class="icon-puzzle"></i> Tabs</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Icons</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/icons/font-awesome']"><i class="icon-star"></i> Font Awesome<span class="badge badge-secondary">4.7</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/icons/simple-line-icons']"><i class="icon-star"></i> Simple Line Icons</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/widgets']"><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/charts']"><i class="icon-pie-chart"></i> Charts</a>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i> UI Kits</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/invoice']"><i class="icon-pie-chart"></i> Invoice</a>
+        </li>
+
+        <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+          <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-speech"></i> Email</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/inbox']"><i class="icon-speech"></i> Inbox</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/message']"><i class="icon-speech"></i> Message</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/coreui/compose']"><i class="icon-speech"></i> Compose</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-star"></i> Pages</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/login']"><i class="icon-star"></i> Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/register']"><i class="icon-star"></i> Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/404']"><i class="icon-star"></i> Error 404</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/500']"><i class="icon-star"></i> Error 500</a>
+        </li>
+      </ul>
+    </li>
+    <!-- ./CORE UI -->
+
+    <li class="divider"></li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/main']"><i class="icon-pin"></i> Return Mainpage</a>
+    </li>
+
+    <li class="divider"></li>
+    <li class="nav-title">
+    </li>
+    
+  </app-sidebar>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb"  style="font-size: 0.85em;">
+      <app-breadcrumbs></app-breadcrumbs>
+      <!-- Breadcrumb Menu-->
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <a class="btn" href="#"><i class="icon-speech"></i></a>
+          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+        </div>
+      </li>
+    </ol>
+
+    <div class="container-fluid"  style="font-size: 0.75em;">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- /.conainer-fluid -->
+
+  </main>
+  <app-aside></app-aside>
+</div>
+<app-footer></app-footer>

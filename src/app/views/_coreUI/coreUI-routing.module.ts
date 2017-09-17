@@ -5,9 +5,14 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'CoreUI'
+      title: ''
     },
     children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'

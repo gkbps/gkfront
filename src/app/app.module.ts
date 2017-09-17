@@ -15,13 +15,21 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 // Containers
 import {
   FullLayout,
-  SimpleLayout
+  SimpleLayout,
+
+  MainLayout,
+  MineLayout,
+  CoreUILayout,
 } from './containers';
 
 const APP_CONTAINERS = [
   FullLayout,
-  SimpleLayout
-]
+  SimpleLayout,
+
+  MainLayout,
+  MineLayout,
+  CoreUILayout,
+];
 
 // Components
 import {
@@ -29,7 +37,7 @@ import {
   AppBreadcrumbs,
   AppFooter,
   AppHeader,
-  AppSidebar
+  AppSidebar,
 } from './components';
 
 const APP_COMPONENTS = [
@@ -37,8 +45,8 @@ const APP_COMPONENTS = [
   AppBreadcrumbs,
   AppFooter,
   AppHeader,
-  AppSidebar
-]
+  AppSidebar,
+];
 
 // Directives
 import {
@@ -50,8 +58,8 @@ import {
 const APP_DIRECTIVES = [
   AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
-  SIDEBAR_TOGGLE_DIRECTIVES
-]
+  SIDEBAR_TOGGLE_DIRECTIVES,
+];
 
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: 'home.component.html'
+  templateUrl: 'main.component.html'
 })
-export class HomeComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   ngOnInit(): void {
   }
