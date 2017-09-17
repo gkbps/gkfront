@@ -1,0 +1,26 @@
+.col-md-offset-2 {
+  margin-left: 16.66667%;
+}
+
+.navbar-brand-gk {
+  display: inline-block;
+  // padding-top: $navbar-brand-padding-y;
+  // padding-bottom: $navbar-brand-padding-y;
+  // margin-right: $navbar-padding-x;
+  // font-size: $navbar-brand-font-size;
+  line-height: inherit;
+  white-space: nowrap;
+
+    text-decoration: none;
+}
+
+.navbar-collapse1 {
+  display: flex !important;
+}
+
+.navbar-collapse1 {
+  flex-basis: 100%;
+  // For always expanded or extra full navbars, ensure content aligns itself
+  // properly vertically. Can be easily overridden with flex utilities.
+  align-items: center;
+}

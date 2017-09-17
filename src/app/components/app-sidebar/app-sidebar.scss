@@ -1,8 +1,8 @@
 .sidebar {
-    color: rgb(255, 255, 255);
+    // color: #29363d; // rgb(255, 255, 255);
     padding: 0px;
     overflow: hidden;
-    background: rgb(42, 44, 54);
+    // background: #fff; // rgb(42, 44, 54);
 }
 
 .sidebar .sidebar-header {
@@ -10,7 +10,7 @@
     padding-top: 5px;
     padding-bottom: 10px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2); // #20A8D8;
 }
 
 .sidebar .sidebar-header + .sidebar-nav {

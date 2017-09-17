@@ -1,0 +1,45 @@
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mx-4">
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+            <div class="card-body p-4">
+              <h1>Forgot Password</h1>
+              <p class="text-muted">Get reset instructions via email</p>
+
+
+                <div *ngIf="message" class="alert alert-danger" role="alert">
+                  {{message}}
+                </div>
+
+                <div class="input-group mb-3" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+                  <span class="input-group-addon">@</span>
+                  <input [formControl]="email" [(ngModel)]="model.email" type="email" class="form-control" placeholder="Email">
+                </div>
+
+                <div class="input-group mb-3" [ngClass]="{'has-error': (!token.valid && token.touched), 'has-success': (token.valid && token.touched)}">
+                  <span class="input-group-addon"><i class="icon-user"></i></span>
+                  <input [formControl]="token" [(ngModel)]="model.token" id="inputfirstname" type="text" class="form-control" placeholder="Token">
+                </div>
+            </div>
+
+            <div class="card-footer p-4">
+              <div class="row">
+                <div class="col-6">
+                  <button [disabled]="!form.valid" type="submit" class="btn btn-block btn-success">Reset</button>
+                </div>
+                <div class="col-6">
+                  <button type="button" class="btn btn-block btn-success" [routerLink]="['/login']">Have Password</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

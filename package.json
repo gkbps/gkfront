@@ -1,10 +1,10 @@
 {
-  "name": "coreui-primeng",
+  "name": "frontend",
   "version": "1.0.0-alpha.1",
-  "description": "CoreUI and PrimeNg Admin Template",
+  "description": "GK|BPS Frontend",
   "author": "",
   "url": "http://gkbps.io",
-  "copyright": "Combined 2017 by GK|BPS",
+  "copyright": "GK|BPS 2017",
   "license": "The Unlicense",
   "scripts": {
     "ng": "ng",
@@ -26,6 +26,8 @@
     "@angular/platform-browser-dynamic": "4.3.6",
     "@angular/router": "4.3.6",
     "@angular/upgrade": "4.3.6",
+    "@ngx-translate/core": "^7.2.0",
+    "@ngx-translate/http-loader": "^1.0.2",
     "chart.js": "2.6.0",
     "core-js": "2.5.0",
     "fullcalendar": "^3.5.0",
@@ -39,6 +41,7 @@
     "quill": "^1.3.1",
     "rxjs": "5.4.3",
     "ts-helpers": "1.1.2",
+    "underscore": "^1.8.3",
     "zone.js": "0.8.17"
   },
   "devDependencies": {

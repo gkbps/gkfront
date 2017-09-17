@@ -1,13 +1,18 @@
+import { AppConfig } from './app.config';
+import { NgaModule } from './nga/nga.module';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-import { AppComponent } from './app.component';
-
-// Import containers
+// Containers
 import {
   FullLayout,
   SimpleLayout
@@ -18,7 +23,7 @@ const APP_CONTAINERS = [
   SimpleLayout
 ]
 
-// Import components
+// Components
 import {
   AppAside,
   AppBreadcrumbs,
@@ -35,7 +40,7 @@ const APP_COMPONENTS = [
   AppSidebar
 ]
 
-// Import directives
+// Directives
 import {
   AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
@@ -48,36 +53,41 @@ const APP_DIRECTIVES = [
   SIDEBAR_TOGGLE_DIRECTIVES
 ]
 
-// Import routing module
-import { AppRoutingModule } from './app.routing';
-
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { TranslateService } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    ChartsModule
-  ],
+  bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ChartsModule,
+
+    NgaModule.forRoot(),
+    AppRoutingModule,
+  ],
+  providers: [
+    AppConfig,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
 })
 export class AppModule { }
