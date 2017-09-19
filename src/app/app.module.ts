@@ -1,4 +1,5 @@
 import { AppConfig } from './app.config';
+// import { PrimeNgModule} from './primeng/primeng.module';
 import { NgaModule } from './nga/nga.module';
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import {
 
   MainLayout,
   MineLayout,
+  GkmLayout,
   CoreUILayout,
 } from './containers';
 
@@ -28,6 +30,7 @@ const APP_CONTAINERS = [
 
   MainLayout,
   MineLayout,
+  GkmLayout,
   CoreUILayout,
 ];
 
@@ -87,6 +90,7 @@ import { TranslateService } from '@ngx-translate/core';
     TabsModule.forRoot(),
     ChartsModule,
 
+    // PrimeNgModule.forRoot(),
     NgaModule.forRoot(),
     AppRoutingModule,
   ],

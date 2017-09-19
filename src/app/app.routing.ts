@@ -10,6 +10,7 @@ import {
 
   MainLayout,
   MineLayout,
+  GkmLayout,
   CoreUILayout,
 } from './containers';
 
@@ -77,6 +78,34 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: './views/mine/mine.module#MineModule'
+      },
+    ]
+  },
+  {
+    path: 'gkm',
+    component: GkmLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/gkm/gkm.module#GkmModule'
+      },
+    ]
+  },
+  {
+    path: 'gkcln',
+    component: GkmLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/gkm/modules/gkcln/gkcln.module#GkClnModule'
       },
     ]
   },

@@ -1,0 +1,429 @@
+<app-header></app-header>
+<div class="app-body">
+  <app-sidebar>
+
+    <!-- CLIENTS -->
+    <li class="nav-title">
+      CLIENT MANAGEMENT
+    </li>
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-globe-alt"></i> Overview</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln01']"><i class="fa fa-circle-o text-info"></i> Master List</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-doc"></i> Individual</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln11']"><i class="fa fa-circle-o text-warning"></i> Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln12']"><i class="fa fa-circle-o text-info"></i> Read</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln13']"><i class="fa fa-circle-o text-warning"></i> Update</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln14']"><i class="fa fa-circle-o text-warning"></i> Disable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln15']"><i class="fa fa-circle-o text-warning"></i> Enable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln16']"><i class="fa fa-circle-o text-warning"></i> Mark for deletion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln17']"><i class="fa fa-circle-o text-warning"></i> Unmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln18']"><i class="fa fa-circle-o text-danger"></i> Delete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln19']"><i class="fa fa-circle-o text-info"></i> View changes</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-docs"></i> Collective</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln21']"><i class="fa fa-circle-o text-warning"></i> Upload</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln22']"><i class="fa fa-circle-o text-info"></i> Download</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln23']"><i class="fa fa-circle-o text-danger"></i> Upsert</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln24']"><i class="fa fa-circle-o text-warning"></i> Inactivate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln25']"><i class="fa fa-circle-o text-warning"></i> Activate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln26']"><i class="fa fa-circle-o text-warning"></i> Mark for deletion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln27']"><i class="fa fa-circle-o text-warning"></i> Unmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln28']"><i class="fa fa-circle-o text-danger"></i> Clean</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln29']"><i class="fa fa-circle-o text-info"></i> History</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-note"></i> Requests</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln31']"><i class="fa fa-address-card-o text-danger"></i> New Client</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln32']"><i class="fa fa-address-card text-danger"></i> Update Client</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln33']"><i class="fa fa-file-text-o text-danger"></i> Debit Note</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln34']"><i class="fa fa-file-o text-danger"></i> Invoice</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln35']"><i class="fa fa-file-text text-danger"></i> Credit Note</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln36']"><i class="fa fa-file text-danger"></i> Receipt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln37']"><i class="fa fa-hand-pointer-o text-danger"></i> Manual Entry</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-basket-loaded"></i> Client Services</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln41']"><i class="fa fa-shopping-basket text-danger"></i> Solutions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln42']"><i class="fa fa-user-circle-o text-danger"></i> Standard Roles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln43']"><i class="fa fa-magic text-danger"></i> Tcodes</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-pie-chart"></i> Dashboard</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln50']"><i class="fa fa-circle-o text-info"></i> KPIs</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-calculator"></i> Reports</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln60']"><i class="fa fa-circle-o text-info"></i> Summary Reports</a>
+        </li>
+      </ul>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln70']"><i class="fa fa-circle-o text-info"></i> Detail Reports</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-refresh"></i> Properties</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln80']"><i class="fa fa-circle-o text-warning"></i> Dimensions</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-settings"></i> Administration</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln91']"><i class="fa fa-circle-o text-danger"></i> Configuration</a>
+        </li>
+      </ul>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkcln/gkcln92']"><i class="fa fa-circle-o text-danger"></i> Approval Flow</a>
+        </li>
+      </ul>
+    </li>
+    <!-- ./CLIENTS -->
+
+    <!-- SOLUTIONS -->
+    <li class="divider"></li>
+    <li class="nav-title">
+      SOLUTION MANAGEMENT
+    </li>
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-globe-alt"></i> Overview</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol01']"><i class="fa fa-circle-o text-info"></i> Master List</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-doc"></i> Individual</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol11']"><i class="fa fa-circle-o text-warning"></i> Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol12']"><i class="fa fa-circle-o text-info"></i> Read</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol13']"><i class="fa fa-circle-o text-warning"></i> Update</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol14']"><i class="fa fa-circle-o text-warning"></i> Disable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol15']"><i class="fa fa-circle-o text-warning"></i> Enable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol16']"><i class="fa fa-circle-o text-warning"></i> Mark for deletion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol']"><i class="fa fa-circle-o text-warning"></i> Unmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol18']"><i class="fa fa-circle-o text-danger"></i> Delete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol19']"><i class="fa fa-circle-o text-info"></i> View changes</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-docs"></i> Collective</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol21']"><i class="fa fa-circle-o text-warning"></i> Upload</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol22']"><i class="fa fa-circle-o text-info"></i> Download</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol23']"><i class="fa fa-circle-o text-danger"></i> Upsert</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol24']"><i class="fa fa-circle-o text-warning"></i> Inactivate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol25']"><i class="fa fa-circle-o text-warning"></i> Activate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol26']"><i class="fa fa-circle-o text-warning"></i> Mark for deletion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol27']"><i class="fa fa-circle-o text-warning"></i> Unmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol28']"><i class="fa fa-circle-o text-danger"></i> Clean</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol29']"><i class="fa fa-circle-o text-info"></i> History</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-pie-chart"></i> Dashboard</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol50']"><i class="fa fa-circle-o text-info"></i> KPIs</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-calculator"></i> Reports</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol60']"><i class="fa fa-circle-o text-info"></i> Summary Reports</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gksol/gksol70']"><i class="fa fa-circle-o text-info"></i> Detail Reports</a>
+        </li>
+      </ul>
+    </li>
+    <!-- ./SOLUTIONS -->
+
+    <!-- TCODES -->
+    <li class="divider"></li>
+    <li class="nav-title">
+      TCODES MANAGEMENT
+    </li>
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-globe-alt"></i> Overview</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd01']"><i class="fa fa-circle-o text-info"></i> Master List</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-doc"></i> Individual</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd11']"><i class="fa fa-circle-o text-warning"></i> Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd12']"><i class="fa fa-circle-o text-info"></i> Read</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd13']"><i class="fa fa-circle-o text-warning"></i> Update</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd14']"><i class="fa fa-circle-o text-warning"></i> Disable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd15']"><i class="fa fa-circle-o text-warning"></i> Enable</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd16']"><i class="fa fa-circle-o text-warning"></i> Mark for deletion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd17']"><i class="fa fa-circle-o text-warning"></i> Unmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd18']"><i class="fa fa-circle-o text-danger"></i> Delete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd19']"><i class="fa fa-circle-o text-info"></i> View changes</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-docs"></i> Collective</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd21']"><i class="fa fa-circle-o text-warning"></i> Upload</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd22']"><i class="fa fa-circle-o text-info"></i> Download</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd23']"><i class="fa fa-circle-o text-danger"></i> Upsert</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd24']"><i class="fa fa-circle-o text-warning"></i> Inactivate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd25']"><i class="fa fa-circle-o text-warning"></i> Activate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd26']"><i class="fa fa-circle-o text-warning"></i> Mark for deletion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd27']"><i class="fa fa-circle-o text-warning"></i> Unmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd28']"><i class="fa fa-circle-o text-danger"></i> Clean</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd29']"><i class="fa fa-circle-o text-info"></i> History</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-pie-chart"></i> Dashboard</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd50']"><i class="fa fa-circle-o text-info"></i> KPIs</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-calculator"></i> Reports</a>
+      <ul class="nav-dropdown-items">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd60']"><i class="fa fa-circle-o text-info"></i> Summary Report</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gktcd/gktcd70']"><i class="fa fa-circle-o text-info"></i> Detail Report</a>
+        </li>
+      </ul>
+    </li>
+    <!-- ./TOCDES -->
+
+    <!-- LABEL -->
+    <li class="divider"></li>
+    <li class="nav-title">
+        Labels
+    </li>
+    <li class="nav-item hidden-cn">
+      <a class="nav-label" href="#">
+        <i class="fa fa-circle text-danger"></i> Label danger
+      </a>
+    </li>
+    <li class="nav-item hidden-cn">
+      <a class="nav-label" href="#">
+        <i class="fa fa-circle text-info"></i> Label info
+      </a>
+    </li>
+    <li class="nav-item hidden-cn">
+      <a class="nav-label" href="#">
+        <i class="fa fa-circle text-warning"></i> Label warning
+      </a>
+    </li>
+    <!-- ./LABEL -->
+    <li class="divider"></li>
+    <li class="nav-title">      
+    </li>
+
+  </app-sidebar>
+
+  <!-- Main content -->
+  <main class="main">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb"  style="font-size: 0.85em;">
+      <app-breadcrumbs></app-breadcrumbs>
+      <!-- Breadcrumb Menu-->
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <a class="btn" href="#"><i class="icon-speech"></i></a>
+          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+        </div>
+      </li>
+    </ol>
+
+    <div class="container-fluid"  style="font-size: 0.75em;">
+      <router-outlet></router-outlet>
+    </div>
+    <br />
+    <!-- /.conainer-fluid -->
+
+  </main>
+  <app-aside></app-aside>
+</div>
+<app-footer></app-footer>

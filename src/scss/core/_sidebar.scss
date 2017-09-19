@@ -151,6 +151,9 @@
 
         &.nav-dropdown-toggle {
 
+          //Dong add
+          font-weight: bold;
+
           &::before {
             position: absolute;
             top: ($sidebar-nav-link-padding-y + ($font-size-base / 4));
@@ -163,7 +166,7 @@
             line-height: ($font-size-base * 3 / 4);
             text-align: center;
             content: "\2039";
-            transition: .3s;
+            transition: .3s;            
           }
         }
       }
