@@ -1,6 +1,5 @@
+// External
 import { Component } from '@angular/core';
-
-import { Car } from './car.interface';
 
 import { Header } from 'primeng/primeng';
 import { Footer } from 'primeng/primeng';
@@ -8,128 +7,157 @@ import { Message } from 'primeng/primeng';
 import { MenuItem, SelectItem } from 'primeng/primeng';
 import { LazyLoadEvent } from 'primeng/primeng';
 
-class PrimeCar implements Car {
-
-    constructor(public vin?, public year?, public brand?, public color?) {}
-}
-
+// Internal
+import {
+  SecurityService,
+  TcodeService,
+  NavigationService,
+  APIResultHandlingService
+} from '../../../../../../nga/services';
+import { GkClientService } from '../../../../../../services/gkClient.service';
 
 @Component({
   templateUrl: 'gkcln01.component.html'
 })
 export class GkCln01Component {
 
-  msgs: Message[] = [];
-  cars: [Car];
-  cols: any[];
+  userRights: string[];
 
+  msgs: Message[] = [];
+
+  clients: any[];               // List of clients for Datatable, type: GkClient[];
+  selectedClient: any;          // Type: GkClient;
+
+  loading: boolean;
+  cols: any[];                  // Header columns on the fly
   columnOptions: SelectItem[];
 
-  brands: SelectItem[];
+  first: number = 0;
 
-  colors: SelectItem[];
+  items: MenuItem[];            // Items of menubar and context menu
 
-  yearFilter: number;
-
-  selectedCar: Car;
-
-  items: MenuItem[];
+  constructor (
+    private securityService: SecurityService,
+    private tcodeService: TcodeService,
+    private navigationService: NavigationService,
+    private gkClientService: GkClientService,
+    private apiResultHandlingService: APIResultHandlingService,
+  ) {
+  }
 
   ngOnInit() {
-    this.cars = [
-      { brand: 'VW', year: 2012, color: 'Orange', vin: 'dsad231ff', price: 500 },
-      { brand: 'Audi', year: 2011, color: 'Black', vin: 'gwregre345', price: 500 },
-      { brand: 'Renault', year: 2005, color: 'Gray', vin: 'h354htr', price: 500 },
-      { brand: 'BMW', year: 2003, color: 'Blue', vin: 'j6w54qgh', price: 500 },
-      { brand: 'Mercedes', year: 1995, color: 'Orange', vin: 'hrtwy34', price: 500 },
-      { brand: 'Volvo', year: 2005, color: 'Black', vin: 'jejtyj', price: 500 },
-      { brand: 'Honda', year: 2012, color: 'Yellow', vin: 'g43gr', price: 500 },
-      { brand: 'Jaguar', year: 2013, color: 'Orange', vin: 'greg34', price: 500 },
-      { brand: 'Ford', year: 2000, color: 'Black', vin: 'h54hw5', price: 500 },
-      { brand: 'Fiat', year: 2013, color: 'Red', vin: '245t2s', price: 500 },
-      { brand: 'VW', year: 2012, color: 'Orange', vin: 'dsad231ff', price: 500 },
-      { brand: 'Audi', year: 2011, color: 'Black', vin: 'gwregre345', price: 500 },
-      { brand: 'Renault', year: 2005, color: 'Gray', vin: 'h354htr', price: 500 },
-      { brand: 'BMW', year: 2003, color: 'Blue', vin: 'j6w54qgh', price: 500 },
-      { brand: 'Mercedes', year: 1995, color: 'Orange', vin: 'hrtwy34', price: 500 },
-      { brand: 'Volvo', year: 2005, color: 'Black', vin: 'jejtyj', price: 500 },
-      { brand: 'Honda', year: 2012, color: 'Yellow', vin: 'g43gr', price: 500 },
-      { brand: 'Jaguar', year: 2013, color: 'Orange', vin: 'greg34', price: 500 },
-      { brand: 'Ford', year: 2000, color: 'Black', vin: 'h54hw5', price: 500 },
-      { brand: 'Fiat', year: 2013, color: 'Red', vin: '245t2s', price: 500 },
-      { brand: 'VW', year: 2012, color: 'Orange', vin: 'dsad231ff', price: 500 },
-      { brand: 'Audi', year: 2011, color: 'Black', vin: 'gwregre345', price: 500 },
-      { brand: 'Renault', year: 2005, color: 'Gray', vin: 'h354htr', price: 500 },
-      { brand: 'BMW', year: 2003, color: 'Blue', vin: 'j6w54qgh', price: 500 },
-      { brand: 'Mercedes', year: 1995, color: 'Orange', vin: 'hrtwy34', price: 500 },
-      { brand: 'Volvo', year: 2005, color: 'Black', vin: 'jejtyj', price: 500 },
-      { brand: 'Honda', year: 2012, color: 'Yellow', vin: 'g43gr', price: 500 },
-      { brand: 'Jaguar', year: 2013, color: 'Orange', vin: 'greg34', price: 500 },
-      { brand: 'Ford', year: 2000, color: 'Black', vin: 'h54hw5', price: 500 },
-      { brand: 'Fiat', year: 2013, color: 'Red', vin: '245t2s', price: 500 },
-      { brand: 'VW', year: 2012, color: 'Orange', vin: 'dsad231ff', price: 500 },
-      { brand: 'Audi', year: 2011, color: 'Black', vin: 'gwregre345', price: 500 },
-      { brand: 'Renault', year: 2005, color: 'Gray', vin: 'h354htr', price: 500 },
-      { brand: 'BMW', year: 2003, color: 'Blue', vin: 'j6w54qgh', price: 500 },
-      { brand: 'Mercedes', year: 1995, color: 'Orange', vin: 'hrtwy34', price: 500 },
-      { brand: 'Volvo', year: 2005, color: 'Black', vin: 'jejtyj', price: 500 },
-      { brand: 'Honda', year: 2012, color: 'Yellow', vin: 'g43gr', price: 500 },
-      { brand: 'Jaguar', year: 2013, color: 'Orange', vin: 'greg34', price: 500 },
-      { brand: 'Ford', year: 2000, color: 'Black', vin: 'h54hw5', price: 500 },
-      { brand: 'Fiat', year: 2013, color: 'Red', vin: '245t2s', price: 500 },
-    ];
+    this.getData();
 
+    this.navigationService.trackHistory();
 
+    // Performance: To avoid multiple read of Mana for menu item disable setting
+    this.userRights = this.securityService.getMana();
+
+    this.loading = true;
+
+    this.initDataTableColumn();
+
+    this.initMenuItems();
+  }
+
+  getData() {
+    this.gkClientService.findMasterList()
+      .subscribe(
+        result => {
+          this.clients = result.data;
+          this.loading = false;
+        },
+        error => {
+          this.handleAPIReturn(error);
+        }
+      );
+  }
+
+  initDataTableColumn() {
     this.cols = [
-        { field: 'vin', header: 'vin', width: '20%' },
-        { field: 'year', header: 'year', width: '30%'  },
-        { field: 'brand', header: 'brand', width: '15%'  },
-        { field: 'color', header: 'color', width: '35%'  },
+      { field: '_id', header: 'ID', width: '20%' },
+      { field: 'name', header: 'Name', width: '45%'  },
+      { field: 'clientDb', header: 'DB', width: '15%'  },
+      { field: 'status1', header: 'Status', width: '10%'},
+      { field: 'status2', header: 'Marked', width: '10%' },
     ];
 
     this.columnOptions = [];
     for (let i = 0; i < this.cols.length; i++) {
         this.columnOptions.push({  label: this.cols[i].header, value: this.cols[i] });
     }
+  }
 
+  initMenuItems() {
     this.items = [
-      { label: 'View', icon: 'fa-search', command: (event) => this.viewCar(this.selectedCar)},
-      { label: 'Delete', icon: 'fa-close', command: (event) => this.deleteCar(this.selectedCar)},
       {
-          label: 'File',
-          items: [{
-                  label: 'New',
-                  icon: 'fa-plus',
-                  items: [
-                      { label: 'Project' },
-                      { label: 'Other' },
-                  ],
-              },
-              { label: 'Open' },
-              { label: 'Quit' },
-          ],
+        label: 'Create', icon: 'fa-plus',
+        command: (event) => this.tcodeService.executeTCode('gkcln11'),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln11', this.userRights),
+      },
+      {
+        label: 'View', icon: 'fa-search',
+        command: (event) => this.tcodeService.executeTCode('gkcln12', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln12', this.userRights),
+      },
+      {
+        label: 'Edit', icon: 'fa-pencil',
+        command: (event) => this.tcodeService.executeTCode('gkcln13', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln13', this.userRights),
+      },
+      {separator:true},
+      {
+        label: 'Disable', icon: 'fa-bookmark',
+        command: (event) => this.tcodeService.executeTCode('gkcln14', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln14', this.userRights),
+      },
+      {
+        label: 'Enable', icon: 'fa-bookmark-o',
+        command: (event) => this.tcodeService.executeTCode('gkcln15', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln15', this.userRights),
+      },
+      {separator:true},
+      {
+        label: 'Mark', icon: 'fa-flag',
+        command: (event) => this.tcodeService.executeTCode('gkcln16', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln16', this.userRights),
+      },
+      {
+        label: 'Unmark', icon: 'fa-flag-o',
+        command: (event) => this.tcodeService.executeTCode('gkcln17', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln17', this.userRights),
+      },
+      {separator:true},
+      {
+        label: 'Delete', icon: 'fa-trash',
+        command: (event) => this.tcodeService.executeTCode('gkcln18', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln18', this.userRights),
+      },
+      {separator:true},
+      {
+        label: 'History', icon: 'fa-files-o',
+        command: (event) => this.tcodeService.executeTCode('gkcln19', this.selectedClient? this.selectedClient._id : null),
+        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln19', this.userRights),
       },
     ];
-
   }
 
-  viewCar(car: Car) {
-      this.msgs = [];
-      this.msgs.push({  severity: 'info', summary: 'Car Selected', detail: car.vin + ' - ' + car.brand });
-  }
+  handleAPIReturn(result) {
+    let processedResult = this.apiResultHandlingService.processAPIResult(result);
 
-  deleteCar(car: Car) {
-      let index = -1;
-      for (let i = 0; i < this.cars.length; i++) {
-          if (this.cars[i].vin == car.vin) {
-              index = i;
-              break;
-          }
-      }
-      this.cars.splice(index, 1);
+    if (result.status==201) {
+    }
 
-      this.msgs = [];
-      this.msgs.push({  severity: 'info', summary: 'Car Deleted', detail: car.vin + ' - ' + car.brand });
+    this.msgs = [];
+    this.msgs.push({
+      severity: processedResult.severity,
+      summary: processedResult.summary,
+      detail: processedResult.detail
+    });
+
+    setTimeout(()=> {
+      this.msgs =[];
+    }, 5000);
   }
 
 }

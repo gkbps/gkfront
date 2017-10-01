@@ -1,0 +1,41 @@
+<div [formGroup]="addressItem">
+
+  <p-panel [style]="{'margin-bottom':'15px'}">
+
+    <p-header>
+      <div class="ui-helper-clearfix">
+        <span class="ui-panel-title">Address {{item + 1}}</span>
+        <button *ngIf="formEditable" pButton type="button" style="float:right" icon="fa-remove" class="ui-button-danger" (click)="removeAddress()"></button>
+      </div>
+    </p-header>
+
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-3">
+          Address Type <small *ngIf="!addressItem.controls.type.valid && addressItem.controls.type.dirty" class="text-warning">(At least 3 characters)</small>
+          <input pInputText type="text" name="type" formControlName="type"/>
+      </div>
+      <div class="ui-g-12 ui-md-12">
+          Line 1 <small *ngIf="!addressItem.controls.line1.valid && addressItem.controls.line1.dirty" class="text-warning">(Required)</small>
+          <input pInputText type="text" name="line1" formControlName="line1"/>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Line 2
+          <input pInputText type="text" name="line2" formControlName="line2"/>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Line 3
+          <input pInputText type="text" name="line3" formControlName="line3"/>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Line 4
+          <input pInputText type="text" name="line4" formControlName="line4"/>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Line 5
+          <input pInputText type="text" name="line5" formControlName="line5"/>
+      </div>
+    </div>
+
+  </p-panel>
+
+</div>

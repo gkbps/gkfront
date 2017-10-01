@@ -1,0 +1,46 @@
+<div *ngIf="navType=='circle'" class="gk-content-section introduction">
+  <div>
+      <span class="gk-feature-title">{{title}}</span>
+      <span>{{subtitle}}</span>
+  </div>
+</div>
+
+<div *ngIf="navType=='circle'" class="gk-content-section implementation">
+  <div class="wrapper">
+
+    <div class="imgholder" *ngFor="let item of navItems; let i=index">
+			<div class="outer1 circle"></div>
+			<div class="outer2 circle"></div>
+			<figure>
+        <a href="/#/{{item.url}}">
+				  <img src="{{assetPath}}{{item.img}}" />
+				  <figcaption class="caption">{{item.title}}</figcaption>
+        </a>
+			</figure>
+		</div>
+		<div class="clearfix"></div>
+
+	</div>
+</div>
+
+<section *ngIf="navType=='box'" id="fh5co-work" data-section="work">
+  <div class="container">
+
+    <div class="row row-bottom-padded-sm" style="padding: 50px 0px">
+
+      <div *ngFor="let item of navItems; let i=index" class="col-md-2 col-sm-3 col-xxs-12">
+        <a href="/#/{{item.url}}" class="fh5co-project-item image-popup to-animate">
+          <img src="{{assetPath}}{{item.img}}" alt="Image" class="img-responsive">
+          <div class="fh5co-text">
+            <h2>{{item.tcode}}</h2>
+            <span>{{item.title}}</span>
+          </div>
+        </a>
+      </div>
+      <div class="clearfix visible-sm-block"></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ui-helper-clearfix" style="margin-bottom: 40px"></div>

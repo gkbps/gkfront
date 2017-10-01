@@ -1,0 +1,88 @@
+<div class="ui-helper-clearfix" style="margin-bottom:20px">
+  <individual-nav [prefix]="prefix"></individual-nav>
+</div>
+
+<p-growl [value]="msgs"></p-growl>
+<p-messages [(value)]="msgs"></p-messages>
+
+<ng-container *ngIf="hasClient">
+  <form [formGroup]="myForm" novalidate>
+
+    <p-panel header="GENERAL INFORMATION" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-3">
+          ID
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-key fa-lg"></i></span>
+            <input type="text" pInputText placeholder="ID" value = "{{myForm.controls._id.value}}" disabled="disabled">
+            <input type="text" pInputText placeholder="ID" name="_id" formControlName="_id" style="display:none">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-6">
+          Name <small *ngIf="!myForm.controls.name.valid && myForm.controls.name.dirty" class="text-warning">(At least 5 characters)</small>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-building-o fa-lg"></i></span>
+            <input type="text" pInputText placeholder="Name" name="name" formControlName="name">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-3">
+          Database <small *ngIf="!myForm.controls.clientDb.valid && myForm.controls.clientDb.dirty" class="text-warning">(Alphanumeric, min 3 characters)</small>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-database fa-lg"></i></span>
+            <input type="text" pInputText placeholder="Database" name="clientDb" formControlName="clientDb">
+          </div>
+        </div>
+      </div>
+
+      <p-footer *ngIf="formEditable">
+        <div class="ui-helper-clearfix">
+          <button style="float:right" pButton type="button" icon="fa-save" label="Save" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
+        </div>
+      </p-footer>
+    </p-panel>
+
+    <p-panel header="ADDRESSES" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+      <div *ngFor="let address of myForm.controls.addresses.controls; let i=index">
+        <nga-address
+          [formEditable]="formEditable"
+          [item]="i"
+          [(formGroup)]="myForm.controls.addresses.controls[i]"
+          (itemEvent)="handleEvent($event)">
+        </nga-address>
+      </div>
+      <p-footer *ngIf="formEditable">
+        <div class="ui-helper-clearfix">
+          <button pButton type="button" icon="fa-plus" label="New Address" class="ui-button-success" (click)="newAddress()"></button>
+          <button *ngIf="myForm.controls.addresses.controls.length" style="float:right" pButton type="button" icon="fa-save" label="Save" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
+        </div>
+      </p-footer>
+    </p-panel>
+
+    <p-panel header="CONTACTS" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+      <div *ngFor="let contact of myForm.controls.contacts.controls; let i=index">
+        <nga-contact
+        [formEditable]="formEditable"
+        [item]="i"
+        [(formGroup)]="myForm.controls.contacts.controls[i]"
+        (itemEvent)="handleEvent($event)">
+        </nga-contact>
+      </div>
+
+      <p-footer *ngIf="formEditable">
+        <button pButton type="button" icon="fa-plus" label="New Contact" class="ui-button-success" (click)="newContact()"></button>
+        <button *ngIf="myForm.controls.contacts.controls.length" style="float:right" pButton type="button" icon="fa-save" label="Save" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
+      </p-footer>
+    </p-panel>
+
+  </form>
+
+  <div class="ui-helper-clearfix" style="margin-top:10px">
+    <h3>DEBUG</h3>
+    <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+    <pre>form value: <br>{{myForm.value | json}}</pre>
+  </div>
+
+</ng-container>

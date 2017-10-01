@@ -9,3 +9,5 @@ export * from './pagination.service';
 
 export * from './auth.guard';
 export * from './tcode.guard';
+
+export * from './apiResultHandling.service';

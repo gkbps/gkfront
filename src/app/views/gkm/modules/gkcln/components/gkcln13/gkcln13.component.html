@@ -1,0 +1,9 @@
+<div class="content-section implementation" *ngIf="id">
+  <gkclient-form [tcode]="tcode"></gkclient-form>
+</div>
+
+<div class="content-section implementation" *ngIf="!id">
+  <lead-form></lead-form>
+</div>
+
+<div class="ui-helper-clearfix" style="margin-bottom: 40px"></div>

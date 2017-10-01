@@ -1,10 +1,14 @@
 import { Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 
+import { TcodeService } from './tcode.service';
+
 @Injectable()
 export class SecurityService {
 
-  constructor() {
+  constructor(
+    private tcodeService: TcodeService,
+  ) {
   }
 
   /****************************************************************************
@@ -50,10 +54,13 @@ export class SecurityService {
     localStorage.setItem('mana', mana);
   }
 
-  getMana() {
-    return JSON.parse(localStorage.getItem('mana'));
+  getMana(): string[] {
+    return (JSON.parse(localStorage.getItem('mana')));
   }
 
+  getDecodedMana(): string[] {
+    return this.tcodeService.decode_array(JSON.parse(localStorage.getItem('mana')));
+  }
   /****************************************************************************
    * TO LOG OUT AND CLEAN UP SESSION DATA
    ****************************************************************************/

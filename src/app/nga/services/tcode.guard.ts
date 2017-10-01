@@ -1,50 +1,57 @@
-// Internal
-import { SecurityService } from './security.service';
-import { TCodeService } from './tcode.service';
-
+// External
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
+// Internal
+import { SecurityService } from './security.service';
+import { TcodeService } from './tcode.service';
+
 @Injectable()
-export class TCodeGuard implements CanActivate, CanActivateChild {
+export class TcodeGuard implements CanActivate, CanActivateChild {
 
-    constructor(
-      private router: Router,
-      private gkSecurityService: SecurityService,
-      private gkTcodeService: TCodeService,
-    ) { }
+  constructor(
+    private router: Router,
+    private securityService: SecurityService,
+    private tcodeService: TcodeService,
+  ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  /*
+   * canActivate is used to check if user entered tcode is included in user's Mana
+   */
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if (localStorage.getItem('currentUser')) {
-            // check if userRights include tcode
-            const urls = state.url.split('/');
+    if (localStorage.getItem('currentUser')) {
 
-            const tcode = urls[4];
-            const tcodes = this.gkSecurityService.getMana();
-            const check = this.gkTcodeService.checkTCodeInEncodeArray(tcode, tcodes);
-            console.log(`User privilege to ${urls[4]} is: ${check}`);
+      // URL structure: /module/tcode -> ["","module","tcode"]
+      const urls = state.url.split('/');
+      const tcode = urls[2];
+      // console.log(urls);
 
-            if (check) {
-                return true;
-            }
-        }
+      const check = this.tcodeService.checkTcodeInMana(tcode);
+      console.log(`User privilege to ${urls[2]} is: ${check}`);
 
-        // tcode is not granted in so redirect to error page 500
-        this.router.navigate(['/500']);
-        return false;
+      if (check) {
+        return true;
+      }
     }
 
-    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    // tcode is not granted, redirect to 403
+    this.router.navigate(['/403']);
+    return false;
+  }
 
-        if (localStorage.getItem('currentUser')) {
-            // check if userRights include tcode
-            console.log(this.gkSecurityService.getMana());
-            return true;
-        }
+  /*
+   * canActivateChild is used to check if user is authorized
+   */
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        // tcode is not granted in so redirect to error page 500
-        this.router.navigate(['/500']);
-        return false;
+    if (localStorage.getItem('currentUser')) {
+      return true;
     }
+
+    // tcode is not granted, redirect to 401
+    this.router.navigate(['/401']);
+    return false;
+  }
+
 }

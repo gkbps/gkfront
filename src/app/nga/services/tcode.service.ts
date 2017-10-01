@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 // declare const Buffer;
 
 @Injectable()
-export class TCodeService {
+export class TcodeService {
 
   constructor(
     private router: Router,
@@ -14,38 +14,53 @@ export class TCodeService {
 
   /*****************************************************************************
    * TO PROCESS APPLICATION TCODE OR TRANSFORM A TCODE TO BE ACTIONABLE URL
-   * tcodeXXX
+   * tcode = prefixAction = moduleXX
    *
    * Example
-   * - extractPrefix(mjeXXX)-> mje
-   * - extractAction(mjeXXX)-> XXX
-   * - urlLead(mjeXXX)      -> /pages/tcode/mje/mjeXXX
-   * - urlForm(mjeXXX, id)  -> /pages/tcode/mje/mjeXXX/123
-   * - urlHome(mjeXXX)      -> /pages/tcode/mje
+   * - extractPrefix(mjeXX)-> mje
+   * - extractAction(mjeXX)-> XX
+   * - urlLead(mjeXX)      -> /pages/tcode/mje/mjeXX
+   * - urlForm(mjeXX, id)  -> /pages/tcode/mje/mjeXX/123
+   * - urlHome(mjeXX)      -> /pages/tcode/mje
    *****************************************************************************/
   private url: string = '/';        // Home of application Tcode
 
   // Extract prefix from tcode
   extractPrefix(tcode: string): string {
-    return tcode.substring(0, (tcode.length - 3)).toLowerCase();
+    return tcode.substring(0, (tcode.length - 2)).toLowerCase();
   }
 
   // Extract action from tcode
   extractAction(tcode: string): string {
-    return tcode.substring(tcode.length - 3).toLowerCase();
+    return tcode.substring(tcode.length - 2).toLowerCase();
   }
 
   // editable
   formEditable(tcode: string): boolean {
     const action = this.extractAction(tcode);
-    return ((action == '011') || (action == '013'));
+    return ((action == '11') || (action == '13'));
   }
 
-  // URL redirect to LEAD
+  // URL redirect to LEAD or tcode plain without ID
   urlLead(tcode: string): string {
     // const prefix: string = tcode.substring(0, (tcode.length - 2)) + '/';
-    const prefix: string = this.extractPrefix(tcode) + '/';
-    return this.url + prefix.toLowerCase() + tcode.toLowerCase();
+    const baseTcodes = [
+      'intro', 'login', 'register', 'forgot',
+      '401', '403', '404', '500',
+      'main',
+      'mine',
+      'gkm', 'gkcln', 'gksol', 'gktcd',
+      'coreui', 'prime',
+    ];
+    let nextUrl = '';
+
+    if (baseTcodes.includes(tcode.toLowerCase())) {
+      nextUrl = this.url + tcode.toLowerCase();
+    } else {
+      const prefix: string = this.extractPrefix(tcode) + '/';
+      nextUrl = this.url + prefix.toLowerCase() + tcode.toLowerCase();
+    }
+    return nextUrl;
   }
 
   // URL redirect to Form
@@ -105,20 +120,35 @@ export class TCodeService {
      return atob(str);
    }
 
-   encode_array(arr: Array<string>): Array<string> {
+   encode_array(arr: string[]): string[] {
      return arr.map((elem, index) => {
        return this.encode(elem);
      });
    }
 
-   decode_array(arr: Array<string>): Array<string> {
+   decode_array(arr: string[]): string[] {
      return arr.map((elem, index) => {
        return this.decode(elem);
      });
   }
 
-  checkTCodeInEncodeArray(tcode: string, encodedArray: [string]): boolean {
+  // Encapsulation of Mana in service for simplification
+  checkTcodeInMana(tcode: string): boolean {
+    const encodedArray = (JSON.parse(localStorage.getItem('mana')));
     return encodedArray.includes(this.encode(tcode));
+  }
+
+  // To avoid multiple read of Mana in checking
+  checkTcodeInEncodeArray(tcode: string, encodedArray: string[]): boolean {
+    return encodedArray.includes(this.encode(tcode));
+  }
+
+  executeTCode(tcode: string, id: string = ''): void {
+    const targetUrl: string = id
+      ? this.url + this.extractPrefix(tcode) + '/' + tcode + '/' + id
+      : this.url + this.extractPrefix(tcode) + '/' + tcode;
+    console.log(targetUrl);
+    this.router.navigate([targetUrl]);
   }
 
 }

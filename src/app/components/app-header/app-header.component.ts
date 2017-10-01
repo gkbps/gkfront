@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SecurityService } from '../../nga/services/security.service';
-import { TCodeService } from '../../nga/services/tcode.service';
+import { TcodeService } from '../../nga/services/tcode.service';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +28,7 @@ export class AppHeader {
 
   constructor(
     private securityService: SecurityService,
-    private tcodeService: TCodeService,
+    private tcodeService: TcodeService,
     private router: Router,
   ) { }
 
@@ -39,8 +39,8 @@ export class AppHeader {
     if (event.keyCode == 13) {
       const url: string = this.tcodeService.urlLead(this.tcodeExecution);
       console.log(url);
-      //this.tcodeExecution = '';
-      //this.router.navigate([url]);
+      this.tcodeExecution = '';
+      this.router.navigate([url]);
     }
   }
 

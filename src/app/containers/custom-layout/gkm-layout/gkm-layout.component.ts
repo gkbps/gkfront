@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService } from '../../../nga/services/navigation.service';
 
 @Component({
   selector: 'gkm-layout',
@@ -19,5 +20,13 @@ export class GkmLayout implements OnInit {
   //   this.status.isopen = !this.status.isopen;
   // }
 
+  constructor(
+    private navigationService: NavigationService,
+  ){ }
+
   ngOnInit(): void {}
+
+  returnPrevious() {
+    this.navigationService.returnPrevious();
+  }
 }

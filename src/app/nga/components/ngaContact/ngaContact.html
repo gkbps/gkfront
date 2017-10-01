@@ -1,0 +1,42 @@
+<div [formGroup]="contactItem">
+
+  <p-panel [style]="{'margin-top':'15px'}">
+
+    <p-header>
+      <div class="ui-helper-clearfix">
+        <span class="ui-panel-title">Contact {{item + 1}}</span>
+        <button *ngIf="formEditable" pButton type="button" style="float:right" icon="fa-close" class="ui-button-danger" (click)="removeContact()"></button>
+      </div>
+    </p-header>
+
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-3">
+          Title <small *ngIf="!contactItem.controls.title.valid && contactItem.controls.title.dirty" class="text-warning">(Required)</small>
+          <input type="text" pInputText placeholder="Title" name="title" formControlName="title">
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Name <small *ngIf="!contactItem.controls.name.valid && contactItem.controls.name.dirty" class="text-warning">(Required)</small>
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input type="text" pInputText placeholder="Name" name="name" formControlName="name">
+          </div>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Phone <small *ngIf="!contactItem.controls.phone.valid && contactItem.controls.phone.dirty" class="text-warning">(Phone number only)</small>
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
+              <input type="text" pInputText placeholder="Phone" name="phone" formControlName="phone">
+          </div>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+          Email <small *ngIf="!contactItem.controls.email.valid && contactItem.controls.email.dirty" class="text-warning">(Email not valid)</small>
+          <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+              <input type="text" pInputText placeholder="Email" name="email" formControlName="email">
+          </div>
+      </div>
+    </div>
+
+  </p-panel>
+
+</div>

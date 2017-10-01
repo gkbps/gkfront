@@ -1,4 +1,4 @@
-import { AuthGuard, TCodeGuard } from './nga/services';
+import { AuthGuard, TcodeGuard } from './nga/services';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -42,6 +42,14 @@ export const routes: Routes = [
       {
         path: 'forgot',
         loadChildren: './views/_base/forgot/forgot.module#ForgotModule',
+      },
+      {
+        path: '401',
+        loadChildren: './views/_base/401/401.module#P401Module',
+      },
+      {
+        path: '403',
+        loadChildren: './views/_base/403/403.module#P403Module',
       },
       {
         path: '404',
@@ -106,6 +114,34 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: './views/gkm/modules/gkcln/gkcln.module#GkClnModule'
+      },
+    ]
+  },
+  {
+    path: 'gksol',
+    component: GkmLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/gkm/modules/gksol/gksol.module#GkSolModule'
+      },
+    ]
+  },
+  {
+    path: 'gktcd',
+    component: GkmLayout,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: ''
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: './views/gkm/modules/gktcd/gktcd.module#GkTcdModule'
       },
     ]
   },
