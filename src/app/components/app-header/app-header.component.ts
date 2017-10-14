@@ -1,9 +1,16 @@
+// External
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { LocalStorageService, SecurityService, TcodeService, LanguageService } from '../../nga/services';
-
 import { TranslateService } from '@ngx-translate/core';
+
+// Internal
+import { AppConfig } from '../../app.config';
+import {
+  LocalStorageService,
+  SecurityService,
+  TcodeService,
+  LanguageService
+} from '../../nga/services';
 
 @Component({
   selector: 'app-header',
@@ -45,6 +52,7 @@ export class AppHeader {
     private tcodeService: TcodeService,
     private router: Router,
     private languageService: LanguageService,
+    private config: AppConfig,
   ) {
     // Initialize language
     this.lang = localStorage.getLang();
@@ -55,7 +63,10 @@ export class AppHeader {
   ): void {
     const user = this.securityService.getCurrentUser();
     this.username = user.username;
-    this.avatar = user.avatar;
+
+    const rootPath = this.config.apiUrl;
+    this.avatar = rootPath + '/repo/' + this.securityService.getToken() + '/users/' + user.avatar;
+    // console.log(this.avatar);
   }
 
   public keyDownFunction(event) {

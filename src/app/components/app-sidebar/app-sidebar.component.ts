@@ -1,4 +1,8 @@
+// External
 import { Component, OnInit } from '@angular/core';
+
+// Internal
+import { AppConfig } from '../../app.config';
 import { SecurityService } from '../../nga/services';
 
 @Component({
@@ -14,6 +18,7 @@ export class AppSidebar implements OnInit {
 
   constructor (
     private securityService: SecurityService,
+    private config: AppConfig,
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +26,9 @@ export class AppSidebar implements OnInit {
     // console.log(user);
     this.username = user.firstName.toUpperCase() + ' ' + user.lastName.toUpperCase();
     this.title = user.title;
-    this.avatar = user.avatar;
+
+    const rootPath = this.config.apiUrl;
+    this.avatar = rootPath + '/repo/' + this.securityService.getToken() + '/users/' + user.avatar;
+    // console.log(this.avatar);
   }
 }

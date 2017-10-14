@@ -43,6 +43,22 @@ export class SecurityService {
     return localStorage.getItem('token');
   }
 
+  getAwt(): string {
+    const currentUser: any = JSON.parse(localStorage.getItem('currentUser'));
+    const awt = currentUser.awt;
+    return awt;
+  }
+
+  getClientCode(): string {
+    const awt = this.getAwt();
+    return this.tcodeService.decode(awt[0]);
+  }
+
+  getYear(): string {
+    const awt = this.getAwt();
+    return this.tcodeService.decode(awt[1]);
+  }
+
   setCurrentUser(user: string) {
     localStorage.setItem('currentUser', user);
   }
