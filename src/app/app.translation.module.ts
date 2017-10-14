@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { LocalStorageService } from './nga/services';
+
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -30,9 +32,17 @@ const translationOptions = {
   ],
 })
 export class AppTranslationModule {
-  constructor(private translate: TranslateService) {
-    translate.addLangs(['en']);
+  constructor(
+    private translate: TranslateService,
+    private localStorageService: LocalStorageService,
+  ) {
+    translate.addLangs(['en','vn','jp','kr','ch','fr']);
     translate.setDefaultLang('en');
-    translate.use('en');
+
+    translate.use(localStorageService.getLang());
+
+    let browserLang = translate.getBrowserLang();
+    //translate.use(browserLang.match(/en|vn|de/) ? browserLang : 'en');
+
   }
 }

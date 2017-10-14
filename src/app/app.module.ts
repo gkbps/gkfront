@@ -1,5 +1,5 @@
 import { AppConfig } from './app.config';
-// import { PrimeNgModule} from './primeng/primeng.module';
+
 import { NgaModule } from './nga/nga.module';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import {
   FullLayout,
   SimpleLayout,
 
+  BaseLayout,
   MainLayout,
   MineLayout,
   GkmLayout,
@@ -28,6 +29,7 @@ const APP_CONTAINERS = [
   FullLayout,
   SimpleLayout,
 
+  BaseLayout,
   MainLayout,
   MineLayout,
   GkmLayout,

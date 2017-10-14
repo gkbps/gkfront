@@ -23,7 +23,7 @@ app-root {
   flex: 0 0 $footer-height;
 }
 
-.app-simple-footer {
+.app-footer-simple {
   // flex: 0 0 $footer-height;
   position:fixed;
   left:0px;
@@ -31,6 +31,11 @@ app-root {
   //height:30px;
   width:100%;
   //background:#999;
+}
+
+// No sidebar asidebar
+.app-footer-simple {
+  margin-left: 0 !important;
 }
 
 .app-body {
@@ -75,22 +80,22 @@ app-root {
 // Sidebar
 //
 .sidebar-hidden {
-
   .sidebar {
     margin-left: - $sidebar-width;
   }
 }
 
 .sidebar-fixed {
-
   .sidebar {
     position: fixed;
+    z-index: $zindex-sticky - 1;
     width: $sidebar-width;
-    height: 100%;
+    height: calc(100vh - #{$navbar-height});
+    // margin-top: - $navbar-height;
 
-    .sidebar-nav {
-      height: calc(100vh - #{$navbar-height});
-    }
+    // .sidebar-nav {
+    //   height: calc(100vh - #{$navbar-height});
+    // }
   }
 
   .main, .app-footer {
@@ -98,7 +103,6 @@ app-root {
   }
 
   &.sidebar-hidden {
-
     .main, .app-footer {
       margin-left: 0;
     }
@@ -109,12 +113,7 @@ app-root {
   .sidebar {
     position: fixed;
     z-index: $zindex-sticky - 1;
-    height: 100%;
-
-
-    .sidebar-nav {
-      height: calc(100vh - #{$navbar-height});
-    }
+    height: calc(100vh - #{$navbar-height});
   }
 }
 
@@ -125,14 +124,12 @@ app-root {
     }
 
     &.sidebar-hidden {
-
       .sidebar {
         margin-left: - $sidebar-compact-width;
       }
     }
 
     &.sidebar-fixed {
-
       .main, .app-footer {
         margin-left: $sidebar-compact-width;
       }
@@ -142,7 +139,6 @@ app-root {
       }
 
       &.sidebar-hidden {
-
         .main, .app-footer {
           margin-left: 0;
         }
@@ -156,14 +152,12 @@ app-root {
     }
 
     &.sidebar-hidden {
-
       .sidebar {
         margin-left: - $sidebar-minimized-width;
       }
     }
 
     &.sidebar-fixed {
-
       .main, .app-footer {
         margin-left: $sidebar-minimized-width;
       }
@@ -173,7 +167,6 @@ app-root {
       }
 
       &.sidebar-hidden {
-
         .main, .app-footer {
           margin-left: 0;
         }
@@ -186,14 +179,12 @@ app-root {
 // Aside Menu
 //
 .aside-menu-hidden {
-
   .aside-menu {
     margin-right: - $aside-menu-width;
   }
 }
 
 .aside-menu-fixed {
-
   .aside-menu {
     position: fixed;
     right: 0;
@@ -209,7 +200,6 @@ app-root {
   }
 
   &.aside-menu-hidden {
-
     .main, .app-footer {
       margin-right: 0;
     }
@@ -233,7 +223,6 @@ app-root {
 // Breadcrumb
 //
 .breadcrumb-fixed {
-
   .main {
     $breadcrumb-height: 2 * $breadcrumb-padding-y + $font-size-base + 1.5 * $spacer;
     padding-top: $breadcrumb-height;
@@ -293,7 +282,6 @@ app-root {
 // Footer
 //
 .footer-fixed {
-
   .app-footer {
     position: fixed;
     bottom: 0;
@@ -301,7 +289,7 @@ app-root {
     width: 100%;
   }
 
-  .app-simple-footer {
+  .app-footer-simple {
     position: fixed;
     bottom: 0;
     z-index: $zindex-sticky;
@@ -323,6 +311,9 @@ app-root {
 .aside-menu {
   transition: margin-left $layout-transition-speed, margin-right $layout-transition-speed, width $layout-transition-speed, flex $layout-transition-speed;
 }
+.sidebar-nav {
+  transition: width $layout-transition-speed;
+}
 .breadcrumb {
   transition: left $layout-transition-speed, right $layout-transition-speed, width $layout-transition-speed;
 }
@@ -332,12 +323,13 @@ app-root {
 //
 
 @include media-breakpoint-down(md) {
-
-  .app-header {
+  .app-header.navbar {
     position: fixed !important;
     z-index: $zindex-sticky;
     width: 100%;
     text-align: center;
+    background-color: $navbar-brand-bg;
+    @include borders($navbar-brand-border);
 
     .navbar-toggler {
       @if (lightness( $navbar-brand-bg ) > 40) {
@@ -360,6 +352,7 @@ app-root {
 
   .sidebar {
     position: fixed;
+    z-index: $zindex-sticky - 1;
     width: $mobile-sidebar-width;
     height: 100%;
     margin-left: - $mobile-sidebar-width;
@@ -368,9 +361,13 @@ app-root {
     .nav {
       width: $mobile-sidebar-width !important;
     }
+
+    .sidebar-minimizer {
+      display: none;
+    }
   }
 
-  .main, .app-footer .app-simple-footer {
+  .main, .app-footer {
     margin-left: 0 !important;
   }
 
@@ -385,7 +382,6 @@ app-root {
   }
 
   .sidebar-mobile-show {
-
     .sidebar {
       width: $mobile-sidebar-width;
       margin-left: 0;

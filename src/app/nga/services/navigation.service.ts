@@ -52,8 +52,12 @@ export class NavigationService {
     }
   }
 
-  goto400() {
-    this.router.navigate(['/#/400']);
+  goto401() {
+    this.router.navigate(['/#/401']);
+  }
+
+  goto403() {
+    this.router.navigate(['/#/403']);
   }
 
   goto404() {

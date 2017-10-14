@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+import { LocalStorageService } from '../../nga/services';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +21,14 @@ export class FullLayout implements OnInit {
   //   $event.stopPropagation();
   //   this.status.isopen = !this.status.isopen;
   // }
+
+  constructor (
+    private translate: TranslateService,
+    private localStorage: LocalStorageService,
+  ) {
+    // Initialize language
+    translate.use(localStorage.getLang());
+  }
 
   ngOnInit(): void {}
 }

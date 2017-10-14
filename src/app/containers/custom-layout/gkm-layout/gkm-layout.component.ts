@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationService } from '../../../nga/services/navigation.service';
+import { TranslateService } from '@ngx-translate/core';
+
+import { LocalStorageService, NavigationService } from '../../../nga/services';
 
 @Component({
   selector: 'gkm-layout',
@@ -21,12 +23,13 @@ export class GkmLayout implements OnInit {
   // }
 
   constructor(
+    private translate: TranslateService,
+    private localStorage: LocalStorageService,
     private navigationService: NavigationService,
-  ){ }
-
-  ngOnInit(): void {}
-
-  returnPrevious() {
-    this.navigationService.returnPrevious();
+  ){
+    // Initialize language
+    translate.use(localStorage.getLang());
   }
+
+  ngOnInit(): void {}  
 }

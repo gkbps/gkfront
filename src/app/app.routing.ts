@@ -8,6 +8,7 @@ import {
   FullLayout,
   SimpleLayout,
 
+  BaseLayout,
   MainLayout,
   MineLayout,
   GkmLayout,
@@ -58,6 +59,19 @@ export const routes: Routes = [
       {
         path: '500',
         loadChildren: './views/_base/500/500.module#P500Module',
+      },
+    ]
+  },
+  {
+    path: '',
+    component: BaseLayout,
+    data: {
+      title: 'Base'
+    },
+    children: [
+      {
+        path: 'terminal',
+        loadChildren: './views/_base/gkTerminal/gkTerminal.module#GkTerminalModule',
       },
     ]
   },

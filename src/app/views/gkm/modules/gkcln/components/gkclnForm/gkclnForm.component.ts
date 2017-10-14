@@ -1,9 +1,12 @@
 // External
-import { Component, OnInit, OnChanges, SimpleChanges, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, EventEmitter, Input, Output, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { Message } from 'primeng/primeng';
+
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
 
 // Internal
 import {
@@ -11,7 +14,10 @@ import {
   TcodeService,
   NavigationService,
   ObjectService,
-  APIResultHandlingService
+  APIResultHandlingService,
+  LocalStorageService,
+  LanguageService,
+  SettingService,
 } from '../../../../../../nga/services';
 
 import { GkClientService } from '../../../../../../services/gkClient.service';
@@ -22,7 +28,7 @@ import { GkClientService } from '../../../../../../services/gkClient.service';
   styleUrls: ['./gkclnForm.scss'],
 })
 
-export class GkClnForm implements OnInit, OnChanges {
+export class GkClnForm implements OnInit, OnChanges, OnDestroy {
 
   @Input() tcode: any;
 
@@ -42,6 +48,11 @@ export class GkClnForm implements OnInit, OnChanges {
 
   msgs: Message[] = [];
 
+  alertType: string;
+
+  langSubscription: Subscription;
+  alertSubscription: Subscription;
+
   constructor(
     private http: Http,
     private router: Router,
@@ -54,7 +65,24 @@ export class GkClnForm implements OnInit, OnChanges {
     private objectService: ObjectService,
     private apiResultHandlingService: APIResultHandlingService,
     private _fb: FormBuilder,
+
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
+    private languageService: LanguageService,
+    private settingService: SettingService,
   ) {
+    // Initialize language
+    this.translate.use(localStorage.getLang());
+
+    this.langSubscription = this.languageService.getLanguage()
+      .subscribe(lang => {
+        translate.use(lang);
+      });
+
+    this.alertSubscription = this.settingService.getAlertType()
+      .subscribe(alertType => {
+        this.alertType = alertType;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -71,6 +99,8 @@ export class GkClnForm implements OnInit, OnChanges {
     this.parseTcode();
     this.initBasicModelThenGetData();
     // console.log(this.myForm);
+
+    this.alertType = this.localStorage.getAlertType();
   }
 
   private parseTcode(){
@@ -134,7 +164,7 @@ export class GkClnForm implements OnInit, OnChanges {
     if (!this.client) return;
 
     // Data Block 1 - Addresses
-    const hasAddresses: boolean = this.objectService.propInObject(this.client, 'addresses');
+    const hasAddresses: boolean = this.objectService.hasProp(this.client, 'addresses');
     if (hasAddresses) {
       const countAddresses: number = this.client.addresses.length;
       // console.log(`Number of nested addresses: ${countAddresses}`);
@@ -145,7 +175,7 @@ export class GkClnForm implements OnInit, OnChanges {
     }
 
     // Data Block 2 - Contacts
-    const hasContacts: boolean = this.objectService.propInObject(this.client, 'contacts');
+    const hasContacts: boolean = this.objectService.hasProp(this.client, 'contacts');
     if (hasContacts) {
       const countContacts: number = this.client.contacts.length;
       // console.log(`Number of nested contacts: ${countContacts}`);
@@ -418,22 +448,26 @@ export class GkClnForm implements OnInit, OnChanges {
   }
 
   handleAPIReturn(result) {
-    let processedResult = this.apiResultHandlingService.processAPIResult(result);
+    this.apiResultHandlingService.processAPIResult(result)
+      .then((msg)=>{
+        if (result.status==201) {
+          this.initBasicModel();
+        }
+        console.log(msg);
+        this.msgs = [];
+        this.msgs.push(msg);
+        setTimeout(()=> { this.msgs =[]; }, 10000);
+      });
+  }
 
-    if (result.status==201) {
-      this.initBasicModel();
+  ngOnDestroy() {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
     }
 
-    this.msgs = [];
-    this.msgs.push({
-      severity: processedResult.severity,
-      summary: processedResult.summary,
-      detail: processedResult.detail
-    });
-
-    setTimeout(()=> {
-      this.msgs =[];
-    }, 10000);
+    if (this.alertSubscription) {
+      this.alertSubscription.unsubscribe();
+    }
   }
 
 }

@@ -1,73 +1,99 @@
-import { TcodeService } from '../../services';
-
-import { Component, Input, OnInit } from '@angular/core';
+// External
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { MenuItem, SelectItem } from 'primeng/primeng';
+
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
+
+// Internal
+import { TcodeService, LocalStorageService, LanguageService } from '../../services';
 
 @Component({
   selector: 'individual-nav',
   templateUrl: './individualNav.html',
   styleUrls: ['./individualNav.scss'],
 })
-export class IndividualNav implements OnInit {
+export class IndividualNav implements OnInit, OnDestroy {
 
   @Input() prefix: string;
 
   items: MenuItem[];
+
+  langSubscription: Subscription;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
 
     private tcodeService: TcodeService,
-  ) { }
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
+    private languageService: LanguageService,
+  ) {
+    // Initialize language
+    this.translate.use(localStorage.getLang());
+
+    this.langSubscription = this.languageService.getLanguage()
+      .subscribe(lang => {
+        translate.use(lang);
+        this.initNav();
+      });
+  }
 
   ngOnInit () {
-    this.items = [
-      {
-        label: 'Create', icon: 'fa-plus',
-        command: (event) => this.executeTCode('11')
-      },
-      {
-        label: 'View', icon: 'fa-search',
-        command: (event) => this.executeTCode('12')
-      },
-      {
-        label: 'Edit', icon: 'fa-pencil',
-        command: (event) => this.executeTCode('13')
-      },
-      {separator:true},
-      {
-        label: 'Disable', icon: 'fa-bookmark',
-        command: (event) => this.executeTCode('14')
-      },
-      {
-        label: 'Enable', icon: 'fa-bookmark-o',
-        command: (event) => this.executeTCode('15')
-      },
-      {separator:true},
-      {
-        label: 'Mark', icon: 'fa-flag',
-        command: (event) => this.executeTCode('16')
-      },
-      {
-        label: 'Unmark', icon: 'fa-flag-o',
-        command: (event) => this.executeTCode('17')
-      },
-      {separator:true},
-      {
-        label: 'Delete', icon: 'fa-trash',
-        command: (event) => this.executeTCode('18')
-      },
-      {separator:true},
-      {
-        label: 'History', icon: 'fa-files-o',
-        command: (event) => this.executeTCode('19')
-      },
+    this.initNav();
+  }
 
-    ];
+  initNav() {
+    this.translate.get(['create', 'view', 'edit', 'disable', 'enable', 'mark', 'unmark', 'delete', 'viewChange'])
+      .subscribe((res)=>{
 
+        this.items = [
+          {
+            label: res.create, icon: 'fa-plus',
+            command: (event) => this.executeTCode('11')
+          },
+          {
+            label: res.view, icon: 'fa-search',
+            command: (event) => this.executeTCode('12')
+          },
+          {
+            label: res.edit, icon: 'fa-pencil',
+            command: (event) => this.executeTCode('13')
+          },
+          {separator:true},
+          {
+            label: res.disable, icon: 'fa-bookmark',
+            command: (event) => this.executeTCode('14')
+          },
+          {
+            label: res.enable, icon: 'fa-bookmark-o',
+            command: (event) => this.executeTCode('15')
+          },
+          {separator:true},
+          {
+            label: res.mark, icon: 'fa-flag',
+            command: (event) => this.executeTCode('16')
+          },
+          {
+            label: res.unmark, icon: 'fa-flag-o',
+            command: (event) => this.executeTCode('17')
+          },
+          {separator:true},
+          {
+            label: res.delete, icon: 'fa-trash',
+            command: (event) => this.executeTCode('18')
+          },
+          {separator:true},
+          {
+            label: res.viewChange, icon: 'fa-files-o',
+            command: (event) => this.executeTCode('19')
+          },
+        ];
+
+      });
   }
 
   executeTCode(action: string): void {
@@ -82,8 +108,12 @@ export class IndividualNav implements OnInit {
 
       this.tcodeService.executeTCode(tcode, id);
     });
-
-
   }
 
+  ngOnDestroy() {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
+  }
+  
 }

@@ -197,9 +197,12 @@ import {
   ConfirmationService
 } from 'primeng/primeng';
 
+import { TerminalService } from 'primeng/components/terminal/terminalservice';
+
 const PRIMENG_SERVICES = [
   TreeDragDropService,
-  ConfirmationService
+  ConfirmationService,
+  TerminalService,
 ];
 
 import { AppTranslationModule } from '../app.translation.module';
@@ -240,6 +243,8 @@ import {
   ObjectService,
   PaginationService,
   APIResultHandlingService,
+  LanguageService,
+  SettingService,
 } from './services';
 
 const NGA_SERVICES = [
@@ -254,6 +259,8 @@ const NGA_SERVICES = [
   ObjectService,
   PaginationService,
   APIResultHandlingService,
+  LanguageService,
+  SettingService,
 ];
 
 import {
@@ -282,6 +289,7 @@ const NGA_VALIDATORS = [
     ...PRIMENG_MODULES,
   ],
   exports: [
+    AppTranslationModule,
     ...NGA_PIPES,
     ...NGA_DIRECTIVES,
     ...NGA_COMPONENTS,

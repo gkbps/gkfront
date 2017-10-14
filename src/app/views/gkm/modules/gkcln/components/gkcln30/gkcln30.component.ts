@@ -1,11 +1,20 @@
 // External
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MenubarModule, MenuItem } from 'primeng/primeng';
 
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
+
 // Internal
-import { SecurityService, TcodeService, NavigationService } from '../../../../../../nga/services';
+import {
+  SecurityService,
+  TcodeService,
+  NavigationService,
+  LocalStorageService,
+  LanguageService
+} from '../../../../../../nga/services';
 
 @Component({
   selector: 'gkcln-30',
@@ -13,7 +22,7 @@ import { SecurityService, TcodeService, NavigationService } from '../../../../..
   styleUrls: ['./gkcln30.scss'],
 })
 
-export class GkCln30Component implements OnInit {
+export class GkCln30Component implements OnInit, OnDestroy {
 
   prefix: string = 'gkcln';
   public orgImagePath: string = 'modules/org/';
@@ -21,15 +30,30 @@ export class GkCln30Component implements OnInit {
 
   userRights: Array<any>;
 
-  title: string = "Requests / Reports Processes";
+  title: string;
+  subtitle: string;
   navItems: any[];
+
+  langSubscription: Subscription;
 
   constructor(
     private router: Router,
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
     private navigationService: NavigationService,
+    private languageService: LanguageService,
     private securityService: SecurityService,
     private tcodeService: TcodeService,
-  ) { }
+  ) {
+    // Initialize language
+    this.translate.use(localStorage.getLang());
+
+    this.langSubscription = this.languageService.getLanguage()
+      .subscribe(lang => {
+        translate.use(lang);
+        this.initNavBoard();
+      });
+  }
 
   ngOnInit() {
     this.navigationService.trackHistory();
@@ -41,50 +65,64 @@ export class GkCln30Component implements OnInit {
   }
 
   initNavBoard() {
-    this.navItems = [
-      {
-        'url': this.prefix + '/' + this.prefix + '31',
-        'img': this.orgImagePath + '11.svg',
-        'tcode': this.prefix + '31',
-        'title': 'New Client'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '32',
-        'img': this.orgImagePath + '13.svg',
-        'tcode': this.prefix + '32',
-        'title': 'Update Client'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '33',
-        'img': this.docImagePath + 'dbn.svg',
-        'tcode': this.prefix + '33',
-        'title': 'Debit Note'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '34',
-        'img': this.docImagePath + 'inv.svg',
-        'tcode': this.prefix + '34',
-        'title': 'Invoice'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '35',
-        'img': this.docImagePath + 'cdn.svg',
-        'tcode': this.prefix + '35',
-        'title': 'Credit Note'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '36',
-        'img': this.docImagePath + 'rcp.svg',
-        'tcode': this.prefix + '36',
-        'title': 'Receipt'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '37',
-        'img': this.docImagePath + 'adj.svg',
-        'tcode': this.prefix + '37',
-        'title': 'Manual Entry'
-      },
-    ];
+    this.translate.get(['client', 'processes', 'processesSubtitle', 'new', 'update', 'debitNote', 'invoice', 'creditNote', 'receipt', 'manualEntry'])
+      .subscribe((res)=>{
+
+        this.title = res.client + ' - ' + res.processes;
+        this.subtitle = res.processesSubtitle;
+
+        this.navItems = [
+          {
+            'url': this.prefix + '/' + this.prefix + '31',
+            'img': this.orgImagePath + '11.svg',
+            'tcode': this.prefix + '31',
+            'title': `${res.new} ${res.client}`
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '32',
+            'img': this.orgImagePath + '13.svg',
+            'tcode': this.prefix + '32',
+            'title': `${res.update} ${res.client}`
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '33',
+            'img': this.docImagePath + 'dbn.svg',
+            'tcode': this.prefix + '33',
+            'title': res.debitNote
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '34',
+            'img': this.docImagePath + 'inv.svg',
+            'tcode': this.prefix + '34',
+            'title': res.invoice
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '35',
+            'img': this.docImagePath + 'cdn.svg',
+            'tcode': this.prefix + '35',
+            'title': res.creditNote
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '36',
+            'img': this.docImagePath + 'rcp.svg',
+            'tcode': this.prefix + '36',
+            'title': res.receipt
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '37',
+            'img': this.docImagePath + 'adj.svg',
+            'tcode': this.prefix + '37',
+            'title': res.manualEntry
+          },
+        ];
+
+      });
+  }
+
+  ngOnDestroy() {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
   }
 
 }

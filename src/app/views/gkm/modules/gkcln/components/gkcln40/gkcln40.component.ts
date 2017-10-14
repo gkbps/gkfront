@@ -1,11 +1,20 @@
 // External
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MenubarModule, MenuItem } from 'primeng/primeng';
 
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
+
 // Internal
-import { SecurityService, TcodeService, NavigationService } from '../../../../../../nga/services';
+import {
+  SecurityService,
+  TcodeService,
+  NavigationService,
+  LocalStorageService,
+  LanguageService
+} from '../../../../../../nga/services';
 
 @Component({
   selector: 'gkcln-40',
@@ -13,7 +22,7 @@ import { SecurityService, TcodeService, NavigationService } from '../../../../..
   styleUrls: ['./gkcln40.scss'],
 })
 
-export class GkCln40Component implements OnInit {
+export class GkCln40Component implements OnInit, OnDestroy {
 
   prefix: string = 'gkcln';
   public solImagePath: string = 'modules/gkcln/';
@@ -21,15 +30,30 @@ export class GkCln40Component implements OnInit {
 
   userRights: Array<any>;
 
-  title: string = "Requests / Reports Processes";
+  title: string;
+  subtitle: string;
   navItems: any[];
+
+  langSubscription: Subscription;
 
   constructor(
     private router: Router,
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
     private navigationService: NavigationService,
+    private languageService: LanguageService,
     private securityService: SecurityService,
     private tcodeService: TcodeService,
-  ) { }
+  ) {
+    // Initialize language
+    this.translate.use(localStorage.getLang());
+
+    this.langSubscription = this.languageService.getLanguage()
+      .subscribe(lang => {
+        translate.use(lang);
+        this.initNavBoard();
+      });
+  }
 
   ngOnInit() {
     this.navigationService.trackHistory();
@@ -41,26 +65,40 @@ export class GkCln40Component implements OnInit {
   }
 
   initNavBoard() {
-    this.navItems = [
-      {
-        'url': this.prefix + '/' + this.prefix + '41',
-        'img': this.solImagePath + '31.svg',
-        'tcode': this.prefix + '41',
-        'title': 'Solutions Assignment'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '42',
-        'img': this.solImagePath + '32.svg',
-        'tcode': this.prefix + '42',
-        'title': 'Tcodes Assignment'
-      },
-      {
-        'url': this.prefix + '/' + this.prefix + '43',
-        'img': this.solImagePath + '33.svg',
-        'tcode': this.prefix + '43',
-        'title': 'Standard Roles Allocation'
-      },
-    ];
+    this.translate.get(['client', 'system', 'systemSubtitle', 'solutionsAssignment', 'tcodesAssignment', 'rolesAssignment'])
+      .subscribe((res)=>{
+
+        this.title = res.client + ' - ' + res.system;
+        this.subtitle = res.systemSubtitle;
+
+        this.navItems = [
+          {
+            'url': this.prefix + '/' + this.prefix + '41',
+            'img': this.solImagePath + '31.svg',
+            'tcode': this.prefix + '41',
+            'title': res.solutionsAssignment
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '42',
+            'img': this.solImagePath + '32.svg',
+            'tcode': this.prefix + '42',
+            'title': res.tcodesAssignment
+          },
+          {
+            'url': this.prefix + '/' + this.prefix + '43',
+            'img': this.solImagePath + '33.svg',
+            'tcode': this.prefix + '43',
+            'title': res.rolesAssignment
+          },
+        ];
+      });
+
+  }
+
+  ngOnDestroy() {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
   }
 
 }

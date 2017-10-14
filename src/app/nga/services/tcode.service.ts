@@ -19,9 +19,9 @@ export class TcodeService {
    * Example
    * - extractPrefix(mjeXX)-> mje
    * - extractAction(mjeXX)-> XX
-   * - urlLead(mjeXX)      -> /pages/tcode/mje/mjeXX
-   * - urlForm(mjeXX, id)  -> /pages/tcode/mje/mjeXX/123
-   * - urlHome(mjeXX)      -> /pages/tcode/mje
+   * - urlLead(mjeXX)      -> /mje/mjeXX
+   * - urlForm(mjeXX, id)  -> /mje/mjeXX/123
+   * - urlHome(mjeXX)      -> /mje
    *****************************************************************************/
   private url: string = '/';        // Home of application Tcode
 
@@ -46,7 +46,7 @@ export class TcodeService {
     // const prefix: string = tcode.substring(0, (tcode.length - 2)) + '/';
     const baseTcodes = [
       'intro', 'login', 'register', 'forgot',
-      '401', '403', '404', '500',
+      '401', '403', '404', '500', 'terminal',
       'main',
       'mine',
       'gkm', 'gkcln', 'gksol', 'gktcd',

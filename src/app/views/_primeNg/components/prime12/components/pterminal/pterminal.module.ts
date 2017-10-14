@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
 
 import { TerminalModule } from 'primeng/primeng';
-import { TerminalService } from './terminal.service';
+import { TerminalService } from 'primeng/components/terminal/terminalservice';
 
 @NgModule({
   imports: [

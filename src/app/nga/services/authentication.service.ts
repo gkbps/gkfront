@@ -20,6 +20,21 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('mana', JSON.stringify(user.tcodes));
           delete user.tcodes;
+
+          const env = JSON.stringify({
+            'wk':{
+              'lge': user.defaultLge,
+              'year': new Date().getFullYear()
+            },
+            'pref':{
+              'navStyle': 'box',
+              'device': 'laptop',
+              'home': '',
+              'theme': ''
+            }              
+          });
+          localStorage.setItem('env', env);
+
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
     });

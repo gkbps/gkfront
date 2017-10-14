@@ -1,5 +1,5 @@
 // External
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { Header } from 'primeng/primeng';
 import { Footer } from 'primeng/primeng';
@@ -7,19 +7,26 @@ import { Message } from 'primeng/primeng';
 import { MenuItem, SelectItem } from 'primeng/primeng';
 import { LazyLoadEvent } from 'primeng/primeng';
 
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
+
 // Internal
 import {
   SecurityService,
   TcodeService,
   NavigationService,
-  APIResultHandlingService
+  APIResultHandlingService,
+  LocalStorageService,
+  LanguageService,
+  SettingService,
 } from '../../../../../../nga/services';
+
 import { GkClientService } from '../../../../../../services/gkClient.service';
 
 @Component({
   templateUrl: 'gkcln01.component.html'
 })
-export class GkCln01Component {
+export class GkCln01Component implements OnDestroy {
 
   userRights: string[];
 
@@ -33,8 +40,15 @@ export class GkCln01Component {
   columnOptions: SelectItem[];
 
   first: number = 0;
+  totalRecords: number;
+  multiSortMeta: any;
 
   items: MenuItem[];            // Items of menubar and context menu
+
+  alertType: string;
+
+  langSubscription: Subscription;
+  alertSubscription: Subscription;
 
   constructor (
     private securityService: SecurityService,
@@ -42,13 +56,33 @@ export class GkCln01Component {
     private navigationService: NavigationService,
     private gkClientService: GkClientService,
     private apiResultHandlingService: APIResultHandlingService,
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
+    private languageService: LanguageService,
+    private settingService: SettingService,
   ) {
+    // Initialize language
+    this.translate.use(localStorage.getLang());
+
+    this.langSubscription = this.languageService.getLanguage()
+      .subscribe(lang => {
+        translate.use(lang);
+        this.initDataTableColumn();
+        this.initMenuItems();
+      });
+
+    this.alertSubscription = this.settingService.getAlertType()
+      .subscribe(alertType => {
+        this.alertType = alertType;
+      });
   }
 
   ngOnInit() {
-    this.getData();
+    //this.getData();
 
     this.navigationService.trackHistory();
+
+    this.alertType = this.localStorage.getAlertType();
 
     // Performance: To avoid multiple read of Mana for menu item disable setting
     this.userRights = this.securityService.getMana();
@@ -74,90 +108,122 @@ export class GkCln01Component {
   }
 
   initDataTableColumn() {
-    this.cols = [
-      { field: '_id', header: 'ID', width: '20%' },
-      { field: 'name', header: 'Name', width: '45%'  },
-      { field: 'clientDb', header: 'DB', width: '15%'  },
-      { field: 'status1', header: 'Status', width: '10%'},
-      { field: 'status2', header: 'Marked', width: '10%' },
-    ];
+    this.translate.get(['id', 'description', 'db', 'status', 'marked'])
+      .subscribe((res)=>{
 
-    this.columnOptions = [];
-    for (let i = 0; i < this.cols.length; i++) {
-        this.columnOptions.push({  label: this.cols[i].header, value: this.cols[i] });
-    }
+        this.cols = [
+          { field: '_id', header: res.id, width: '20%' },
+          { field: 'name', header: res.description, width: '45%'  },
+          { field: 'clientDb', header: res.db, width: '15%'  },
+          { field: 'status1', header: res.status, width: '10%'},
+          { field: 'status2', header: res.marked, width: '10%' },
+        ];
+
+        this.columnOptions = [];
+        for (let i = 0; i < this.cols.length; i++) {
+            this.columnOptions.push({  label: this.cols[i].header, value: this.cols[i] });
+        }
+
+      });
   }
 
   initMenuItems() {
-    this.items = [
-      {
-        label: 'Create', icon: 'fa-plus',
-        command: (event) => this.tcodeService.executeTCode('gkcln11'),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln11', this.userRights),
-      },
-      {
-        label: 'View', icon: 'fa-search',
-        command: (event) => this.tcodeService.executeTCode('gkcln12', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln12', this.userRights),
-      },
-      {
-        label: 'Edit', icon: 'fa-pencil',
-        command: (event) => this.tcodeService.executeTCode('gkcln13', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln13', this.userRights),
-      },
-      {separator:true},
-      {
-        label: 'Disable', icon: 'fa-bookmark',
-        command: (event) => this.tcodeService.executeTCode('gkcln14', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln14', this.userRights),
-      },
-      {
-        label: 'Enable', icon: 'fa-bookmark-o',
-        command: (event) => this.tcodeService.executeTCode('gkcln15', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln15', this.userRights),
-      },
-      {separator:true},
-      {
-        label: 'Mark', icon: 'fa-flag',
-        command: (event) => this.tcodeService.executeTCode('gkcln16', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln16', this.userRights),
-      },
-      {
-        label: 'Unmark', icon: 'fa-flag-o',
-        command: (event) => this.tcodeService.executeTCode('gkcln17', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln17', this.userRights),
-      },
-      {separator:true},
-      {
-        label: 'Delete', icon: 'fa-trash',
-        command: (event) => this.tcodeService.executeTCode('gkcln18', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln18', this.userRights),
-      },
-      {separator:true},
-      {
-        label: 'History', icon: 'fa-files-o',
-        command: (event) => this.tcodeService.executeTCode('gkcln19', this.selectedClient? this.selectedClient._id : null),
-        disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln19', this.userRights),
-      },
-    ];
+    this.translate.get(['create', 'view', 'edit', 'disable', 'enable', 'mark', 'unmark', 'delete', 'viewChange'])
+      .subscribe((res)=>{
+
+        this.items = [
+          {
+            label: res.create, icon: 'fa-plus',
+            command: (event) => this.tcodeService.executeTCode('gkcln11'),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln11', this.userRights),
+          },
+          {
+            label: res.view, icon: 'fa-search',
+            command: (event) => this.tcodeService.executeTCode('gkcln12', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln12', this.userRights),
+          },
+          {
+            label: res.edit, icon: 'fa-pencil',
+            command: (event) => this.tcodeService.executeTCode('gkcln13', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln13', this.userRights),
+          },
+          {separator:true},
+          {
+            label: res.disable, icon: 'fa-bookmark',
+            command: (event) => this.tcodeService.executeTCode('gkcln14', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln14', this.userRights),
+          },
+          {
+            label: res.enable, icon: 'fa-bookmark-o',
+            command: (event) => this.tcodeService.executeTCode('gkcln15', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln15', this.userRights),
+          },
+          {separator:true},
+          {
+            label: res.mark, icon: 'fa-flag',
+            command: (event) => this.tcodeService.executeTCode('gkcln16', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln16', this.userRights),
+          },
+          {
+            label: res.unmark, icon: 'fa-flag-o',
+            command: (event) => this.tcodeService.executeTCode('gkcln17', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln17', this.userRights),
+          },
+          {separator:true},
+          {
+            label: res.delete, icon: 'fa-trash',
+            command: (event) => this.tcodeService.executeTCode('gkcln18', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln18', this.userRights),
+          },
+          {separator:true},
+          {
+            label: res.viewChange, icon: 'fa-files-o',
+            command: (event) => this.tcodeService.executeTCode('gkcln19', this.selectedClient? this.selectedClient._id : null),
+            disabled: !this.tcodeService.checkTcodeInEncodeArray('gkcln19', this.userRights),
+          },
+        ];
+
+      });
+  }
+
+  loadData(event: LazyLoadEvent) {
+
+    let sort ={};
+    if (event.sortField) {
+      sort[event.sortField] = event.sortOrder;
+    }
+    // console.log(sort);
+    this.gkClientService.findMasterListPagination(event.globalFilter, sort, event.first, event.rows)
+      .subscribe(
+        result => {
+          // console.log(result);
+          this.clients = result.data;
+          this.totalRecords = result.total;
+          this.loading = false;
+        },
+        error => {
+          this.handleAPIReturn(error);
+        }
+      );
   }
 
   handleAPIReturn(result) {
-    let processedResult = this.apiResultHandlingService.processAPIResult(result);
+    this.apiResultHandlingService.processAPIResult(result)
+      .then((msg)=>{
+        this.msgs = [];
+        this.msgs.push(msg);
+        setTimeout(()=> { this.msgs =[]; }, 10000);
+      });
+  }
 
-    if (result.status==201) {
+  ngOnDestroy() {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
     }
 
-    this.msgs = [];
-    this.msgs.push({
-      severity: processedResult.severity,
-      summary: processedResult.summary,
-      detail: processedResult.detail
-    });
-
-    setTimeout(()=> {
-      this.msgs =[];
-    }, 5000);
+    if (this.alertSubscription) {
+      this.alertSubscription.unsubscribe();
+    }
   }
 
 }

@@ -4,17 +4,16 @@
 
     <!-- GENERAL -->
     <li class="nav-title">
-      GENERAL
+      {{'general'|translate}}
     </li>
-    <!--
     <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-home"></i> Company</a>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-home"></i> {{'company'|translate}}</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-pin"></i> Bulletin Board</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/buttons']"><i class="icon-grid"></i> {{'bulletinBoard'|translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-book-open"></i> Policies & Procedures</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-docs"></i> {{'sops'|translate}}</a>
         </li>
       </ul>
     </li>
@@ -23,28 +22,22 @@
     <!-- REGISTERED SOLUTION -->
 
     <li class="nav-title">
-      SOLUTIONS
+      {{'solutions'|translate}}
     </li>
     <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-home"></i> General Processes</a>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-shuffle"></i> {{'workflows'|translate}}</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine']"><i class="icon-pin"></i> My categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-book-open"></i> Policies & Procedures</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine']"><i class="icon-briefcase"></i> {{'myCategories'|translate}}</a>
         </li>
       </ul>
     </li>
 
     <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-home"></i> Business Systems</a>
+      <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-social-soundcloud"></i> {{'systems'|translate}}</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkm']"><i class="icon-pin"></i> GK Management</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/social-buttons']"><i class="icon-book-open"></i> Policies & Procedures</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/gkm']"><i class="icon-puzzle"></i> {{'gkm'|translate}}</a>
         </li>
       </ul>
     </li>
@@ -125,23 +118,17 @@
     </li>
     <!-- ./SYSTEM UTILIZATION -->
 
+    <li class="divider"></li>
+    <li class="nav-title">
+    </li>
+    
   </app-sidebar>
 
   <!-- Main content -->
   <main class="main">
 
     <!-- Breadcrumb -->
-    <ol class="breadcrumb"  style="font-size: 0.85em;">
-      <app-breadcrumbs></app-breadcrumbs>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <a class="btn" href="#"><i class="icon-speech"></i></a>
-          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
-        </div>
-      </li>
-    </ol>
+    <app-breadcrumbs></app-breadcrumbs>
 
     <div class="container-fluid"  style="font-size: 0.75em;">
       <router-outlet></router-outlet>

@@ -1,97 +1,82 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class APIResultHandlingService {
 
-  constructor() { }
+  constructor(
+    private translate: TranslateService,
+  ) { }
 
-  processAPIResult(result) {    
-    let severity = '';
-    let summary = '';
-    let detail = '';
-    let trackError = false;
+  public processAPIResult(result) {
 
-    switch (result.status) {
-      case 200: // OK: GET, POST, PUT, PATCH, DELETE
-        severity = 'info';
-        summary = '200 OK';
-        detail = 'Action completed!';
-        break;
+    return new Promise(
+      (resolve, reject) => {
 
-      case 201: // CREATE: POST
-        severity = 'info';
-        summary = '201 Created';
-        detail = 'Creation completed!';
-        break;
+        const key1: string = result.status.toString();
+        const key2: string = result.status.toString() + 'Msg';
 
-      case 304: // NOT MODIFIED: for Caching and for PATCH
-        severity = 'warn';
-        summary = '304 Not modified';
-        detail = 'No change is made!';
-        break;
+        this.translate.get([key1, key2])
+          .subscribe((res) => {
+            console.log(res);
 
-      case 400: // BAD REQUEST: Invalid syntax
-        severity = 'warn';
-        summary = '400 Bad Request';
-        detail = 'Invalid Syntax!';
-        trackError = true;
-        break;
+            let severity = '';
+            let trackError = false;
 
-      case 401: // UNAUTHORIZED due to unauthenticated user
-        severity = 'error';
-        summary = '401 Unauthorized';
-        detail = 'User is not authorized!';
-        trackError = true;
-        break;
+            switch (result.status) {
+              case 200: // OK: GET, POST, PUT, PATCH, DELETE
+              case 201: // CREATE: POST
+                severity = 'info';
+                break;
 
-      case 403: // FORBIDDEN as authenticated user does not have proper right
-        severity = 'error';
-        summary = '403 Forbidden';
-        detail = 'User has no privilege for request!';
-        trackError = true;
-        break;
+              case 304: // NOT MODIFIED: for Caching and for PATCH
+                severity = 'warn';
+                break;
 
-      case 404: // NOT FOUND
-        severity = 'warn';
-        summary = '404 Not Found';
-        detail = 'Resource is not found!';
-        trackError = true;
-        break;
+              case 400: // BAD REQUEST: Invalid syntax
+                severity = 'warn';
+                trackError = true;
+                break;
 
-      case 412: // RE-CONDITION FAILED due to Validation
-        severity = 'warn';
-        summary = '412 Precondition Failed';
-        detail = 'Validation process failed!';
-        trackError = true;
-        break;
+              case 401: // UNAUTHORIZED due to unauthenticated user
+              case 403: // FORBIDDEN as authenticated user does not have proper right
+                severity = 'error';
+                trackError = true;
+                break;
 
-      case 500: // INTERNAL SERVER ERROR
-        severity = 'error';
-        summary = '500 Internal Server Error';
-        detail = 'Internal Servcer Error!';
-        trackError = true;
-        break;
+              case 404: // NOT FOUND
+              case 412: // RE-CONDITION FAILED due to Validation
+                severity = 'warn';
+                trackError = true;
+                break;
 
-      default:
-        break;
-    }
+              case 500: // INTERNAL SERVER ERROR
+                severity = 'error';
+                trackError = true;
+                break;
 
-    if (trackError) {
-      this.trackError({
-        url: result.url,
-        status: result.status,
-        detail: result['_body'],
-      });
-    }
+              default:
+                reject(Error("Invalid Http Return"));
+                break;
+            }
 
-    console.log(severity, summary, detail);
+            if (trackError) {
+              this.trackError({
+                url: result.url,
+                status: result.status,
+                detail: result['_body'],
+              });
+            }
 
-    return {
-      severity: severity,
-      summary: summary,
-      detail: detail,
-    }
+            resolve({
+              severity: severity,
+              summary: res[key1],
+              detail: res[key2],
+            });
 
+          });
+      }
+    );
   }
 
   trackError(error): void {

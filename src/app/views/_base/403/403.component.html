@@ -4,15 +4,15 @@
       <div class="col-md-6">
         <div class="clearfix">
           <h1 class="float-left display-3 mr-4">403</h1>
-          <h4 class="pt-3">Forbidden!</h4>
-          <p class="text-muted">Your privileges are not sufficient to access requested resource.</p>
+          <h4 class="pt-3">{{'403'|translate}}</h4>
+          <p class="text-muted">{{'403Msg'|translate}}</p>
         </div>
         <form (keydown)="keyDownFunction($event)">
           <div class="input-prepend input-group">
             <span class="input-group-addon"><i class="icon-arrow-left-circle"></i></span>
-            <input id="prependedInput" class="form-control" size="16" type="text" placeholder="Transaction Code" [(ngModel)]="tcodeExecution" name="tcode">
+            <input id="prependedInput" class="form-control" size="16" type="text" placeholder="{{'transactionCode'|translate}}" [(ngModel)]="tcodeExecution" name="tcode">
             <span class="input-group-btn">
-              <button class="btn btn-info" type="button" (click)="executeTcode()">Go!</button>
+              <button class="btn btn-info" type="button" (click)="executeTcode()">{{'go'|translate}}</button>
             </span>
           </div>
         </form>

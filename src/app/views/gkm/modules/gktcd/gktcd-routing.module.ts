@@ -87,14 +87,14 @@ const routes: Routes = [
         path: 'gktcd12',
         component: GkTcd12Component,
         data: {
-          title: 'Read'
+          title: 'View'
         }
       },
       {
         path: 'gktcd12/:id',
         component: GkTcd12Component,
         data: {
-          title: 'Read'
+          title: 'View'
         }
       },
       */

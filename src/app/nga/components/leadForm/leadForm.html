@@ -2,28 +2,37 @@
   <div class="ui-g-12 ui-md-6">
 
     <form [formGroup]="myForm" novalidate>
-      <p-panel header="Leading Form" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+      <p-panel header="{{'leadingForm'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
         <div class="ui-g ui-fluid">
-          <div class="ui-g-12 ui-md-4">
-              Working Year
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="fa fa-calendar fa-lg"></i></span>
-                  <input type="text" pInputText placeholder="Working Year" name="workingYear" formControlName="workingYear">
-              </div>
+          <div class="clearfix">
+            <div class="ui-g-12 ui-md-6">
+                {{'year'|translate}}
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-calendar fa-lg"></i></span>
+                    <input type="text" pInputText placeholder="{{'year'|translate}}" name="workingYear" formControlName="workingYear">
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6">
+                {{'lge'|translate}}
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-building-o fa-lg"></i></span>
+                    <input type="text" pInputText placeholder="{{'lge'|translate}}" name="workingLge" formControlName="workingLge">
+                </div>
+            </div>
           </div>
 
-          <div class="ui-g-12 ui-md-8">
-              ID
+          <div class="ui-g-12 ui-md-12">
+              {{'id'|translate}}
               <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="fa fa-key fa-lg"></i></span>
-                  <input type="text" pInputText placeholder="ID" name="id" formControlName="id">
+                  <input type="text" pInputText placeholder="{{'id'|translate}}" name="id" formControlName="id">
               </div>
 
           </div>
         </div>
         <p-footer>
           <div style="text-align: right">
-            <button pButton type="button" icon="icon-arrow-right-circle" label="Proceed" class="ui-button-success" (click)="execute()"></button>
+            <button pButton type="button" icon="icon-arrow-right-circle" label="{{'proceed'|translate}}" class="ui-button-success" (click)="execute()"></button>
           </div>
         </p-footer>
       </p-panel>

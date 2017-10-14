@@ -11,3 +11,5 @@ export * from './auth.guard';
 export * from './tcode.guard';
 
 export * from './apiResultHandling.service';
+export * from './language.service';
+export * from './setting.service';

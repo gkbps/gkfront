@@ -1,0 +1,13 @@
+<div class="gk-content-section introduction">
+  <div>
+      <span class="gk-feature-title">{{'terminal'|translate}}</span>
+      <span>{{'terminalText'|translate}}</span>
+  </div>
+</div>
+
+<div class="gk-content-section implementation">
+  <p-terminal welcomeMessage="{{'terminalWelcome'|translate}}" prompt="{{user.username}} $"></p-terminal>
+  <pre>
+    {{response}}
+  </pre>
+</div>

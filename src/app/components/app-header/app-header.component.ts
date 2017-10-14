@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SecurityService } from '../../nga/services/security.service';
-import { TcodeService } from '../../nga/services/tcode.service';
+import { LocalStorageService, SecurityService, TcodeService, LanguageService } from '../../nga/services';
+
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,17 @@ import { TcodeService } from '../../nga/services/tcode.service';
   styleUrls: ['./app-header.scss'],
 })
 export class AppHeader {
+  username;
+  avatar;
+  lang;
+
+  countNotification = 5;
+  paramNotification = { value: this.countNotification };
+  countMessage = 10;
+  paramMessage = { value: this.countMessage };
+  countTask = 15;
+  paramTask = { value: this.countTask };
+  countComment = 20;
 
   // public disabled = false;
   // public status: {isopen: boolean} = {isopen: false};
@@ -27,13 +39,24 @@ export class AppHeader {
   public tcodeExecution: string = '';
 
   constructor(
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
     private securityService: SecurityService,
     private tcodeService: TcodeService,
     private router: Router,
-  ) { }
+    private languageService: LanguageService,
+  ) {
+    // Initialize language
+    this.lang = localStorage.getLang();
+    translate.use(this.lang);
+  }
 
   ngOnInit(
-  ): void {}
+  ): void {
+    const user = this.securityService.getCurrentUser();
+    this.username = user.username;
+    this.avatar = user.avatar;
+  }
 
   public keyDownFunction(event) {
     if (event.keyCode == 13) {
@@ -42,6 +65,12 @@ export class AppHeader {
       this.tcodeExecution = '';
       this.router.navigate([url]);
     }
+  }
+
+  public changeLanguage(lang: string) {
+    this.lang = lang;
+    this.languageService.changeLanguage(lang);
+    this.translate.use(lang);
   }
 
   public logOut() {

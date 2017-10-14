@@ -1,12 +1,19 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+// External
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
+
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
+
+// Internal
+import { LocalStorageService, LanguageService } from '../../services';
 
 @Component({
   selector: 'nga-contact',
   templateUrl: './ngaContact.html',
   // styleUrls: ['./individualNav.scss'],
 })
-export class NgaContact implements OnInit {
+export class NgaContact implements OnInit, OnDestroy {
   @Input() formEditable: boolean = false;
   @Input() item: number;
   @Input('formGroup') public contactItem: FormGroup;
@@ -14,7 +21,20 @@ export class NgaContact implements OnInit {
   @Output() itemEvent: EventEmitter<any> = new EventEmitter();
   editStatus: boolean = false;
 
-  constructor() {
+  langSubscription: Subscription;
+
+  constructor(
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
+    private languageService: LanguageService,
+  ) {
+    // Initialize language
+    this.translate.use(localStorage.getLang());
+
+    this.langSubscription = this.languageService.getLanguage()
+      .subscribe(lang => {
+        translate.use(lang);
+      });
   }
 
   ngOnInit () {
@@ -42,4 +62,11 @@ export class NgaContact implements OnInit {
       this.contactItem.controls.email.disable();
     }
   }
+
+  ngOnDestroy() {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
+  }
+
 }

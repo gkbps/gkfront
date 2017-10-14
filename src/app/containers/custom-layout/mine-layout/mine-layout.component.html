@@ -2,40 +2,39 @@
 <div class="app-body">
 
   <app-sidebar>
+    <li class="divider"></li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/main']"><i class="icon-pin"></i> {{'backToMain'|translate}}</a>
+    </li>
     <!-- MY TRAYS -->
     <li class="divider"></li>
     <li class="nav-title">
-      MY APPROVAL
+      {{'myBoxes'|translate}}
     </li>
     <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine11']"><i class="fa fa-square-o"></i> Inbox</a>
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine11']"><i class="fa fa-square-o"></i> {{'inbox'|translate}}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine12']"><i class="fa fa-check-square-o"></i> Outbox</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine12']"><i class="fa fa-check-square-o"></i> {{'outbox'|translate}}</a>
     </li>
 
     <li class="divider"></li>
     <li class="nav-title">
-      MY TICKETS
+      {{'myDocuments'|translate}}
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine21']"><i class="fa fa-file-o"></i> Draft</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine21']"><i class="fa fa-file-o"></i> {{'draft'|translate}}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine22']"><i class="fa fa-spinner"></i> In progress</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine22']"><i class="fa fa-spinner"></i> {{'inProgress'|translate}}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine23']"><i class="fa fa-star-half-o"></i> Documenting</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine23']"><i class="fa fa-star-half-o"></i> {{'documenting'|translate}}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine24']"><i class="fa fa-star-o"></i> Finished</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/mine/mine24']"><i class="fa fa-star-o"></i> {{'completed'|translate}}</a>
     </li>
     <!-- ./MY TRAYS -->
-
-    <li class="divider"></li>
-    <li class="nav-item">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="['/main']"><i class="icon-pin"></i> Return Mainpage</a>
-    </li>
 
     <li class="divider"></li>
     <li class="nav-title">
@@ -47,17 +46,7 @@
   <main class="main">
 
     <!-- Breadcrumb -->
-    <ol class="breadcrumb"  style="font-size: 0.85em;">
-      <app-breadcrumbs></app-breadcrumbs>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <a class="btn" href="#"><i class="icon-speech"></i></a>
-          <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
-        </div>
-      </li>
-    </ol>
+    <app-breadcrumbs></app-breadcrumbs>
 
     <div class="container-fluid"  style="font-size: 0.75em;">
       <router-outlet></router-outlet>

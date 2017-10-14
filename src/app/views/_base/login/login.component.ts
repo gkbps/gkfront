@@ -1,8 +1,9 @@
-import { AuthenticationService, SecurityService } from '../../../nga/services';
-
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+
+import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService, SecurityService, LocalStorageService } from '../../../nga/services';
 
 @Component({
   templateUrl: 'login.component.html'
@@ -21,12 +22,16 @@ export class LoginComponent {
   message: string;
 
   constructor(
+    private localStorage: LocalStorageService,
+    private translate: TranslateService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
     private fb: FormBuilder,
     private securityService: SecurityService,
   ) {
+    // Initialize language
+    translate.use(localStorage.getLang());
 
     // get token
     this.model.token = this.securityService.getToken();
@@ -51,7 +56,7 @@ export class LoginComponent {
   public onSubmit(values: Object): void {
     this.submitted = true;
     if (this.form.valid) {
-      console.log(values);
+      // console.log(values);
       this.login();
     }
   }
@@ -62,7 +67,7 @@ export class LoginComponent {
     this.authenticationService.login(this.model.username, this.model.password, this.model.token)
       .subscribe(
         data => {
-          console.log(this.returnUrl);
+          // console.log(this.returnUrl);
           this.router.navigate([this.returnUrl]);
         },
         error => {

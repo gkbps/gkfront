@@ -1,13 +1,13 @@
 // External
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 // Internal
 import { SecurityService } from './security.service';
 import { TcodeService } from './tcode.service';
 
 @Injectable()
-export class TcodeGuard implements CanActivate, CanActivateChild {
+export class TcodeGuard implements CanActivate {
 
   constructor(
     private router: Router,
@@ -37,20 +37,6 @@ export class TcodeGuard implements CanActivate, CanActivateChild {
 
     // tcode is not granted, redirect to 403
     this.router.navigate(['/403']);
-    return false;
-  }
-
-  /*
-   * canActivateChild is used to check if user is authorized
-   */
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
-    if (localStorage.getItem('currentUser')) {
-      return true;
-    }
-
-    // tcode is not granted, redirect to 401
-    this.router.navigate(['/401']);
     return false;
   }
 

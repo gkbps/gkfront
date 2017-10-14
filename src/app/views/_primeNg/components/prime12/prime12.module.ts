@@ -11,6 +11,10 @@ import { PBlockUIModule } from './components/pblockUI/pblockUI.module';
 import { PInplaceModule } from './components/pinplace/pinplace.module';
 import { PProgressBarModule } from './components/pprogressBar/pprogressBar.module';
 import { PTerminalModule } from './components/pterminal/pterminal.module';
+
+import {TerminalService} from 'primeng/components/terminal/terminalservice';
+
+
 // import { Module } from './components';
 
 // External modules
@@ -27,8 +31,6 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     RouterModule,         // Require for <router-outlet>
-    
-    
 
     PResponsiveModule,
     PDeferModule,
@@ -40,13 +42,14 @@ import { RouterModule } from '@angular/router';
     PInplaceModule,
     PProgressBarModule,
     PTerminalModule,
-    
+
   ],
   declarations: [
     Prime12,
 
   ],
   providers: [
+    TerminalService
   ],
 })
 export class Prime12Module {

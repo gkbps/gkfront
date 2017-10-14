@@ -31,6 +31,25 @@ export class GkClientService {
         .map((response: Response) => response.json());
     }
 
+    findMasterListPagination(filter: string, sort: any, first: number, rows: number) {
+        const pagination = {
+            filter: filter,
+            sort: sort,
+            first: first,
+            rows: rows
+        };
+        // console.log(pagination);
+
+        let reqOptions = this.securityService.jwt().merge({params: pagination});
+        //console.log(reqOptions);
+
+        return this.http.get(
+            this.config.apiUrl + this.prefix + '/masterListPagination',
+            reqOptions,
+          )
+        .map((response: Response) => response.json());
+    }
+
     findById(_id: string) {
         return this.http.get(
             this.config.apiUrl + this.prefix + _id,

@@ -22,6 +22,7 @@ export class SecurityService {
           const headers = new Headers({
             'authorization': 'Bearer ' + currentUser.token,
             'awt': awt, // Array Web Token
+            'usr': currentUser._id,
           });
           return new RequestOptions({ headers: headers });
       }
@@ -66,7 +67,9 @@ export class SecurityService {
    ****************************************************************************/
   logOut() {
     // remove user from local storage to log user out
+    localStorage.removeItem('errorHistory');
     localStorage.removeItem('history');
+    localStorage.removeItem('env');
     localStorage.removeItem('mana');
     localStorage.removeItem('currentUser');
   }

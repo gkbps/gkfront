@@ -6,50 +6,49 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 
             <div class="card-body p-4">
-              <h1>Register</h1>
-              <p class="text-muted">Create your account</p>
-
+              <h1>{{'register'|translate}}</h1>
+              <p class="text-muted">{{'createYourAccount'|translate}}</p><!--Create your account-->
 
                 <div *ngIf="message" class="alert alert-danger" role="alert">
                   {{message}}
                 </div>
                 <div *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="alert alert-danger" role="alert">
-                  Please enter the same password
+                  {{'msgSamePassword'|translate}} <!--Please enter the same password-->
                 </div>
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!firstname.valid && firstname.touched), 'has-success': (firstname.valid && firstname.touched)}">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input [formControl]="firstname" [(ngModel)]="model.firstname" type="text" class="form-control" placeholder="Firstname">
+                  <input [formControl]="firstname" [(ngModel)]="model.firstname" type="text" class="form-control" placeholder="{{'firstname'|translate}}">
                 </div>
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!lastname.valid && lastname.touched), 'has-success': (lastname.valid && lastname.touched)}">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input [formControl]="lastname" [(ngModel)]="model.lastname" type="text" class="form-control" placeholder="Lastname">
+                  <input [formControl]="lastname" [(ngModel)]="model.lastname" type="text" class="form-control" placeholder="{{'lastname'|translate}}">
                 </div>
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!username.valid && username.touched), 'has-success': (username.valid && username.touched)}">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input [formControl]="username" [(ngModel)]="model.username" type="text" class="form-control" placeholder="Username">
+                  <input [formControl]="username" [(ngModel)]="model.username" type="text" class="form-control" placeholder="{{'username'|translate}}">
                 </div>
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
                   <span class="input-group-addon">@</span>
-                  <input [formControl]="email" [(ngModel)]="model.email" type="email" class="form-control" placeholder="Email">
+                  <input [formControl]="email" [(ngModel)]="model.email" type="email" class="form-control" placeholder="{{'email'|translate}}">
                 </div>
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input [formControl]="password" [(ngModel)]="model.password" type="password" class="form-control" placeholder="Password">
+                  <input [formControl]="password" [(ngModel)]="model.password" type="password" class="form-control" placeholder="{{'password'|translate}}">
                 </div>
 
                 <div class="input-group mb-4" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input [formControl]="repeatPassword" type="password" class="form-control" placeholder="Repeat password">
+                  <input [formControl]="repeatPassword" type="password" class="form-control" placeholder="{{'repeat'|translate}} {{'password'|translate}}">
                 </div>
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!token.valid && token.touched), 'has-success': (token.valid && token.touched)}">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input [formControl]="token" [(ngModel)]="model.token" id="inputfirstname" type="text" class="form-control" placeholder="Token">
+                  <input [formControl]="token" [(ngModel)]="model.token" id="inputfirstname" type="text" class="form-control" placeholder="{{'token'|translate}}">
                 </div>
 
             </div>
@@ -57,10 +56,10 @@
             <div class="card-footer p-4">
               <div class="row">
                 <div class="col-6">
-                  <button [disabled]="!form.valid" type="submit" class="btn btn-block btn-success">Create Account</button>
+                  <button [disabled]="!form.valid" type="submit" class="btn btn-block btn-success">{{'create'|translate}} {{'account'|translate}}</button>
                 </div>
                 <div class="col-6">
-                  <button type="button" class="btn btn-block btn-success" [routerLink]="['/login']">Have Account</button>
+                  <button type="button" class="btn btn-block btn-success" [routerLink]="['/login']">{{'haveAccount'|translate}}</button>
                 </div>
               </div>
             </div>

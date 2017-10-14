@@ -1,8 +1,8 @@
 // External
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TerminalService } from './terminal.service';
+import { TerminalService } from 'primeng/components/terminal/terminalservice';
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./pterminal.scss'],
 })
 
-export class PTerminal implements OnInit {
+export class PTerminal implements OnDestroy {
 
   /*
   response: string;
@@ -33,23 +33,21 @@ export class PTerminal implements OnInit {
 
   }
   */
-
   subscription: Subscription;
 
-  constructor(private terminalService: TerminalService) {
-      this.terminalService.commandHandler.subscribe(command => {
-          let response = (command === 'date') ? new Date().toDateString() : 'Unknown command: ' + command;
-          this.terminalService.sendResponse(response);
-      });
-  }
+    constructor(private terminalService: TerminalService) {
+        this.subscription = this.terminalService.commandHandler.subscribe(command => {
+            console.log('hello');
+            let response = (command === 'date') ? new Date().toDateString() : 'Unknown command: ' + command;
+            this.terminalService.sendResponse(response);
+        });
+    }
 
-  ngOnDestroy() {
-      if(this.subscription) {
-          this.subscription.unsubscribe();
-      }
-  }
+    ngOnDestroy() {
+        if(this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    }
 
-  ngOnInit() {
-  }
 
 }

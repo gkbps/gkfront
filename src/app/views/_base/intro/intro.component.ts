@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
+import { LocalStorageService } from '../../../nga/services';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   templateUrl: 'intro.component.html',
   styleUrls: [
@@ -14,7 +17,15 @@ import * as $ from 'jquery';
 })
 export class IntroComponent implements OnInit {
 
-  constructor() {
+  constructor(
+		private localStorageService: LocalStorageService,
+		private translate: TranslateService,
+  ) {
+  }
+
+  public changeLanguage(lang: string) {
+		this.localStorageService.setLang(lang);
+    this.translate.use(lang);
   }
 
   ngOnInit(){

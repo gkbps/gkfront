@@ -6,35 +6,35 @@
           <div class="card p-4">
             <div class="card-body">
 
-              <h1>Login</h1>
+              <h1>{{'login'|translate}}</h1>
               <div *ngIf="message" class="alert alert-danger" role="alert">
                 {{message}}
               </div>
-              <p class="text-muted">Sign In to your account</p>
+              <p class="text-muted">{{'loginMsg'|translate}}</p>
 
               <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
 
                 <div class="input-group mb-3" [ngClass]="{'has-error': (!username.valid && username.touched), 'has-success': (username.valid && username.touched)}">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input [formControl]="username" [(ngModel)]="model.username" type="text" class="form-control" placeholder="Username">
+                  <input [formControl]="username" [(ngModel)]="model.username" type="text" class="form-control" placeholder="{{'username'|translate}}">
                 </div>
 
                 <div class="input-group mb-4" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input [formControl]="password" [(ngModel)]="model.password" type="password" class="form-control" placeholder="Password">
+                  <input [formControl]="password" [(ngModel)]="model.password" type="password" class="form-control" placeholder="{{'password'|translate}}">
                 </div>
 
                 <div class="input-group mb-4" [ngClass]="{'has-error': (!token.valid && token.touched), 'has-success': (token.valid && token.touched)}">
                   <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                  <input [formControl]="token" [(ngModel)]="model.token" type="text" class="form-control" placeholder="Token">
+                  <input [formControl]="token" [(ngModel)]="model.token" type="text" class="form-control" placeholder="{{'token'|translate}}">
                 </div>
 
                 <div class="row">
                   <div class="col-6">
-                    <button [disabled]="!form.valid" type="submit" class="btn btn-primary px-4">Login</button> <!-- [routerLink]="['/home/']" -->
+                    <button [disabled]="!form.valid" type="submit" class="btn btn-primary px-4">{{'login'|translate}}</button> <!-- [routerLink]="['/home/']" -->
                   </div>
                   <div class="col-6 text-right">
-                    <button [routerLink]="['/forgot']" type="button" class="btn btn-link px-0">Forgot password?</button>
+                    <button [routerLink]="['/forgot']" type="button" class="btn btn-link px-0">{{'forgot'|translate}} {{'password'|translate}}?</button>
                   </div>
                 </div>
 
@@ -45,7 +45,7 @@
           <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
             <div class="card-body text-center">
               <div>
-                <h2>Sign up</h2>
+                <h2>{{'signUp'|translate}}</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <button type="button" class="btn btn-primary active mt-3" [routerLink]="['/register']">Register Now!</button>
               </div>

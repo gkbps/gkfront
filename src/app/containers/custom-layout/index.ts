@@ -1,3 +1,5 @@
+export * from './base-layout';
+
 export * from './main-layout';
 export * from './mine-layout';
 export * from './gkm-layout';

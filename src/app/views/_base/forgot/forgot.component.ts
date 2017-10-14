@@ -1,11 +1,11 @@
-import { EmailValidator, EqualPasswordsValidator } from '../../../nga/validators';
-import { UserService } from '../../../services';
-
-import { SecurityService } from '../../../nga/services';
-
 import { Component } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
+import { EmailValidator, EqualPasswordsValidator } from '../../../nga/validators';
+import { UserService } from '../../../services';
+import { SecurityService, LocalStorageService } from '../../../nga/services';
 
 @Component({
   templateUrl: 'forgot.component.html'
@@ -21,11 +21,16 @@ export class ForgotComponent {
   loading = false;
   message: string;
 
-  constructor(private router: Router,
-        private userService: UserService,
-        private fb: FormBuilder,
-        private securityService: SecurityService,
-      ) {
+  constructor(
+      private router: Router,
+      private userService: UserService,
+      private fb: FormBuilder,
+      private securityService: SecurityService,
+      private translate: TranslateService,
+      private localStorage: LocalStorageService,
+  ) {
+    // Initialize language
+    translate.use(localStorage.getLang());
 
     // get token
     this.model.token = this.securityService.getToken();

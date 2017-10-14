@@ -72,7 +72,7 @@ const routes: Routes = [
         component: GkCln12Component,
         canActivate: [TcodeGuard],
         data: {
-          title: 'Read'
+          title: 'View'
         }
       },
       {
@@ -80,7 +80,7 @@ const routes: Routes = [
         component: GkCln12Component,
         canActivate: [TcodeGuard],
         data: {
-          title: 'Read'
+          title: 'View'
         }
       },
       {
@@ -88,7 +88,7 @@ const routes: Routes = [
         component: GkCln13Component,
         canActivate: [TcodeGuard],
         data: {
-          title: 'Update'
+          title: 'Edit'
         }
       },
       {
@@ -96,7 +96,7 @@ const routes: Routes = [
         component: GkCln13Component,
         canActivate: [TcodeGuard],
         data: {
-          title: 'Update'
+          title: 'Edit'
         }
       },
       {
