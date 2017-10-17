@@ -18,11 +18,13 @@ export class SecurityService {
       // get authorization header with jwt token from localStorage
       const currentUser: any = JSON.parse(localStorage.getItem('currentUser'));
       const awt: string = JSON.stringify(currentUser.awt);
+      const token: string = this.getToken();
       if (currentUser && currentUser.token) {
           const headers = new Headers({
             'authorization': 'Bearer ' + currentUser.token,
             'awt': awt, // Array Web Token
             'usr': currentUser._id,
+            'token': token
           });
           return new RequestOptions({ headers: headers });
       }

@@ -58,6 +58,7 @@
 	"edit": "Chỉnh sửa",
 	"email": "Thư điện tử",
 	"enable": "Kích hoạt",
+	"filename": "Tên tập tin",
 	"filter": "Bộ lọc",
 	"firstname": "Tên",
 	"forgot": "Quên",
@@ -145,6 +146,7 @@
 	"roles": "Vai trò",
 	"rolesAssignment": "Cấp phát các Vai trò",
 	"save": "Lưu",
+	"selectFile": "Chọn tập tin",
 	"services": "Dịch vụ",
 	"setting": "Thiết lập",
 	"settings": "Các tác vụ thiết lập",
@@ -180,6 +182,11 @@
 	"viewAllMessages": "Xem tất cả tin nhắn",
 	"viewAllTasks": "Xem tất cả tác vụ",
 	"viewChange": "Xem thay đổi",
+	"wkEnvironment": "Môi trường làm việc",
+	"wkLge": "Pháp nhân",
+	"wkLgeText": "Lựa chọn pháp nhân làm việc",
+	"wkYear": "Năm",
+	"wkYearText": "Lựa chọn năm làm việc",
 	"workflows": "Quy trình",
 	"year": "Năm"
 }

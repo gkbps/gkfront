@@ -210,6 +210,7 @@ import { AppTranslationModule } from '../app.translation.module';
 import {
   NavBoard,
   LeadForm,
+  UploadForm,
   IndividualNav,
   NgaAddress,
   NgaContact,
@@ -220,6 +221,7 @@ import {
 const NGA_COMPONENTS = [
   NavBoard,
   LeadForm,
+  UploadForm,
   IndividualNav,
   NgaAddress,
   NgaContact,

@@ -58,6 +58,7 @@
 	"edit": "Edit",
 	"email": "Email",
 	"enable": "Enable",
+	"filename": "",
 	"filter": "",
 	"firstname": "Firstname",
 	"forgot": "Forgot",
@@ -145,6 +146,7 @@
 	"roles": "Roles",
 	"rolesAssignment": "",
 	"save": "",
+	"selectFile": "",
 	"services": "Services",
 	"setting": "Setting",
 	"settings": "Settings",
@@ -180,6 +182,11 @@
 	"viewAllMessages": "View all messages",
 	"viewAllTasks": "View all tasks",
 	"viewChange": "View Changes",
+	"wkEnvironment": "",
+	"wkLge": "",
+	"wkLgeText": "",
+	"wkYear": "",
+	"wkYearText": "",
 	"workflows": "Workflows",
 	"year": "Year"
 }

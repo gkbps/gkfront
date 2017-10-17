@@ -15,6 +15,8 @@ import { GkCln12Component } from './components/gkcln12';
 import { GkCln13Component } from './components/gkcln13';
 
 import { GkCln20Component } from './components/gkcln20';
+import { GkCln21Component } from './components/gkcln21';
+
 import { GkCln30Component } from './components/gkcln30';
 import { GkCln40Component } from './components/gkcln40';
 import { GkCln50Component } from './components/gkcln50';
@@ -105,6 +107,14 @@ const routes: Routes = [
         canActivate: [TcodeGuard],
         data: {
           title: 'Collective'
+        }
+      },
+      {
+        path: 'gkcln21',
+        component: GkCln21Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Upload'
         }
       },
       {
