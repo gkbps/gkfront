@@ -247,6 +247,7 @@ import {
   APIResultHandlingService,
   LanguageService,
   SettingService,
+  SessionService
 } from './services';
 
 const NGA_SERVICES = [
@@ -263,6 +264,7 @@ const NGA_SERVICES = [
   APIResultHandlingService,
   LanguageService,
   SettingService,
+  SessionService
 ];
 
 import {

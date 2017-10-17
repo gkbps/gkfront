@@ -19,6 +19,7 @@ export class SecurityService {
       const currentUser: any = JSON.parse(localStorage.getItem('currentUser'));
       const awt: string = JSON.stringify(currentUser.awt);
       const token: string = this.getToken();
+      console.log(token);
       if (currentUser && currentUser.token) {
           const headers = new Headers({
             'authorization': 'Bearer ' + currentUser.token,
@@ -45,21 +46,35 @@ export class SecurityService {
     return localStorage.getItem('token');
   }
 
+  setAwt(wkLge: string, wkYear: string) {
+    const user = this.getCurrentUser();
+    const awt = this.tcodeService.encode_array([wkLge, wkYear]);
+    user.awt = awt;
+    this.setCurrentUser(JSON.stringify(user));
+  }
+
   getAwt(): string {
     const currentUser: any = JSON.parse(localStorage.getItem('currentUser'));
     const awt = currentUser.awt;
     return awt;
   }
 
-  getClientCode(): string {
+  getWkLge(): string {
     const awt = this.getAwt();
     return this.tcodeService.decode(awt[0]);
   }
 
-  getYear(): string {
+  getWkYear(): string {
     const awt = this.getAwt();
     return this.tcodeService.decode(awt[1]);
   }
+
+  /*
+  getClientCode(): string {
+    const awt = this.getAwt();
+    return this.tcodeService.decode(awt[0]);
+  }
+  */
 
   setCurrentUser(user: string) {
     localStorage.setItem('currentUser', user);

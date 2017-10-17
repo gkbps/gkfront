@@ -181,11 +181,10 @@
             </div>
           </div>
           <div>
-            <select id="select" name="select" class="form-control form-control-xm">
-              <option value="0">Please select</option>
-              <option value="1">Option #1</option>
-              <option value="2">Option #2</option>
-              <option value="3">Option #3</option>
+            <select id="select" name="select" class="form-control form-control-sm" [(ngModel)]="wkLge" (ngModelChange)="changeWkParams($event)">
+              <option *ngFor="let lge of lges" [value]="lge['id']" [selected]="lge['id'] == wkLge">
+                {{lge['name']}}
+              </option>
             </select>
           </div>
         </div>
@@ -198,11 +197,10 @@
             </div>
           </div>
           <div>
-            <select id="select" name="select" class="form-control form-control-xm">
-              <option value="0">Please select</option>
-              <option value="1">Option #1</option>
-              <option value="2">Option #2</option>
-              <option value="3">Option #3</option>
+            <select id="select" name="select" class="form-control form-control-sm" [(ngModel)]="wkYear" (ngModelChange)="changeWkParams($event)">
+              <option *ngFor="let year of years" [value]="year" [selected]="year == wkYear">
+                {{year}}
+              </option>
             </select>
           </div>
         </div>
