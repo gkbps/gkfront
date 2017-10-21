@@ -101,6 +101,7 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
     // console.log(this.myForm);
 
     this.alertType = this.localStorage.getAlertType();
+    this.silentAction();
   }
 
   private parseTcode(){
@@ -447,6 +448,80 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  /****************************************************************************
+   * Form Silent Action
+   ****************************************************************************/
+  silentAction() {
+    console.log(this.action);
+    switch (this.action) {
+
+      case '14':
+        this.gkClientService.disable(this.id)
+          .subscribe(
+            result => {
+              this.handleAPIReturn(result);
+            },
+            error => {
+              this.handleAPIReturn(error);
+            }
+          );
+        break;
+
+      case '15':
+        this.gkClientService.enable(this.id)
+          .subscribe(
+            result => {
+              this.handleAPIReturn(result);
+            },
+            error => {
+              this.handleAPIReturn(error);
+            }
+          );
+        break;
+
+      case '16':
+        console.log('Mark');
+        this.gkClientService.mark(this.id)
+          .subscribe(
+            result => {
+              this.handleAPIReturn(result);
+            },
+            error => {
+              this.handleAPIReturn(error);
+            }
+          );
+        break;
+
+      case '17':
+        console.log('Unmark');
+        this.gkClientService.unmark(this.id)
+          .subscribe(
+            result => {
+              this.handleAPIReturn(result);
+            },
+            error => {
+              this.handleAPIReturn(error);
+            }
+          );
+        break;
+
+      case '18':
+        this.gkClientService.delete(this.id)
+          .subscribe(
+            result => {
+              this.handleAPIReturn(result);
+            },
+            error => {
+              this.handleAPIReturn(error);
+            }
+          );
+        break;
+
+      default:
+        break;
+    }
+  }
+
   handleAPIReturn(result) {
     this.apiResultHandlingService.processAPIResult(result)
       .then((msg)=>{
@@ -456,7 +531,7 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
         console.log(msg);
         this.msgs = [];
         this.msgs.push(msg);
-        setTimeout(()=> { this.msgs =[]; }, 10000);
+        setTimeout(()=> { this.msgs =[]; }, 15000);
       });
   }
 

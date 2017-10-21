@@ -13,6 +13,11 @@ import { GkCln10Component } from './components/gkcln10';
 import { GkCln11Component } from './components/gkcln11';
 import { GkCln12Component } from './components/gkcln12';
 import { GkCln13Component } from './components/gkcln13';
+import { GkCln14Component } from './components/gkcln14';
+import { GkCln15Component } from './components/gkcln15';
+import { GkCln16Component } from './components/gkcln16';
+import { GkCln17Component } from './components/gkcln17';
+import { GkCln18Component } from './components/gkcln18';
 
 import { GkCln20Component } from './components/gkcln20';
 import { GkCln21Component } from './components/gkcln21';
@@ -99,6 +104,86 @@ const routes: Routes = [
         canActivate: [TcodeGuard],
         data: {
           title: 'Edit'
+        }
+      },
+      {
+        path: 'gkcln14',
+        component: GkCln14Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Disable'
+        }
+      },
+      {
+        path: 'gkcln14/:id',
+        component: GkCln14Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Disable'
+        }
+      },
+      {
+        path: 'gkcln15',
+        component: GkCln15Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Disable'
+        }
+      },
+      {
+        path: 'gkcln15/:id',
+        component: GkCln15Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Disable'
+        }
+      },
+      {
+        path: 'gkcln16',
+        component: GkCln16Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Enable'
+        }
+      },
+      {
+        path: 'gkcln16/:id',
+        component: GkCln16Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Enable'
+        }
+      },
+      {
+        path: 'gkcln17',
+        component: GkCln17Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Unmark'
+        }
+      },
+      {
+        path: 'gkcln17/:id',
+        component: GkCln17Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Unmark'
+        }
+      },
+      {
+        path: 'gkcln18',
+        component: GkCln18Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Delete'
+        }
+      },
+      {
+        path: 'gkcln18/:id',
+        component: GkCln18Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Delete'
         }
       },
       {

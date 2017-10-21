@@ -9,7 +9,7 @@ export class APIResultHandlingService {
   ) { }
 
   public processAPIResult(result) {
-
+    console.log(result);
     return new Promise(
       (resolve, reject) => {
 
@@ -56,7 +56,7 @@ export class APIResultHandlingService {
                 break;
 
               default:
-                reject(Error("Invalid Http Return"));
+                reject(Error('Invalid Http Return'));
                 break;
             }
 

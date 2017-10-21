@@ -149,6 +149,6 @@ export class TcodeService {
       : this.url + this.extractPrefix(tcode) + '/' + tcode;
     console.log(targetUrl);
     this.router.navigate([targetUrl]);
-  }
+  }  
 
 }

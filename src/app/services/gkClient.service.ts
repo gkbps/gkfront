@@ -61,13 +61,47 @@ export class GkClientService {
     create(gkclient: any) {
         return this.http.post(
             this.config.apiUrl + this.prefix,
-            gkclient);
+            gkclient,
+            this.securityService.jwt(),
+          );
     }
 
     update(gkclient: any) {
         return this.http.put(
             this.config.apiUrl + this.prefix + gkclient._id,
             gkclient,
+            this.securityService.jwt(),
+          );
+    }
+
+    disable(_id: string) {
+        return this.http.patch(
+            this.config.apiUrl + this.prefix + 'disable/' + _id,
+            {},
+            this.securityService.jwt(),
+          );
+    }
+
+    enable(_id: string) {
+        return this.http.patch(
+            this.config.apiUrl + this.prefix + 'enable/' + _id,
+            {},
+            this.securityService.jwt(),
+          );
+    }
+
+    mark(_id: string) {
+        return this.http.patch(
+            this.config.apiUrl + this.prefix + 'mark/' + _id,
+            {},
+            this.securityService.jwt(),
+          );
+    }
+
+    unmark(_id: string) {
+        return this.http.patch(
+            this.config.apiUrl + this.prefix + 'unmark/' + _id,
+            {},
             this.securityService.jwt(),
           );
     }
