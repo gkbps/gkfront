@@ -111,6 +111,10 @@ export class LocalStorageService {
     return env.wk.year;
   }
 
+  clearError() {
+    localStorage.setItem('errorHistory', '[]');  
+  }
+
   pushError(error) {
     if (localStorage.getItem('errorHistory') === null) {
       localStorage.setItem('errorHistory', '[]');

@@ -36,12 +36,12 @@ export class NavigationService {
 
   canReturn(): boolean {
     const history: any[] = JSON.parse(localStorage.getItem('history'));
-    return (history.length > 1);
+    return history ?  (history.length > 1): false;
   }
 
   returnPrevious(): void {
-    let history: any[] = JSON.parse(localStorage.getItem('history'));
-    if (history.length > 1) {
+    if (this.canReturn()) {
+      const history: any[] = JSON.parse(localStorage.getItem('history'));
       history.pop();
       // console.log(history);
       const returnUrl: string = history[(history.length - 1)];
@@ -49,6 +49,8 @@ export class NavigationService {
       localStorage.setItem('history', JSON.stringify(history));
       // console.log(returnUrl);
       this.router.navigate([returnUrl]);
+    } else {
+      console.log('No history of user activity');
     }
   }
 

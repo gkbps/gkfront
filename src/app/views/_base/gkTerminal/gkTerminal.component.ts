@@ -43,6 +43,16 @@ export class GkTerminalComponent implements OnDestroy {
           this.response = 'Today is: ' + new Date().toDateString();
           break;
 
+        case 'clear':
+          switch (parts[1]) {
+            case 'error':
+              this.localStorage.clearError();
+              break;
+            default:
+              break;
+            }
+          break;
+
         case 'show':
           let data;
 

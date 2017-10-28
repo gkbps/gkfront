@@ -4,3 +4,4 @@ export * from './leadForm';
 export * from './ngaAddress';
 export * from './ngaContact';
 export * from './uploadForm';
+export * from './downloadForm';

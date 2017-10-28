@@ -31,6 +31,8 @@ import { GkCln18Component } from './components/gkcln18';
 
 import { GkCln20Component } from './components/gkcln20';
 import { GkCln21Component } from './components/gkcln21';
+import { GkCln22Component } from './components/gkcln22';
+import { GkCln23Component } from './components/gkcln23';
 
 import { GkCln30Component } from './components/gkcln30';
 import { GkCln40Component } from './components/gkcln40';
@@ -73,6 +75,8 @@ import { GkClientService } from '../../../../services/gkClient.service';
 
     GkCln20Component,
     GkCln21Component,
+    GkCln22Component,
+    GkCln23Component,
 
     GkCln30Component,
 

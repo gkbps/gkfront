@@ -1,7 +1,7 @@
 <p-growl *ngIf="alertType=='toast'" [value]="msgs"></p-growl>
 <p-messages *ngIf="alertType=='alert'" [(value)]="msgs"></p-messages>
 
-<div class="ui-g">
+<div class="ui-g">  
   <div class="ui-g-12 ui-md-6">
 
     <p-panel header="{{'leadingForm'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
@@ -11,9 +11,9 @@
             {{'filename'|translate}}
             <div class="ui-inputgroup">
                 <input #inputText type="text" pInputText placeholder="{{'filename'|translate}}" name="filename">
-                <button pButton type="button" label="{{'selectFile'|translate}}" (click)="bringFileSelector();"></button>
+                <span class="ui-inputgroup-addon">.csv</span>
             </div>
-            <input #fileUpload id="file" type="file" (change)="fileChanged($event)" accept=".csv" hidden="true"/>
+
         </div>
       </div>
       <p-footer>

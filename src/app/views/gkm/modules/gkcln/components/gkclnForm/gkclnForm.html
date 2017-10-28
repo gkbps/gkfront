@@ -7,6 +7,15 @@
 
 <ng-container *ngIf="hasClient">
   <form [formGroup]="myForm" novalidate>
+    <div class="ui-g ui-fluid" style="margin-bottom:10px">
+      <div style="width: 50%">
+        <span>{{'status'|translate}}: <span class="badge" [ngClass]="{'badge-warning': (myForm.controls.status1.value=='Inactive'), 'badge-primary': (myForm.controls.status1.value=='Active')}">{{myForm.controls.status1.value}}</span></span>
+      </div>
+      <div style="width: 50%; text-alight: right; float: right">
+        <span>{{'marked'|translate}}: <span class="badge" [ngClass]="{'badge-danger': (myForm.controls.status2.value=='Marked'), 'badge-success': (myForm.controls.status2.value=='Unmarked')}">{{myForm.controls.status2.value}}</span></span>
+      </div>
+
+    </div>
 
     <p-panel header="{{'general'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
 

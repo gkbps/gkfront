@@ -136,6 +136,8 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
       clientDb: '',
       solutions: [],
       remarks: [],
+      status1: 'Active',
+      status2: 'Unmarked',
     }
     this.buildForm();
   }
@@ -460,6 +462,8 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
           .subscribe(
             result => {
               this.handleAPIReturn(result);
+              this.client.status1 = 'Inactive';
+              this.buildForm();
             },
             error => {
               this.handleAPIReturn(error);
@@ -472,6 +476,8 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
           .subscribe(
             result => {
               this.handleAPIReturn(result);
+              this.client.status1 = 'Active';
+              this.buildForm();
             },
             error => {
               this.handleAPIReturn(error);
@@ -485,6 +491,8 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
           .subscribe(
             result => {
               this.handleAPIReturn(result);
+              this.client.status2 = 'Marked';
+              this.buildForm();
             },
             error => {
               this.handleAPIReturn(error);
@@ -498,6 +506,8 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
           .subscribe(
             result => {
               this.handleAPIReturn(result);
+              this.client.status2 = 'Unmarked';
+              this.buildForm();
             },
             error => {
               this.handleAPIReturn(error);
@@ -531,7 +541,7 @@ export class GkClnForm implements OnInit, OnChanges, OnDestroy {
         console.log(msg);
         this.msgs = [];
         this.msgs.push(msg);
-        setTimeout(()=> { this.msgs =[]; }, 15000);
+        setTimeout(()=> { this.msgs =[]; }, 20000);
       });
   }
 

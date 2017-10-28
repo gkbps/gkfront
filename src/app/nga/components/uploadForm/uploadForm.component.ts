@@ -1,15 +1,31 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Renderer } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Renderer
+} from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
+import { Message } from 'primeng/primeng';
 
 import { TranslateService } from '@ngx-translate/core';
 
+// import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/do';
+// import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { AppConfig } from '../../../app.config';
-import { SecurityService, TcodeService, LocalStorageService, LanguageService } from '../../services';
+import {
+  SecurityService,
+  TcodeService,
+  APIResultHandlingService,
+  LocalStorageService,
+  LanguageService,
+  SettingService,
+} from '../../services';
 
 @Component({
   selector: 'upload-form',
@@ -25,21 +41,29 @@ export class UploadForm implements OnInit {
   @ViewChild('inputText') public _inputText: ElementRef;
 
   action: string = '';
+  actionUrl: string = '';
   url: string;
 
+  msgs: Message[] = [];
+
+  alertType: string;
+
   langSubscription: Subscription;
+  alertSubscription: Subscription;
 
   constructor(
     private config: AppConfig,
     private http: Http,
     private el: ElementRef,
-    private router: Router,
+    // private router: Router,
     private securityService: SecurityService,
     private tcodeService: TcodeService,
+    private apiResultHandlingService: APIResultHandlingService,
     private renderer: Renderer,
     private localStorage: LocalStorageService,
     private translate: TranslateService,
     private languageService: LanguageService,
+    private settingService: SettingService,
   ) {
     // Initialize language
     this.translate.use(localStorage.getLang());
@@ -48,12 +72,49 @@ export class UploadForm implements OnInit {
       .subscribe(lang => {
         translate.use(lang);
       });
+
+    this.alertSubscription = this.settingService.getAlertType()
+      .subscribe(alertType => {
+        this.alertType = alertType;
+      });
   }
 
   ngOnInit () {
     this.action = this.tcodeService.extractAction(this.tcode);
-    this.url = this.config.apiUrl + '/' + this.module + '/upload/';
+    switch (this.action) {
+      case '21':
+        this.actionUrl = '/upload/';
+        break;
+
+      case '23':
+        this.actionUrl = '/upsert/';
+        break;
+
+      case '24':
+        this.actionUrl = '/massDisable/';
+        break;
+
+      case '25':
+        this.actionUrl = '/massEnable/';
+        break;
+
+      case '26':
+        this.actionUrl = '/massMark/';
+        break;
+
+      case '27':
+        this.actionUrl = '/massUnmark/';
+        break;
+
+      default:
+        break;
+    }
+    this.url = this.config.apiUrl + '/' + this.module + this.actionUrl;
+    //this.url = this.config.apiUrl + '/' + this.module + '/upload/';
+
     // console.log(this.url);
+    this.alertType = this.localStorage.getAlertType();
+    console.log(this.alertType);
   }
 
   bringFileSelector(): boolean {
@@ -78,26 +139,37 @@ export class UploadForm implements OnInit {
        formData.append('file', file);
        // formData.append('file', inputEl.files.item(0));
        this.http.post(this.url, formData, this.securityService.jwt())
-         .map((res: Response) => res.json())
+         // Do not map to have full response headers and _body
+         // .map((res: Response) => res.json())
          .subscribe(
            (success) => {
-             alert(success.message);
-             // Or emit an event to tell user or trigger data processing
-             console.log(success);
+             this.handleAPIReturn(success);
            },
            (error) => {
-             alert(error._body);
-             // Or emit an event to tell user
-             console.log(error);
+             this.handleAPIReturn(error);
            },
            () => { console.log('Subscription is completed'); },
          );
      }
   }
 
+  handleAPIReturn(result) {
+    this.apiResultHandlingService.processAPIResult(result)
+      .then((msg)=>{
+        console.log(msg);
+        this.msgs = [];
+        this.msgs.push(msg);
+        setTimeout(()=> { this.msgs =[]; }, 20000);
+      });
+  }
+
   ngOnDestroy() {
     if (this.langSubscription) {
       this.langSubscription.unsubscribe();
+    }
+
+    if (this.alertSubscription) {
+      this.alertSubscription.unsubscribe();
     }
   }
 

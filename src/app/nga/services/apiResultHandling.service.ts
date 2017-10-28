@@ -8,20 +8,31 @@ export class APIResultHandlingService {
     private translate: TranslateService,
   ) { }
 
+  /*
+   * Function: processAPIResult
+   * Purpose: To provide a single handler for all results received from API restful server
+   * Design:
+   * result = {status, url, _body {code, message, data ={anything}}
+   */
   public processAPIResult(result) {
     console.log(result);
+
     return new Promise(
       (resolve, reject) => {
+        let key1: string;
+        let key2: string;
 
-        const key1: string = result.status.toString();
-        const key2: string = result.status.toString() + 'Msg';
+        key1 = result.status.toString();
+        key2 = result.status.toString() + 'Msg';
+        // const key3: string = JSON.parse(result._body).action + 'Action';
 
         this.translate.get([key1, key2])
           .subscribe((res) => {
-            console.log(res);
 
             let severity = '';
             let trackError = false;
+            let summaryMsg = res[key1];
+            let detailMsg = res[key2];
 
             switch (result.status) {
               case 200: // OK: GET, POST, PUT, PATCH, DELETE
@@ -29,8 +40,14 @@ export class APIResultHandlingService {
                 severity = 'info';
                 break;
 
+              case 206: // UPLOAD: POST
+                severity = 'warn';
+                trackError = true;
+                break;
+
               case 304: // NOT MODIFIED: for Caching and for PATCH
                 severity = 'warn';
+                // Do not have result['_body']
                 break;
 
               case 400: // BAD REQUEST: Invalid syntax
@@ -55,11 +72,15 @@ export class APIResultHandlingService {
                 trackError = true;
                 break;
 
-              default:
-                reject(Error('Invalid Http Return'));
+              default: // NOT SUPPORT STATUS: Invalid Http Return
+                severity = 'error';
+                trackError = true;
+                summaryMsg = 'Invalid Http Return';
+                detailMsg = 'Invalid Http Return';
                 break;
             }
 
+            // Tracking for debug via terminal
             if (trackError) {
               this.trackError({
                 url: result.url,
@@ -68,18 +89,29 @@ export class APIResultHandlingService {
               });
             }
 
+            // Return msg for Alert or Toast`
             resolve({
               severity: severity,
-              summary: res[key1],
-              detail: res[key2],
+              summary: summaryMsg,
+              detail: detailMsg,
             });
 
           });
       }
-    );
+    )
+    .catch(error => {
+      // Return msg for Alert or Toast`
+      return ({
+        severity: 'error',
+        summary: 'Undefied!',
+        detail: 'Undefined error catched!',
+      });
+    })
   }
 
+
   trackError(error): void {
+    // console.log(error);
     if (localStorage.getItem('errorHistory') === null) {
       localStorage.setItem('errorHistory', '[]');
     }
