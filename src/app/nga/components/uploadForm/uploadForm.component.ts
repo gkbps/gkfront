@@ -91,19 +91,23 @@ export class UploadForm implements OnInit {
         break;
 
       case '24':
-        this.actionUrl = '/massDisable/';
+        this.actionUrl = '/disableCollective/';
         break;
 
       case '25':
-        this.actionUrl = '/massEnable/';
+        this.actionUrl = '/enableCollective/';
         break;
 
       case '26':
-        this.actionUrl = '/massMark/';
+        this.actionUrl = '/markCollective/';
         break;
 
       case '27':
-        this.actionUrl = '/massUnmark/';
+        this.actionUrl = '/unmarkCollective/';
+        break;
+
+      case '28':
+        this.actionUrl = '/deleteCollective/';
         break;
 
       default:
@@ -124,7 +128,9 @@ export class UploadForm implements OnInit {
 
   fileChanged(event) {
     console.log(event.target.files[0]);
-    this._inputText.nativeElement.value = event.target.files[0].name;
+    if (event.target.files[0]) {
+      this._inputText.nativeElement.value = event.target.files[0].name;
+    }
   }
 
   /* To get value and navigate the link */

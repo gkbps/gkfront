@@ -112,7 +112,7 @@ export class LocalStorageService {
   }
 
   clearError() {
-    localStorage.setItem('errorHistory', '[]');  
+    localStorage.setItem('errorHistory', '[]');
   }
 
   pushError(error) {

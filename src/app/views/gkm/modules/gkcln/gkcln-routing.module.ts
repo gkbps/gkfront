@@ -23,6 +23,11 @@ import { GkCln20Component } from './components/gkcln20';
 import { GkCln21Component } from './components/gkcln21';
 import { GkCln22Component } from './components/gkcln22';
 import { GkCln23Component } from './components/gkcln23';
+import { GkCln24Component } from './components/gkcln24';
+import { GkCln25Component } from './components/gkcln25';
+import { GkCln26Component } from './components/gkcln26';
+import { GkCln27Component } from './components/gkcln27';
+import { GkCln28Component } from './components/gkcln28';
 
 import { GkCln30Component } from './components/gkcln30';
 import { GkCln40Component } from './components/gkcln40';
@@ -218,6 +223,46 @@ const routes: Routes = [
         canActivate: [TcodeGuard],
         data: {
           title: 'Upsert'
+        }
+      },
+      {
+        path: 'gkcln24',
+        component: GkCln24Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Disable Collective'
+        }
+      },
+      {
+        path: 'gkcln25',
+        component: GkCln25Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Enable Collective'
+        }
+      },
+      {
+        path: 'gkcln26',
+        component: GkCln26Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Mark Collective'
+        }
+      },
+      {
+        path: 'gkcln27',
+        component: GkCln27Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Unmark Collective'
+        }
+      },
+      {
+        path: 'gkcln28',
+        component: GkCln28Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Clean Up'
         }
       },
 
