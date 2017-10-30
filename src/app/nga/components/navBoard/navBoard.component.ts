@@ -17,7 +17,7 @@ import {
 @Component({
   selector: 'nav-board',
   templateUrl: './navBoard.html',
-  styleUrls: ['./navBoard.scss', './navBox.scss'],
+  styleUrls: ['./navBoard.scss', './navBox.scss', './navRound.scss'],
 })
 
 export class NavBoard implements OnInit {

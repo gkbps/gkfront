@@ -24,7 +24,7 @@
 	</div>
 </div>
 -->
-
+<!--
 <section *ngIf="navType=='round'" id="fh5co-work" data-section="work">
   <div class="wrapper">
 
@@ -42,6 +42,24 @@
     <div class="ui-helper-clearfix" style="margin-bottom: 55px"></div>
 
   </div>
+</section>
+-->
+<section *ngIf="navType=='round'" id="navBoard-round" data-section="work">
+  <section class="portfolio">
+    <article class="p-item" *ngFor="let item of navItems; let i=index">
+      <a href="/#/{{item.url}}">
+        <img src="{{assetPath}}{{item.img}}"/>
+        <div class="p-info-wrap">
+          <div class="p-info">
+            <div class="p-info-back">
+              <span>{{item.title}}<br>{{item.tcode}}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </article>
+    <div class="ui-helper-clearfix" style="margin-bottom: 55px"></div>
+  </section>
 </section>
 
 <section *ngIf="navType=='box'" id="fh5co-work" data-section="work">
