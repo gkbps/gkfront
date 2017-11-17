@@ -3,21 +3,32 @@ import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { LocalStorageService, TcodeService } from '../../../nga/services';
+import {
+  BodyBackgroundService,
+  LocalStorageService,
+  TcodeService,
+  StateManagementService,
+} from '../../../nga/services';
 
 @Component({
-  templateUrl: '500.component.html'
+  templateUrl: '500.component.html',
+  styleUrls: ['../401/fixed.scss']
 })
 export class P500Component {
 
   public tcodeExecution: string = '';
 
   constructor(
+    private bodyBackgroundService: BodyBackgroundService,
     private translate: TranslateService,
     private localStorage: LocalStorageService,
     private tcodeService: TcodeService,
     private router: Router,
+    private stateManagementService:StateManagementService,
   ) {
+    // Initialize state
+    this.stateManagementService.initState('exception-body error');    
+
     // Initialize language
     translate.use(localStorage.getLang());
   }

@@ -54,6 +54,11 @@ export class NavigationService {
     }
   }
 
+  gotoLogin(){
+    console.log("Redirect to login");
+    this.router.navigate(['/login']);
+  }
+
   goto401() {
     this.router.navigate(['/#/401']);
   }

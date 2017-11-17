@@ -1,14 +1,16 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">TabMenu</span>
-        <span>Menu is a navigation/command component that displays items as tab headers.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>TAB MENU</h1>
+      <span>Menu is a navigation/command component that displays items as tab headers.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <p-tabMenu [model]="items" appendTo="body"></p-tabMenu>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <p-tabMenu [model]="items"></p-tabMenu>
-
   </div>
 </div>

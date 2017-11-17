@@ -1,97 +1,125 @@
-<div class="ui-helper-clearfix" style="margin-bottom:20px">
-  <individual-nav [prefix]="prefix"></individual-nav>
-</div>
-
-<p-growl *ngIf="alertType=='toast'" [value]="msgs"></p-growl>
-<p-messages *ngIf="alertType=='alert'" [(value)]="msgs"></p-messages>
-
-<ng-container *ngIf="hasClient">
-  <form [formGroup]="myForm" novalidate>
-    <div class="ui-g ui-fluid" style="margin-bottom:10px">
-      <div style="width: 50%">
-        <span>{{'status'|translate}}: <span class="badge" [ngClass]="{'badge-warning': (myForm.controls.status1.value=='Inactive'), 'badge-primary': (myForm.controls.status1.value=='Active')}">{{myForm.controls.status1.value}}</span></span>
-      </div>
-      <div style="width: 50%; text-alight: right; float: right">
-        <span>{{'marked'|translate}}: <span class="badge" [ngClass]="{'badge-danger': (myForm.controls.status2.value=='Marked'), 'badge-success': (myForm.controls.status2.value=='Unmarked')}">{{myForm.controls.status2.value}}</span></span>
-      </div>
-
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="ui-helper-clearfix" style="margin-bottom:20px">
+      <individual-nav [prefix]="prefix"></individual-nav>
     </div>
 
-    <p-panel header="{{'general'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+    <p-growl *ngIf="alertType=='toast'" [value]="msgs"></p-growl>
+    <p-messages *ngIf="alertType=='alert'" [(value)]="msgs"></p-messages>
 
-      <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-md-3">
-          {{'id'|translate}}
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="fa fa-key fa-lg"></i></span>
-            <input type="text" pInputText placeholder="{{'id'|translate}}" value = "{{myForm.controls._id.value}}" disabled="disabled">
-            <input type="text" pInputText placeholder="{{'id'|translate}}" name="_id" formControlName="_id" style="display:none">
+    <ng-container *ngIf="hasClient">
+      <form [formGroup]="myForm" novalidate>
+
+        <div class="ui-g-12" style="margin-bottom:10px">
+          <div style="width: 50%">
+            <span>{{'status'|translate}}: <span class="badge" [ngClass]="{'badge-warning': (myForm.controls.status1.value=='Inactive'), 'badge-primary': (myForm.controls.status1.value=='Active')}">{{myForm.controls.status1.value}}</span></span>
+          </div>
+          <div style="width: 50%; text-alight: right; float: right">
+            <span>{{'marked'|translate}}: <span class="badge" [ngClass]="{'badge-danger': (myForm.controls.status2.value=='Marked'), 'badge-success': (myForm.controls.status2.value=='Unmarked')}">{{myForm.controls.status2.value}}</span></span>
           </div>
         </div>
 
-        <div class="ui-g-12 ui-md-6">
-          {{'name'|translate}} <small *ngIf="!myForm.controls.name.valid && myForm.controls.name.dirty" class="text-warning">{{'minChar'|translate}} (At least 5 characters)</small>
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="fa fa-building-o fa-lg"></i></span>
-            <input type="text" pInputText placeholder="{{'name'|translate}}" name="name" formControlName="name">
-          </div>
+        <div class="ui-g-12">
+          <p-panel header="{{'general'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+
+            <div class="ui-g ui-fluid" style="margin:10px auto;">
+
+              <div class="ui-g-12 ui-md-3">
+                <span class="md-inputfield">
+                  <input type="text" pInputText value = "{{myForm.controls._id.value}}" disabled="disabled">
+                  <input type="text" pInputText name="_id" formControlName="_id" style="display:none">
+                  <label>{{'id'|translate}}</label>
+                </span>
+              </div>
+
+              <!-- <div class="ui-g-12 ui-md-3">
+                {{'id'|translate}}
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i class="fa fa-key fa-lg"></i></span>
+                  <input type="text" pInputText placeholder="{{'id'|translate}}" value = "{{myForm.controls._id.value}}" disabled="disabled">
+                  <input type="text" pInputText placeholder="{{'id'|translate}}" name="_id" formControlName="_id" style="display:none">
+                </div>
+              </div> -->
+
+              <div class="ui-g-12 ui-md-6">
+                <span class="md-inputfield">
+                  <input type="text" pInputText  name="name" formControlName="name">
+                  <label>{{'name'|translate}} <small *ngIf="!myForm.controls.name.valid && myForm.controls.name.dirty" class="text-warning">{{'minChar'|translate}} (At least 5 characters)</small></label>
+                </span>
+              </div>
+
+              <div class="ui-g-12 ui-md-3">
+                <span class="md-inputfield">
+                  <input type="text" pInputText name="clientDb" formControlName="clientDb">
+                  <label>{{'db'|translate}} <small *ngIf="!myForm.controls.clientDb.valid && myForm.controls.clientDb.dirty" class="text-warning">{{'alphaNum'|translate}} {{'minChar'|translate}}(Alphanumeric, min 3 characters)</small></label>
+                </span>
+              </div>
+
+              <!-- <div class="ui-g-12 ui-md-3">
+                {{'db'|translate}} <small *ngIf="!myForm.controls.clientDb.valid && myForm.controls.clientDb.dirty" class="text-warning">{{'alphaNum'|translate}} {{'minChar'|translate}}(Alphanumeric, min 3 characters)</small>
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i class="fa fa-fw fa-database fa-lg"></i></span>
+                  <input type="text" pInputText placeholder="{{'db'|translate}}" name="clientDb" formControlName="clientDb">
+                </div>
+              </div> -->
+
+            </div>
+
+            <p-footer *ngIf="formEditable">
+              <div class="ui-helper-clearfix">
+                <button style="float:right; width: auto;" pButton type="button" icon="ui-icon-check" label="{{'save'|translate}}" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
+              </div>
+            </p-footer>
+          </p-panel>
         </div>
 
-        <div class="ui-g-12 ui-md-3">
-          {{'db'|translate}} <small *ngIf="!myForm.controls.clientDb.valid && myForm.controls.clientDb.dirty" class="text-warning">{{'alphaNum'|translate}} {{'minChar'|translate}}(Alphanumeric, min 3 characters)</small>
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="fa fa-database fa-lg"></i></span>
-            <input type="text" pInputText placeholder="{{'db'|translate}}" name="clientDb" formControlName="clientDb">
-          </div>
+        <div class="ui-g-12">
+          <p-panel header="{{'addresses'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+            <div *ngFor="let address of myForm.controls.addresses.controls; let i=index">
+              <nga-address
+                [formEditable]="formEditable"
+                [item]="i"
+                [(formGroup)]="myForm.controls.addresses.controls[i]"
+                (itemEvent)="handleEvent($event)">
+              </nga-address>
+            </div>
+            <p-footer *ngIf="formEditable">
+              <div class="ui-helper-clearfix">
+                <button style="float:left; width: auto;" pButton type="button" icon="fa-plus" label="{{'new'|translate}} {{'address'|translate}}" class="ui-button-success" (click)="newAddress()"></button>
+                <button style="float:right; width: auto;" *ngIf="myForm.controls.addresses.controls.length" pButton type="button" icon="fa-save" label="{{'save'|translate}}" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
+              </div>
+            </p-footer>
+          </p-panel>
+
+          <p-panel header="{{'contacts'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+            <div *ngFor="let contact of myForm.controls.contacts.controls; let i=index">
+              <nga-contact
+              [formEditable]="formEditable"
+              [item]="i"
+              [(formGroup)]="myForm.controls.contacts.controls[i]"
+              (itemEvent)="handleEvent($event)">
+              </nga-contact>
+            </div>
+
+            <p-footer *ngIf="formEditable">
+              <div class="ui-helper-clearfix">
+                <button style="float:left; width: auto;" pButton type="button" icon="fa-plus" label="{{'new'|translate}} {{'contact'|translate}}" class="ui-button-success" (click)="newContact()"></button>
+                <button style="float:right; width: auto;" *ngIf="myForm.controls.contacts.controls.length" pButton type="button" icon="fa-save" label="{{'save'|translate}}" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
+              </div>
+            </p-footer>
+          </p-panel>
+        </div>
+
+
+      </form>
+
+      <div class="ui-g-12">
+        <div class="ui-helper-clearfix" style="margin-top:10px">
+          <h3>{{'debug'|translate}}</h3>
+          <pre>{{'formValid'|translate}}?: <br>{{myForm.valid | json}}</pre>
+          <pre>{{'formValue'|translate}}: <br>{{myForm.value | json}}</pre>
         </div>
       </div>
-
-      <p-footer *ngIf="formEditable">
-        <div class="ui-helper-clearfix">
-          <button style="float:right" pButton type="button" icon="fa-save" label="{{'save'|translate}}" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
-        </div>
-      </p-footer>
-    </p-panel>
-
-    <p-panel header="{{'addresses'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <div *ngFor="let address of myForm.controls.addresses.controls; let i=index">
-        <nga-address
-          [formEditable]="formEditable"
-          [item]="i"
-          [(formGroup)]="myForm.controls.addresses.controls[i]"
-          (itemEvent)="handleEvent($event)">
-        </nga-address>
-      </div>
-      <p-footer *ngIf="formEditable">
-        <div class="ui-helper-clearfix">
-          <button pButton type="button" icon="fa-plus" label="{{'new'|translate}} {{'address'|translate}}" class="ui-button-success" (click)="newAddress()"></button>
-          <button *ngIf="myForm.controls.addresses.controls.length" style="float:right" pButton type="button" icon="fa-save" label="{{'save'|translate}}" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
-        </div>
-      </p-footer>
-    </p-panel>
-
-    <p-panel header="{{'contacts'|translate}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
-      <div *ngFor="let contact of myForm.controls.contacts.controls; let i=index">
-        <nga-contact
-        [formEditable]="formEditable"
-        [item]="i"
-        [(formGroup)]="myForm.controls.contacts.controls[i]"
-        (itemEvent)="handleEvent($event)">
-        </nga-contact>
-      </div>
-
-      <p-footer *ngIf="formEditable">
-        <button pButton type="button" icon="fa-plus" label="{{'new'|translate}} {{'contact'|translate}}" class="ui-button-success" (click)="newContact()"></button>
-        <button *ngIf="myForm.controls.contacts.controls.length" style="float:right" pButton type="button" icon="fa-save" label="{{'save'|translate}}" class="ui-button-primary" [disabled]="!myForm.valid" (click)="submitForm()"></button>
-      </p-footer>
-    </p-panel>
-
-  </form>
-
-  <div class="ui-helper-clearfix" style="margin-top:10px">
-    <h3>{{'debug'|translate}}</h3>
-    <pre>{{'formValid'|translate}}?: <br>{{myForm.valid | json}}</pre>
-    <pre>{{'formValue'|translate}}: <br>{{myForm.value | json}}</pre>
+    </ng-container>
   </div>
-
-</ng-container>
+</div>  

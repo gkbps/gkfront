@@ -1,3 +1,5 @@
+ng build --prod --base-href="https://github.com/gkbps/live"
+
 # Frontend test
 
 ## Unknown Error

@@ -68,7 +68,7 @@ export class LeadForm implements OnInit, OnDestroy {
     });
   }
 
-  private execute(): void {
+  execute(): void {
     const urlComponents = this.router.url.split('/');
     console.log(urlComponents);
     const url = '/' + urlComponents[1] + '/' + urlComponents[2] + '/' + this.myForm.controls['id'].value;

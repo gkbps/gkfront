@@ -1,38 +1,52 @@
 <div [formGroup]="addressItem">
 
-  <p-panel [style]="{'margin-bottom':'15px'}">
+  <p-panel>
 
     <p-header>
       <div class="ui-helper-clearfix">
         <span class="ui-panel-title">{{'address'|translate}} {{item + 1}}</span>
-        <button *ngIf="formEditable" pButton type="button" style="float:right" icon="fa-remove" class="ui-button-danger" (click)="removeAddress()"></button>
+        <a class="ui-panel-titlebar-icon">
+          <span *ngIf="formEditable" class="fa fa-fw fa-close" (click)="removeAddress()"></span>
+        </a>
       </div>
     </p-header>
 
     <div class="ui-g ui-fluid">
       <div class="ui-g-12 ui-md-3">
-          {{'type'|translate}} <small *ngIf="!addressItem.controls.type.valid && addressItem.controls.type.dirty" class="text-warning">{{'minChar'|translate}}(At least 3 characters)</small>
-          <input pInputText type="text" placeholder="{{'type'|translate}}" name="type" formControlName="type"/>
+        <span class="md-inputfield">
+          <input pInputText type="text" name="type" formControlName="type"/>
+          <label>{{'type'|translate}} <small *ngIf="!addressItem.controls.type.valid && addressItem.controls.type.dirty" class="text-warning">{{'minChar'|translate}}(At least 3 characters)</small></label>
+        </span>
       </div>
       <div class="ui-g-12 ui-md-12">
-          {{'line'|translate}} 1 <small *ngIf="!addressItem.controls.line1.valid && addressItem.controls.line1.dirty" class="text-warning">{{'required'|translate}}(Required)</small>
-          <input pInputText type="text" placeholder="{{'line'|translate}} 1" name="line1" formControlName="line1"/>
+        <span class="md-inputfield">
+          <input pInputText type="text" name="line1" formControlName="line1"/>
+          <label>{{'line'|translate}} 1 <small *ngIf="!addressItem.controls.line1.valid && addressItem.controls.line1.dirty" class="text-warning">{{'required'|translate}}(Required)</small></label>
+        </span>
       </div>
       <div class="ui-g-12 ui-md-3">
-          {{'line'|translate}} 2
-          <input pInputText type="text" placeholder="{{'line'|translate}} 2" name="line2" formControlName="line2"/>
+        <span class="md-inputfield">
+          <input pInputText type="text" name="line2" formControlName="line2"/>
+          <label>{{'line'|translate}} 2</label>
+        </span>
       </div>
       <div class="ui-g-12 ui-md-3">
-          {{'line'|translate}} 3
-          <input pInputText type="text" placeholder="{{'line'|translate}} 3" name="line3" formControlName="line3"/>
+        <span class="md-inputfield">
+          <input pInputText type="text" name="line3" formControlName="line3"/>
+          <label>{{'line'|translate}} 3</label>
+        </span>
       </div>
       <div class="ui-g-12 ui-md-3">
-          {{'line'|translate}} 4
-          <input pInputText type="text" placeholder="{{'line'|translate}} 4" name="line4" formControlName="line4"/>
+        <span class="md-inputfield">
+          <input pInputText type="text" name="line4" formControlName="line4"/>
+          <label>{{'line'|translate}} 4</label>
+        </span>
       </div>
       <div class="ui-g-12 ui-md-3">
-          {{'line'|translate}} 5
-          <input pInputText type="text" placeholder="{{'line'|translate}} 5" name="line5" formControlName="line5"/>
+        <span class="md-inputfield">
+          <input pInputText type="text" name="line5" formControlName="line5"/>
+          <label>{{'line'|translate}} 5</label>
+        </span>
       </div>
     </div>
 

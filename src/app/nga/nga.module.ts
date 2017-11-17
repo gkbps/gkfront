@@ -208,6 +208,18 @@ const PRIMENG_SERVICES = [
 import { AppTranslationModule } from '../app.translation.module';
 
 import {
+  GkTaskBoxComponent,
+  GkOverviewBoxHeaderComponent,
+  GkTaskListComponent,
+  GkContactFormComponent,
+  GkMessageListComponent,
+  GkChatComponent,
+  GkStatusBarComponent,
+  GkChangeDashboardComponent,
+  GkImageBoxComponent,
+  GkUserCardComponent,
+  GkMapComponent,
+
   NavBoard,
   LeadForm,
   UploadForm,
@@ -216,10 +228,20 @@ import {
   NgaAddress,
   NgaContact,
 } from './components';
-// import { } from './directives';
-// import { } from './pipes';
 
 const NGA_COMPONENTS = [
+  GkTaskBoxComponent,
+  GkOverviewBoxHeaderComponent,
+  GkTaskListComponent,
+  GkContactFormComponent,
+  GkMessageListComponent,
+  GkChatComponent,
+  GkStatusBarComponent,
+  GkChangeDashboardComponent,
+  GkImageBoxComponent,
+  GkUserCardComponent,
+  GkMapComponent,
+
   NavBoard,
   LeadForm,
   UploadForm,
@@ -229,8 +251,12 @@ const NGA_COMPONENTS = [
   NgaContact,
 ];
 
+// import { } from './directives';
+
 const NGA_DIRECTIVES = [
 ];
+
+// import { } from './pipes';
 
 const NGA_PIPES = [
 ];
@@ -238,6 +264,7 @@ const NGA_PIPES = [
 import {
   AuthenticationService,
   AuthGuard,
+  BodyBackgroundService,
   TcodeGuard,
   SecurityService,
   TcodeService,
@@ -249,12 +276,15 @@ import {
   APIResultHandlingService,
   LanguageService,
   SettingService,
-  SessionService
+  SessionService,
+  StateManagementService,
+  ThemeService,
 } from './services';
 
 const NGA_SERVICES = [
   AuthenticationService,
   AuthGuard,
+  BodyBackgroundService,
   TcodeGuard,
   SecurityService,
   TcodeService,
@@ -266,7 +296,9 @@ const NGA_SERVICES = [
   APIResultHandlingService,
   LanguageService,
   SettingService,
-  SessionService
+  SessionService,
+  StateManagementService,
+  ThemeService,
 ];
 
 import {

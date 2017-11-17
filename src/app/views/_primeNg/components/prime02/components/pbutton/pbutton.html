@@ -1,41 +1,56 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">BUTTON</span>
-        <span>Button is an extension to standard input element with icons and theming.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>BUTTON</h1>
+      <span>Button is an extension to standard input element with icons and theming.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <button pButton type="button" (click)="count()" label="Click"></button>
+
+          <div class="ui-g-3">
+            <button pButton type="button" (click)="count()" icon="fa-check" label="Click"></button>
+          </div>
+          <div class="ui-g-3">
+            <button pButton type="button" (click)="count()" icon="fa-check" iconPos="right" label="Click"></button>
+          </div>
+          <div class="ui-g-3">
+            <button pButton type="button" (click)="count()" icon="fa-close"></button>
+          </div>
+          <div class="ui-g-3">
+            <button pButton type="button" (click)="count()" icon="fa-check" [disabled]="true" label="Disabled"></button>
+          </div>
+        </div>
+
+        <div class="ui-g-12">
+          <h3>Severity Buttons</h3>
+
+          <div class="ui-g-2">
+            <button pButton type="button" (click)="count()" label="Primary"></button>
+          </div>
+          <div class="ui-g-2">
+            <button pButton type="button" (click)="count()" label="Secondary" class="ui-button-secondary"></button>
+          </div>
+          <div class="ui-g-2">
+            <button pButton type="button" (click)="count()" label="Success" class="ui-button-success"></button>
+          </div>
+          <div class="ui-g-2">
+            <button pButton type="button" (click)="count()" label="Info"  class="ui-button-info"></button>
+          </div>
+          <div class="ui-g-2">
+            <button pButton type="button" (click)="count()" label="Warning"  class="ui-button-warning"></button>
+          </div>
+          <div class="ui-g-2">
+            <button pButton type="button" (click)="count()" label="Danger"  class="ui-button-danger"></button>
+          </div>
+        </div>
+
+        <div style="color: #000; ">
+          Number of clicks: {{clicks}}
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <button pButton type="button" (click)="count()" label="Click"></button>
-
-    <button pButton type="button" (click)="count()" icon="fa-check" label="Click"></button>
-
-    <button pButton type="button" (click)="count()" icon="fa-check" iconPos="right" label="Click"></button>
-
-    <button pButton type="button" (click)="count()" icon="fa-close"></button>
-
-    <button pButton type="button" (click)="count()" icon="fa-check" [disabled]="true" label="Disabled"></button>
-
-    <h3>Severity Buttons</h3>
-
-    <button pButton type="button" (click)="count()" label="Primary"></button>
-
-    <button pButton type="button" (click)="count()" label="Secondary" class="ui-button-secondary"></button>
-
-    <button pButton type="button" (click)="count()" label="Success" class="ui-button-success"></button>
-
-    <button pButton type="button" (click)="count()" label="Info"  class="ui-button-info"></button>
-
-    <button pButton type="button" (click)="count()" label="Warning"  class="ui-button-warning"></button>
-
-    <button pButton type="button" (click)="count()" label="Danger"  class="ui-button-danger"></button>
-
-    <br /><br />
-    <div style="color: #000; ">
-      Number of clicks: {{clicks}}
-    </div>
-
   </div>
 </div>

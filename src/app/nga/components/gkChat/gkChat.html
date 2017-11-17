@@ -1,0 +1,26 @@
+
+  <p-panel header="{{header}}">
+    <p-tabView>
+      <ng-container *ngFor="let room of chatData; let i=index;" >
+        <p-tabPanel header="{{room.label}}">
+            <ul class="chat-messages">
+              <ng-container *ngFor="let message of room.messages; let j=index;">
+                <li [ngClass]="{ 'message-own': message.img == userAvatar, 'message-from': message.img !== userAvatar }">
+                    <img library="serenity-layout" src="{{message.img}}">
+                    <span>{{message.text}}</span>
+                </li>              
+              </ng-container>
+            </ul>
+        </p-tabPanel>
+      </ng-container>
+    </p-tabView>
+
+    <div class="new-message">
+      <div class="message-attachment">
+          <i class="material-icons"></i>
+      </div>
+      <div class="message-input">
+        <input placeholder="Write a message" type="text">
+      </div>
+    </div>
+  </p-panel>

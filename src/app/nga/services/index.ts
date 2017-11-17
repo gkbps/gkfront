@@ -14,3 +14,7 @@ export * from './apiResultHandling.service';
 export * from './language.service';
 export * from './setting.service';
 export * from './session.service';
+export * from './stateManagement.service';
+
+export * from './bodyBackground.service';
+export * from './theme.service';

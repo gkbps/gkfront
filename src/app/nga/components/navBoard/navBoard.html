@@ -1,85 +1,83 @@
-<div class="gk-content-section introduction">
-  <div>
-      <span class="gk-feature-title">{{title}}</span>
-      <span style="font-size: 14px;">{{subtitle}}</span>
-  </div>
-</div>
-
-<!--
-<div *ngIf="navType=='round'" class="gk-content-section implementation">
-  <div class="wrapper">
-
-    <div class="imgholder" *ngFor="let item of navItems; let i=index">
-			<div class="outer1 circle"></div>
-			<div class="outer2 circle"></div>
-			<figure>
-        <a href="/#/{{item.url}}">
-				  <img src="{{assetPath}}{{item.img}}" />
-				  <figcaption class="caption">{{item.title}}</figcaption>
-        </a>
-			</figure>
-		</div>
-		<div class="clearfix"></div>
-
-	</div>
-</div>
--->
-<!--
-<section *ngIf="navType=='round'" id="fh5co-work" data-section="work">
-  <div class="wrapper">
-
-    <div class="imgholder" *ngFor="let item of navItems; let i=index">
-			<div class="outer1 circle"></div>
-			<div class="outer2 circle"></div>
-			<figure>
-        <a href="/#/{{item.url}}">
-				  <img src="{{assetPath}}{{item.img}}" />
-				  <figcaption class="caption">{{item.title}}<br /><span style="font-size: 12px; text-decoration: underline;">{{item.tcode}}</span></figcaption>
-        </a>
-			</figure>
-		</div>
-
-    <div class="ui-helper-clearfix" style="margin-bottom: 55px"></div>
-
-  </div>
-</section>
--->
-<section *ngIf="navType=='round'" id="navBoard-round" data-section="work">
-  <section class="portfolio">
-    <article class="p-item" *ngFor="let item of navItems; let i=index">
-      <a href="/#/{{item.url}}">
-        <img src="{{assetPath}}{{item.img}}"/>
-        <div class="p-info-wrap">
-          <div class="p-info">
-            <div class="p-info-back">
-              <span>{{item.title}}<br>{{item.tcode}}</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <p-panel>
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">
+                  {{title|translate}}
+                </span>
+                <p-splitButton [style]="{'float':'right', 'width': 'auto'}" label="{{'navOptions'|translate}}" [model]="items"></p-splitButton>
+                <!-- (onClick)="save()"  -->
             </div>
-          </div>
+        </p-header>
+
+        <div *ngIf="navType=='circle'" class="ui-g">
+          <section *ngIf="navEffect!=='effect8'" [ngClass]="{'no-bg': !bgStatus, 'with-bg': bgStatus}" style="width: 100%">
+            <div class="navItem ui-g-12" *ngFor="let item of navItems; let i=index" [ngClass]="{'ui-md-4': smallIcon, 'ui-lg-3': smallIcon, 'ui-md-6': !smallIcon, 'ui-lg-4': !smallIcon}">
+                <div class="ih-item circle {{(i+1)%2==0? 'colored':''}} {{navEffect}} {{navAnimate[navDirection][(i+1)%navAnimateLength]}}">
+                  <a href="/#/{{item.url}}">
+                    <div class="spinner"></div>
+                    <div class="img">
+                      <img src="{{assetPath}}{{item.img}}" alt="img">
+                    </div>
+                    <div class="info">
+                      <div class="info-back">
+                        <h3>TCODE {{item.tcode}}</h3>
+                        <p>{{item.title|translate}}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+          </section>
+
+          <section *ngIf="navEffect=='effect8'" [ngClass]="{'no-bg': !bgStatus, 'with-bg': bgStatus}">
+            <div class="navItem ui-g-12" *ngFor="let item of navItems; let i=index" [ngClass]="{'ui-md-4': smallIcon, 'ui-lg-3': smallIcon, 'ui-md-6': !smallIcon, 'ui-lg-4': !smallIcon}">
+                <div class="ih-item circle {{(i+1)%2==0? 'colored':''}} {{navEffect}} {{navAnimate[navDirection][(i+1)%navAnimateLength]}}">
+
+                  <div class="ih-item circle {{(i+1)%2==0? 'colored':''}} {{navEffect}} {{navAnimate[navDirection][(i+1)%navAnimateLength]}}">
+                    <a href="/#/{{item.url}}">
+                    <div class="img-container">
+                      <div class="img">
+                        <img src="{{assetPath}}{{item.img}}" alt="img">
+                      </div>
+                    </div>
+                    <div class="info-container">
+                      <div class="info">
+                        <h3>TCODE {{item.tcode}}</h3>
+                        <p>{{item.title|translate}}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </section>
         </div>
-      </a>
-    </article>
-    <div class="ui-helper-clearfix" style="margin-bottom: 55px"></div>
-  </section>
-</section>
 
-<section *ngIf="navType=='box'" id="fh5co-work" data-section="work">
-  <div class="container">
+        <div *ngIf="navType=='square'" class="ui-g">
+          <section [ngClass]="{'no-bg': !bgStatus, 'with-bg': bgStatus}">
+            <div class="navItem ui-g-12" *ngFor="let item of navItems; let i=index" [ngClass]="{'ui-md-4': smallIcon, 'ui-lg-3': smallIcon, 'ui-md-6': !smallIcon, 'ui-lg-4': !smallIcon}">
+                <div class="ih-item square {{(i+1)%2==0? 'colored':''}} {{navEffect}} {{navAnimate[navDirection][(i+1)%navAnimateLength]}}">
+                  <a href="/#/{{item.url}}">
+                    <div class="spinner"></div>
+                    <div class="img">
+                      <img src="{{assetPath}}{{item.squareImg}}" alt="img">
+                    </div>
+                    <div class="info">
+                      <div class="info-back">
+                        <h3>TCODE {{item.tcode}}</h3>
+                        <p>{{item.title|translate}}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+          </section>
+        </div>
 
-    <div class="row row-bottom-padded-sm" style="padding: 50px 0px">
 
-      <div *ngFor="let item of navItems; let i=index" class="col-md-3 col-sm-3 col-xxs-12">
-        <a href="/#/{{item.url}}" class="fh5co-project-item image-popup to-animate">
-          <img src="{{assetPath}}{{item.img}}" alt="Image" class="img-responsive">
-          <div class="fh5co-text">
-            <h2>{{item.title}}</h2>
-            <span style="font-size: 14px;">{{item.tcode}}</span>
-          </div>
-        </a>
-      </div>
-      <div class="clearfix visible-sm-block"></div>
-    </div>
-
+    </p-panel>
   </div>
-</section>
-
-<div class="ui-helper-clearfix" style="margin-bottom: 55px"></div>
+</div>

@@ -1,15 +1,17 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">TRI STATE CHECKBOX</span>
-        <span>TriStateCheckbox is used to select either "true", "false" or "null" as the value.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>TRI STATE CHECKBOX</h1>
+      <span>TriStateCheckbox is used to select either "true", "false" or "null" as the value.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <h3 class="first">Value: {{value}}</h3>
+          <p-triStateCheckbox [(ngModel)]="value"></p-triStateCheckbox>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <h3 class="first">Value: {{value}}</h3>
-    <p-triStateCheckbox [(ngModel)]="value"></p-triStateCheckbox>
-
   </div>
 </div>

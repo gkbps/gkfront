@@ -11,11 +11,14 @@ import { Router } from '@angular/router';
 export class PRtl implements OnInit {
 
   visible: boolean;
-  
+
   constructor(
   ) { }
 
   ngOnInit() {
   }
 
+  showDialog() {
+
+  }
 }

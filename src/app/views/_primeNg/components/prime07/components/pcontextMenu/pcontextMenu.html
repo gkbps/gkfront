@@ -8,9 +8,9 @@
 
   <div class="content-section implementation">
 
-    <p-contextMenu [global]="true" [model]="items1"></p-contextMenu>
+    <p-contextMenu [global]="true" [model]="items1" appendTo="body"></p-contextMenu>
 
-    <p-contextMenu [target]="img" [model]="items2" ></p-contextMenu>
+    <p-contextMenu [target]="img" [model]="items2" appendTo="body"></p-contextMenu>
 
     <img #img src="assets/showcase/images/demo/primeng-text.svg" alt="Logo">
 

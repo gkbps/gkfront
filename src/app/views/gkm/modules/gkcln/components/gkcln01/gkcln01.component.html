@@ -1,10 +1,12 @@
 <p-growl *ngIf="alertType=='toast'" [value]="msgs"></p-growl>
 <p-messages *ngIf="alertType=='alert'" [(value)]="msgs"></p-messages>
 
+<p-menubar [model]="items"></p-menubar>
+
 <div class="content-section implementation">
 
   <div class="ui-helper-clearfix" style="margin-bottom:20px">
-    <p-menubar [model]="items"></p-menubar>
+
   </div>
 
   <!--
@@ -55,8 +57,8 @@
 -->
 
 <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-    <input #gb type="text" pInputText size="50" placeholder="{{'filter'|translate}}">
+    <i class="fa fa-search" style="margin:4px 4px 0 0;"></i>
+    <input #gb type="text" pInputText size="50" placeholder="{{'filter'|translate}}" style="color: #ffffff;">
 </div>
 <p-dataTable
   [value]="clients"
@@ -91,7 +93,7 @@
         </div>
         <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
         <div class="ui-g-12 ui-lg-4" style="text-align:right">
-          <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV()" class="ui-button-primary"></button>
+          <button type="button" pButton icon="ui-icon-description" iconPos="left" label="CSV" (click)="dt.exportCSV()" class="ui-button-primary"></button>
         </div>
       </div>
     </p-header>

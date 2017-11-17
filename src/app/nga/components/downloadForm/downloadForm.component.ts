@@ -80,7 +80,7 @@ export class DownloadForm implements OnInit {
 
 
   /* To get value and navigate the link */
-  private execute(): void {
+  execute(): void {
     console.log(this.url);
     console.log(this._inputText.nativeElement.value);
 

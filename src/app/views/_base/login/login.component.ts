@@ -3,10 +3,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
 import { TranslateService } from '@ngx-translate/core';
-import { AuthenticationService, SecurityService, LocalStorageService } from '../../../nga/services';
+
+import {
+  AuthenticationService,
+  SecurityService,
+  LocalStorageService,
+  BodyBackgroundService,
+  ThemeService,
+  StateManagementService,
+} from '../../../nga/services';
 
 @Component({
-  templateUrl: 'login.component.html'
+  templateUrl: 'login.component.html',
+  styleUrls: ['./fixed.scss']
 })
 export class LoginComponent {
 
@@ -22,16 +31,23 @@ export class LoginComponent {
   message: string;
 
   constructor(
-    private localStorage: LocalStorageService,
+    private localStorageService: LocalStorageService,
     private translate: TranslateService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
     private fb: FormBuilder,
     private securityService: SecurityService,
+    private bodyBackgroundService:BodyBackgroundService,
+    private themeService: ThemeService,
+    private stateManagementService:StateManagementService,
   ) {
+    // Initialize state
+    stateManagementService.initState("login-body");
+    themeService.changeLayout(localStorageService.getLayout());
+
     // Initialize language
-    translate.use(localStorage.getLang());
+    translate.use(localStorageService.getLang());
 
     // get token
     this.model.token = this.securityService.getToken();
@@ -40,12 +56,12 @@ export class LoginComponent {
     this.securityService.logOut();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/main';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
 
     this.form = fb.group({
       'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'token': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'token': [this.model.token, Validators.compose([Validators.required, Validators.minLength(4)])],
     });
 
     this.username = this.form.controls['username'];

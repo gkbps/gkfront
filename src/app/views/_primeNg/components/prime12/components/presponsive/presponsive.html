@@ -1,188 +1,194 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">Responsive</span>
-        <span>.ui-fluid style class provides fluid width to components for efficient use of space in screen. This example demonstrates ui-fluid in combination with Grid CSS and the components having built-in responsive modes like datatable. Note that Grid CSS is not mandatory, any grid system can be used with ui-fluid.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Responsive</h1>
+      <span>.ui-fluid style class provides fluid width to components for efficient use of space in screen. This example demonstrates ui-fluid in combination with Grid CSS and the components having built-in responsive modes like datatable. Note that Grid CSS is not mandatory, any grid system can be used with ui-fluid.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <div class="ui-g">
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      InputText
+                  </div>
+                  <div class="ui-g-8">
+                      <input pInputText type="text" />
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Textarea
+                  </div>
+                  <div class="ui-g-8">
+                      <textarea pInputTextarea type="text"></textarea>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Calendar
+                  </div>
+                  <div class="ui-g-8">
+                      <p-calendar [(ngModel)]="date"></p-calendar>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Suggest
+                  </div>
+                  <div class="ui-g-8">
+                      <p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event)" field="name" [size]="30"
+                      placeholder="Countries" [minLength]="1"></p-autoComplete>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Button
+                  </div>
+                  <div class="ui-g-8">
+                      <button pButton label="Save"type="button"></button>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      SplitButton
+                  </div>
+                  <div class="ui-g-8">
+                      <p-splitButton label="Save" icon="fa-check" [model]="splitMenuItems"></p-splitButton>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Dropdown
+                  </div>
+                  <div class="ui-g-8">
+                      <p-dropdown [options]="cities" [(ngModel)]="selectedCity" [autoWidth]="false"></p-dropdown>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Password
+                  </div>
+                  <div class="ui-g-8">
+                      <input type="text" pPassword />
+                  </div>
+              </div>
+
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Listbox
+                  </div>
+                  <div class="ui-g-8">
+                      <p-listbox [options]="options" [(ngModel)]="selectedOption"></p-listbox>
+                  </div>
+              </div>
+              <div class="ui-g-12 ui-md-6">
+                  <div class="ui-g-4">
+                      Radio
+                  </div>
+                  <div class="ui-g-8">
+                      <div class="ui-g radiobuttons">
+                          <div class="ui-g-12"><p-radioButton name="group1" value="Option 1" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 1</label></div>
+                          <div class="ui-g-12"><p-radioButton name="group1" value="Option 2" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 2</label></div>
+                          <div class="ui-g-12"><p-radioButton name="group1" value="Option 3" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 3</label></div>
+                          <div class="ui-g-12"><p-radioButton name="group1" value="Option 4" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 4</label></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="ui-g-2">
+                  Dialog
+              </div>
+              <div class="ui-g-10">
+                  <button pButton label="Show" type="button" icon='fa-external-link' (click)="showDialog()"></button>
+              </div>
+          </div>
+        </div>
+
+        <div class="ui-g-12">
+
+          <p-dialog header="Godfather 1" [(visible)]="display" [responsive]="true" [resizable]="false" [width]="300">
+              <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                  His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                  Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+                  kind and benevolent to those who give respect,
+                  but given to ruthless violence whenever anything stands against the good of the family.</p>
+          </p-dialog>
+
+          <p-panel header="Panel" [style]="{'margin-top':'20px'}">
+              The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+              His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+              Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+              kind and benevolent to those who give respect,
+              but given to ruthless violence whenever anything stands against the good of the family.
+          </p-panel>
+
+          <p-dataTable [style]="{'margin-top':'20px'}" [value]="cars" [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
+              <p-header>Cars</p-header>
+              <p-column field="vin" header="Vin"></p-column>
+              <p-column field="year" header="Year"></p-column>
+              <p-column field="brand" header="Brand"></p-column>
+              <p-column field="color" header="Color"></p-column>
+          </p-dataTable>
+
+          <p-dataGrid [style]="{'margin-top':'20px','margin-bottom':'20px'}" [value]="cars" [paginator]="true" [rows]="20">
+              <p-header>
+                  Datagrid
+              </p-header>
+              <ng-template let-car pTemplate="item">
+                  <div style="padding:3px" class="ui-g-12 ui-md-3">
+                      <p-panel [header]="car.vin" [style]="{'text-align':'center'}">
+                          <img src="assets/showcase/images/demo/car/{{car.brand}}.png">
+                          <div class="car-detail">{{car.year}} - {{car.color}}</div>
+                          <hr class="ui-widget-content" style="border-top:0">
+                      </p-panel>
+                  </div>
+              </ng-template>
+          </p-dataGrid>
+
+          <p-tree [value]="files" [style]="{'margin-top':'20px','margin-bottom':'20px'}"></p-tree>
+
+          <p-orderList [value]="cars" [listStyle]="{'height':'250px'}" [style]="{'margin-top':'20px','margin-bottom':'20px'}" [responsive]="true" header="Responsive Cars">
+              <ng-template let-car pTemplate="item">
+                  <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block;margin:2px 0 2px 2px" width="48">
+                  <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car.brand}} - {{car.year}} - {{car.color}}</div>
+              </ng-template>
+          </p-orderList>
+
+          <p-carousel headerText="Cars" [value]="cars2" [style]="{'margin-top':'20px','margin-bottom':'20px'}">
+              <ng-template let-car pTemplate="item">
+                  <div class="ui-g" style="text-align:center">
+                      <div class="ui-g-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
+                      <div class="ui-g-6">Vin</div>
+                      <div class="ui-g-6">{{car.vin}}</div>
+
+                      <div class="ui-g-6">Year</div>
+                      <div class="ui-g-6">{{car.year}}</div>
+
+                      <div class="ui-g-6">Color</div>
+                      <div class="ui-g-6">{{car.color}}</div>
+                  </div>
+              </ng-template>
+          </p-carousel>
+
+          <p-pickList [source]="sourceCars" [target]="targetCars" sourceHeader="Available" targetHeader="Selected" [responsive]="true"
+              [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" [style]="{'margin-top':'20px','margin-bottom':'20px'}">
+              <ng-template let-car pTemplate="item">
+                  <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block;margin:2px 0 2px 2px" width="48">
+                  <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car.brand}} - {{car.year}} - {{car.color}}</div>
+              </ng-template>
+          </p-pickList>
+          <div class="ui-g">
+              <div class="ui-g-12 ui-md-4">
+                  <p-menu [model]="items1"></p-menu>
+              </div>
+              <div class="ui-g-12 ui-md-8">
+                  <p-panelMenu [model]="items2"></p-panelMenu>
+              </div>
+          </div>
+
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                InputText
-            </div>
-            <div class="ui-g-8">
-                <input pInputText type="text" />
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Textarea
-            </div>
-            <div class="ui-g-8">
-                <textarea pInputTextarea type="text"></textarea>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Calendar
-            </div>
-            <div class="ui-g-8">
-                <p-calendar [(ngModel)]="date"></p-calendar>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Suggest
-            </div>
-            <div class="ui-g-8">
-                <p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event)" field="name" [size]="30"
-                placeholder="Countries" [minLength]="1"></p-autoComplete>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Button
-            </div>
-            <div class="ui-g-8">
-                <button pButton label="Save"type="button"></button>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                SplitButton
-            </div>
-            <div class="ui-g-8">
-                <p-splitButton label="Save" icon="fa-check" [model]="splitMenuItems"></p-splitButton>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Dropdown
-            </div>
-            <div class="ui-g-8">
-                <p-dropdown [options]="cities" [(ngModel)]="selectedCity" [autoWidth]="false"></p-dropdown>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Password
-            </div>
-            <div class="ui-g-8">
-                <input type="text" pPassword />
-            </div>
-        </div>
-
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Listbox
-            </div>
-            <div class="ui-g-8">
-                <p-listbox [options]="options" [(ngModel)]="selectedOption"></p-listbox>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-            <div class="ui-g-4">
-                Radio
-            </div>
-            <div class="ui-g-8">
-                <div class="ui-g radiobuttons">
-                    <div class="ui-g-12"><p-radioButton name="group1" value="Option 1" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 1</label></div>
-                    <div class="ui-g-12"><p-radioButton name="group1" value="Option 2" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 2</label></div>
-                    <div class="ui-g-12"><p-radioButton name="group1" value="Option 3" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 3</label></div>
-                    <div class="ui-g-12"><p-radioButton name="group1" value="Option 4" [(ngModel)]="val"></p-radioButton><label class="ui-widget">Option 4</label></div>
-                </div>
-            </div>
-        </div>
-        <div class="ui-g-2">
-            Dialog
-        </div>
-        <div class="ui-g-10">
-            <button pButton label="Show" type="button" icon='fa-external-link' (click)="showDialog()"></button>
-        </div>
-    </div>
-
-    <p-dialog header="Godfather 1" [(visible)]="display" [responsive]="true" [resizable]="false" [width]="300">
-        <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-            His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-            Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
-            kind and benevolent to those who give respect,
-            but given to ruthless violence whenever anything stands against the good of the family.</p>
-    </p-dialog>
-
-    <p-panel header="Panel" [style]="{'margin-top':'20px'}">
-        The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
-        kind and benevolent to those who give respect,
-        but given to ruthless violence whenever anything stands against the good of the family.
-    </p-panel>
-
-    <p-dataTable [style]="{'margin-top':'20px'}" [value]="cars" [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
-        <p-header>Cars</p-header>
-        <p-column field="vin" header="Vin"></p-column>
-        <p-column field="year" header="Year"></p-column>
-        <p-column field="brand" header="Brand"></p-column>
-        <p-column field="color" header="Color"></p-column>
-    </p-dataTable>
-
-    <p-dataGrid [style]="{'margin-top':'20px','margin-bottom':'20px'}" [value]="cars" [paginator]="true" [rows]="20">
-        <p-header>
-            Datagrid
-        </p-header>
-        <ng-template let-car pTemplate="item">
-            <div style="padding:3px" class="ui-g-12 ui-md-3">
-                <p-panel [header]="car.vin" [style]="{'text-align':'center'}">
-                    <img src="assets/showcase/images/demo/car/{{car.brand}}.png">
-                    <div class="car-detail">{{car.year}} - {{car.color}}</div>
-                    <hr class="ui-widget-content" style="border-top:0">
-                </p-panel>
-            </div>
-        </ng-template>
-    </p-dataGrid>
-
-    <p-tree [value]="files" [style]="{'margin-top':'20px','margin-bottom':'20px'}"></p-tree>
-
-    <p-orderList [value]="cars" [listStyle]="{'height':'250px'}" [style]="{'margin-top':'20px','margin-bottom':'20px'}" [responsive]="true" header="Responsive Cars">
-        <ng-template let-car pTemplate="item">
-            <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block;margin:2px 0 2px 2px" width="48">
-            <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car.brand}} - {{car.year}} - {{car.color}}</div>
-        </ng-template>
-    </p-orderList>
-
-    <p-carousel headerText="Cars" [value]="cars2" [style]="{'margin-top':'20px','margin-bottom':'20px'}">
-        <ng-template let-car pTemplate="item">
-            <div class="ui-g" style="text-align:center">
-                <div class="ui-g-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
-                <div class="ui-g-6">Vin</div>
-                <div class="ui-g-6">{{car.vin}}</div>
-
-                <div class="ui-g-6">Year</div>
-                <div class="ui-g-6">{{car.year}}</div>
-
-                <div class="ui-g-6">Color</div>
-                <div class="ui-g-6">{{car.color}}</div>
-            </div>
-        </ng-template>
-    </p-carousel>
-
-    <p-pickList [source]="sourceCars" [target]="targetCars" sourceHeader="Available" targetHeader="Selected" [responsive]="true"
-        [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" [style]="{'margin-top':'20px','margin-bottom':'20px'}">
-        <ng-template let-car pTemplate="item">
-            <img src="assets/showcase/images/demo/car/{{car.brand}}.png" style="display:inline-block;margin:2px 0 2px 2px" width="48">
-            <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car.brand}} - {{car.year}} - {{car.color}}</div>
-        </ng-template>
-    </p-pickList>
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-4">
-            <p-menu [model]="items1"></p-menu>
-        </div>
-        <div class="ui-g-12 ui-md-8">
-            <p-panelMenu [model]="items2"></p-panelMenu>
-        </div>
-    </div>
-
   </div>
 </div>

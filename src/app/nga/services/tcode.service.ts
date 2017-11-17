@@ -45,9 +45,9 @@ export class TcodeService {
   urlLead(tcode: string): string {
     // const prefix: string = tcode.substring(0, (tcode.length - 2)) + '/';
     const baseTcodes = [
-      'intro', 'login', 'register', 'forgot',
+      'intro', 'login', 'register', 'forgot', 'setting',
       '401', '403', '404', '500', 'terminal',
-      'main',
+      'home', 'main',
       'mine',
       'gkm', 'gkcln', 'gksol', 'gktcd',
       'coreui', 'prime',
@@ -149,6 +149,6 @@ export class TcodeService {
       : this.url + this.extractPrefix(tcode) + '/' + tcode;
     console.log(targetUrl);
     this.router.navigate([targetUrl]);
-  }  
+  }
 
 }

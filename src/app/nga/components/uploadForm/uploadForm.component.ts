@@ -134,7 +134,7 @@ export class UploadForm implements OnInit {
   }
 
   /* To get value and navigate the link */
-  private execute(): void {
+  execute(): void {
     const files = this._fileUpload.nativeElement.files;
     // const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#file');
     // const fileCount: number = inputEl.files.length;

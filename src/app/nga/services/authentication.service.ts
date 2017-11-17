@@ -5,9 +5,15 @@ import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 
+import { LocalStorageService } from './localStorage.service';
+
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: Http, private config: AppConfig) { }
+  constructor(
+    private http: Http,
+    private config: AppConfig,
+    private localStorage: LocalStorageService
+  ) { }
 
   login(username: string, password: string, token: string) {
     return this.http.post(
@@ -21,20 +27,9 @@ export class AuthenticationService {
           localStorage.setItem('mana', JSON.stringify(user.tcodes));
           delete user.tcodes;
 
-          const env = JSON.stringify({
-            'wk':{
-              'lge': user.defaultLge,
-              'year': new Date().getFullYear()
-            },
-            'pref':{
-              'navStyle': 'box',
-              'device': 'laptop',
-              'home': '',
-              'theme': ''
-            }              
-          });
-          localStorage.setItem('env', env);
-
+          let env = this.localStorage.getEnv();
+          env.wk.lge = user.defaultLge;
+          this.localStorage.setEnv(JSON.stringify(env));
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
     });

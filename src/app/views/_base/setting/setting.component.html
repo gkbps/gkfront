@@ -1,0 +1,959 @@
+<div class="ui-g dashboard">
+
+  <div class="ui-g-12">
+    <nav-board
+      [title]="title"
+      [navItems]="navItems">
+    </nav-board>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <gk-task-box
+      [style]="'task-box-1'"
+      [header]="'Client Meeting'"
+      [text]="'Waiting brief from the client'"
+      [status]="'WAITING'"
+      [members]="members">
+    </gk-task-box>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <gk-task-box
+      [style]="'task-box-2'"
+      [header]="'Sale Reports'"
+      [text]="'Annual reports per branch'"
+      [status]="'IN PROGRESS'"
+      [members]="members">
+    </gk-task-box>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <gk-task-box
+      [style]="'task-box-3'"
+      [header]="'Marketing Meeting'"
+      [text]="'Marketing meeting to review sales.'"
+      [status]="'ON HOLD'"
+      [members]="members">
+    </gk-task-box>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+    <gk-overview-box-header
+      [style]="'overview-box-1'"
+      [icon]="'inbox'"
+      [title]="'Messages'"
+      [figure]="'152'">
+    </gk-overview-box-header>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+    <gk-overview-box-header
+      [style]="'overview-box-2'"
+      [icon]="'person_pin_circle'"
+      [title]="'Check-Ins'"
+      [figure]="'532'">
+    </gk-overview-box-header>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+    <gk-overview-box-header
+      [style]="'overview-box-3'"
+      [icon]="'insert_drive_file'"
+      [title]="'Files Sycned'"
+      [figure]="'28'">
+    </gk-overview-box-header>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+    <gk-overview-box-header
+      [style]="'overview-box-4'"
+      [icon]="'supervisor_account'"
+      [title]="'Users Online'"
+      [figure]="'256'">
+    </gk-overview-box-header>
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4">
+    <gk-task-list
+      [header]="'Tasks'"
+      [menuItems]="items"
+      [taskList]="taskList">
+    </gk-task-list>
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid">
+    <gk-contact-form></gk-contact-form>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <gk-message-list [messageList]="messageList">
+    </gk-message-list>
+  </div>
+
+  <div class="ui-g-12 ui-lg-6 ui-g-nopad">
+    <div class="ui-g-12 chat">
+      <gk-chat [chatData]="chatData"></gk-chat>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-6 ui-g-nopad">
+    <div class="ui-g-12 status-bars">
+      <gk-status-bar [statusList]="statusList"></gk-status-bar>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-6 ui-g-nopad">
+    <gk-change-dashboard
+      [header] = "'Globale Sales by Region'"
+      [lastUpdate] = "'21m'"
+      [data]="globalSales">
+    </gk-change-dashboard>
+  </div>
+
+  <div class="ui-g-12 ui-lg-6 ui-g-nopad">
+    <gk-image-box
+      [image]="'assets/images/dashboard/gradient-waters.png'"
+      [header]="'Gradient Waters'"
+      [icon]="'article'">
+      <p>
+        Derive inexpedient reason law virtues superiority victorious. Overcome pious horror suicide revaluation. Holiest ocean society disgust passion value love.
+        Faithful mountains morality hope disgust merciful moral will revaluation society fearful love.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis,
+        culpa ratione quam perferendis esse, cupiditate neque quas!
+      </p>
+      <p>
+        In et blandit turpis, ut congue nibh. Nam vitae tincidunt nunc, sed accumsan lacus. Sed efficitur malesuada augue ut varius. Pellentesque ultricies leo massa, eu posuere diam sodales quis.
+      </p>
+    </gk-image-box>
+  </div>
+
+  <div class="ui-g-12 ui-lg-8">
+    <div class="card">
+      <p-dataTable [value]="cars" selectionmode="single">
+          <p-header>Recent Sales</p-header>
+          <p-column field="vin" header="Vin"></p-column>
+          <p-column field="year" header="Year"></p-column>
+          <p-column field="brand" header="Brand"></p-column>
+          <p-column field="color" header="Color"></p-column>
+      </p-dataTable>
+  </div>
+
+  <div class="ui-g-12 ui-lg-8">
+      <p-growl *ngIf="alertType=='toast'" [value]="msgs"></p-growl>
+      <p-messages *ngIf="alertType!=='toast'" [(value)]="msgs"></p-messages>
+      <p-panel header="Sales Graph">
+        <p-chart type="line" [data]="data" (onDataSelect)="selectData($event)"></p-chart>
+      </p-panel>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <gk-user-card
+      [bgImage]="'assets/images/dashboard/usercard.png'"
+      [userAvatar]="'assets/images/avatar.png'"
+      [userName]="'Wendy Lorina'"
+      [data]="userData">
+    </gk-user-card>
+  </div>
+
+  <div class="ui-g-12 ui-lg-6">
+    <gk-map [header]="'Map'" [image]="'assets/images/dashboard/map.png'"></gk-map>
+  </div>
+
+  <!-- <div class="ui-g-12 map">
+    <p-panel header="Map">
+      <img library="serenity-layout" src="assets/images/dashboard/map.png">
+    </p-panel>
+  </div> -->
+
+  <div class="ui-g-12 schedule">
+    <p-panel header="Calendar">
+      <p-schedule
+          [events]="events"
+          [header]="header"
+          defaultDate="2017-02-01"
+          [eventLimit]="4"
+          [editable]="true"
+          (onDayClick)="handleDayClick($event)"
+          (onEventClick)="handleEventClick($event)">
+      </p-schedule>
+
+      <p-dialog header="Event Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
+          [style]="{'overflow':'visible'}" [resizable]="false">
+          <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="event">
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="vin">Title</label></div>
+                  <div class="ui-grid-col-8"><input pInputText id="title" [(ngModel)]="event.title" /></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="start">Start</label></div>
+                  <div class="ui-grid-col-8"><p-calendar [(ngModel)]="event.start" dateFormat="yy-mm-dd" dataType="string"></p-calendar></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="end">End</label></div>
+                  <div class="ui-grid-col-8"><p-calendar [(ngModel)]="event.end" dateFormat="yy-mm-dd" dataType="string"></p-calendar></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="allday">All Day</label></div>
+                  <div class="ui-grid-col-8"><p-checkbox [(ngModel)]="event.allDay" binary="checkbox"></p-checkbox></div>
+              </div>
+          </div>
+          <p-footer>
+              <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                  <button type="button" pButton icon="fa-close" (click)="deleteEvent()" label="Delete" [disabled]="!event?.id"></button>
+                  <button type="button" pButton icon="fa-check" (click)="saveEvent()" label="Save" [disabled]="!event?.start"></button>
+              </div>
+          </p-footer>
+      </p-dialog>
+    </p-panel>
+  </div>
+
+</div>
+
+<h3 class="first">Basic</h3>
+<div class="ui-g">
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-3">3</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-4">4</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-6">6</div>
+  <div class="ui-g-6">6</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12">12</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-8">8</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-9">9</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-5">5</div>
+  <div class="ui-g-4">4</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-1">1</div>
+</div>
+
+<h3>Responsive</h3>
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+  <div class="ui-g-12 ui-lg-4">ui-g-12 ui-lg-4</div>
+</div>
+
+<!-- <div class="ui-g dashboard">
+
+  <div class="ui-g-12">
+    <nav-board
+      [title]="title"
+      [navItems]="navItems">
+    </nav-board>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <div class="task-box task-box-1">
+        <div class="task-box-header">
+            <i class="material-icons">refresh</i>
+        </div>
+        <div class="task-box-content">
+            <h3>Client Meeting</h3>
+            <p>Waiting brief from the client</p>
+        </div>
+        <div class="task-box-footer">
+            <span class="task-status">WAITING</span>
+            <img src="assets/images/avatar1.png">
+            <img src="assets/images/avatar2.png">
+            <img src="assets/images/avatar3.png">
+        </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <div class="task-box task-box-2">
+        <div class="task-box-header">
+            <i class="material-icons">refresh</i>
+        </div>
+        <div class="task-box-content">
+            <h3>Sale Reports</h3>
+            <p>Annual reports per branch</p>
+        </div>
+        <div class="task-box-footer">
+            <span class="task-status">IN PROGRESS</span>
+            <img src="assets/images/avatar2.png">
+            <img src="assets/images/avatar3.png">
+            <img src="assets/images/avatar4.png">
+        </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <div class="task-box task-box-3">
+        <div class="task-box-header">
+            <i class="material-icons">refresh</i>
+        </div>
+        <div class="task-box-content">
+            <h3>Marketing Meeting</h3>
+            <p>Marketing meeting to review sales.</p>
+        </div>
+        <div class="task-box-footer">
+            <span class="task-status">ON HOLD</span>
+            <img src="assets/images/avatar1.png">
+            <img src="assets/images/avatar2.png">
+            <img src="assets/images/avatar3.png">
+        </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+      <div class="overview-box overview-box-1">
+          <div class="overview-box-header"></div>
+          <div class="overview-box-content">
+              <div class="overview-box-icon"><i class="material-icons">inbox</i></div>
+              <div class="overview-box-title">Messages</div>
+              <div class="overview-box-count">152</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+      <div class="overview-box overview-box-2">
+          <div class="overview-box-header"></div>
+          <div class="overview-box-content">
+              <div class="overview-box-icon"><i class="material-icons">person_pin_circle</i></div>
+              <div class="overview-box-title">Check-Ins</div>
+              <div class="overview-box-count">532</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+      <div class="overview-box overview-box-3">
+          <div class="overview-box-header"></div>
+          <div class="overview-box-content">
+              <div class="overview-box-icon"><i class="material-icons">insert_drive_file</i></div>
+              <div class="overview-box-title">Files Sycned</div>
+              <div class="overview-box-count">28</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-3">
+      <div class="overview-box overview-box-4">
+          <div class="overview-box-header"></div>
+          <div class="overview-box-content">
+              <div class="overview-box-icon"><i class="material-icons">supervisor_account</i></div>
+              <div class="overview-box-title">Users Online</div>
+              <div class="overview-box-count">256</div>
+          </div>
+      </div>
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4 task-list">
+    <p-panel header="Tasks">
+      <button class="secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-menu" pbutton type="button" (click)="menu.toggle($event)">
+        <span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-menu"></span>
+        <span class="ui-button-text ui-clickable">ui-btn</span>
+      </button>
+      <p-menu #menu popup="popup" [model]="items" appendTo="body"></p-menu>
+
+      <ul class="task-list-container">
+        <li>
+          <p-checkbox binary="true">
+            <div class="ui-chkbox ui-widget">
+                <div class="ui-helper-hidden-accessible">
+                    <input type="checkbox" name="undefined" value="undefined">
+                </div>
+                <div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+                    <span class="ui-chkbox-icon ui-clickable"></span>
+                </div>
+            </div>
+          </p-checkbox>
+          <span class="task-name">Sales Reports</span>
+          <i class="material-icons">shop</i>
+        </li>
+        <li>
+          <p-checkbox binary="true">
+            <div class="ui-chkbox ui-widget">
+                <div class="ui-helper-hidden-accessible">
+                    <input type="checkbox" name="undefined" value="undefined">
+                </div>
+                <div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+                    <span class="ui-chkbox-icon ui-clickable"></span>
+                </div>
+            </div>
+          </p-checkbox>
+          <span class="task-name">Pay Invoices</span>
+          <i class="material-icons">credit_card</i>
+        </li>
+      </ul>
+    </p-panel>
+  </div>
+
+  <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid contact-form">
+    <p-panel header="Contact Us">
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+        </div>
+        <div class="ui-g-12">
+          <span class="md-inputfield">
+            <input id="name" pinputtext="" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+            <label for="name">Name</label>
+          </span>
+        </div>
+        <div class="ui-g-12">
+          <span class="md-inputfield">
+            <input id="age" pinputtext="" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+            <label for="age">Age</label>
+          </span>
+        </div>
+        <div class="ui-g-12">
+          <span class="md-inputfield">
+            <input id="message" pinputtext="" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+            <label for="message">Message</label>
+          </span>
+        </div>
+      </div>
+      <button icon="ui-icon-send" label="Send" pbutton="" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+        <span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-send"></span>
+        <span class="ui-button-text ui-clickable">Send</span>
+      </button>
+    </p-panel>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4 messages">
+    <p-panel header="Messages">
+      <ul>
+        <li>
+          <div>
+            <img src="assets/images/avatar1.png" width="45">
+            <div>
+              <span class="name">Joshua Williams</span>
+              <span class="message">Sales reports attached.</span>
+            </div>
+            <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+            <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img src="assets/images/avatar2.png" width="45">
+            <div>
+                <span class="name">Emily Watson</span>
+                <span class="message">Meeting at 2pm tomorrow.</span>
+            </div>
+            <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+            <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+          </div>
+        </li>
+      </ul>
+    </p-panel>
+  </div>
+
+  <div class="ui-g-12 ui-lg-6 ui-g-nopad">
+    <div class="ui-g-12 chat">
+      <p-panel header="Chat">
+        <p-tabView>
+            <p-tabPanel header="Sales Team">
+              <ul class="chat-messages">
+                <li class="message-from">
+                    <img library="serenity-layout" src="assets/images/avatar2.png">
+                    <span>Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.</span>
+                </li>
+                <li class="message-own">
+                    <img library="serenity-layout" src="assets/images/avatar.png">
+                    <span>Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.</span>
+                </li>
+                <li class="message-from">
+                    <img library="serenity-layout" src="assets/images/avatar2.png">
+                    <span>Chillwave craft beer tote bag stumptown quinoa hashtag.</span>
+                </li>
+                <li class="message-own">
+                    <img library="serenity-layout" src="assets/images/avatar.png">
+                    <span>Dreamcatcher locavore iPhone chillwave, occupy trust fund slow-carb distillery art party narwhal.</span>
+                </li>
+                <li class="message-own">
+                    <span>Sed ut perspiciatis unde omnis iste natus.</span>
+                </li>
+                <li class="message-from">
+                    <img library="serenity-layout" src="assets/images/avatar2.png">
+                    <span>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</span>
+                </li>
+                <li class="message-own">
+                    <img library="serenity-layout" src="assets/images/avatar.png">
+                    <span>At vero eos et accusamus.</span>
+                </li>
+              </ul>
+            </p-tabPanel>
+
+            <p-tabPanel header="Design Team">
+              <ul class="chat-messages">
+                  <li class="message-from">
+                      <img library="serenity-layout" src="assets/images/avatar3.png">
+                      <span>Cliche flannel fam mixtape.</span>
+                  </li>
+                  <li class="message-own">
+                      <img library="serenity-layout" src="assets/images/avatar.png">
+                      <span>Tofu glossier bicycle rights banh mi direct trade austin salvia slow-carb occupy.</span>
+                  </li>
+                  <li class="message-from">
+                      <img library="serenity-layout" src="assets/images/avatar3.png">
+                      <span>Crucifix tote bag pork belly distillery church-key jianbing jean shorts taxidermy.</span>
+                  </li>
+                  <li class="message-own">
+                      <img library="serenity-layout" src="assets/images/avatar.png">
+                      <span>Deep v hexagon street art migas butcher, keytar biodiesel bicycle rights typewriter cornhole actually next.</span>
+                  </li>
+                  <li class="message-own">
+                      <span>Oh. You need a little dummy text for your mockup? How quaint.</span>
+                  </li>
+                  <li class="message-from">
+                      <img library="serenity-layout" src="assets/images/avatar3.png">
+                      <span>Salvia woke bushwick leggings mumblecore poke tumblr master cleanse.</span>
+                  </li>
+                  <li class="message-own">
+                      <img library="serenity-layout" src="assets/images/avatar.png">
+                      <span>Skateboard ethical adaptogen, quinoa wolf poutine echo park.</span>
+                  </li>
+              </ul>
+            </p-tabPanel>
+
+            <p-tabPanel header="Godfather III" leftIcon="fa-bell-o" rightIcon="fa-bookmark-o">
+                After a break of more than  15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate.
+            </p-tabPanel>
+        </p-tabView>
+        <div class="new-message">
+          <div class="message-attachment">
+              <i class="material-icons"></i>
+          </div>
+          <div class="message-input">
+            <input placeholder="Write a message" type="text">
+          </div>
+        </div>
+      </p-panel>
+    </div>
+
+    <div class="ui-g-12 status-bars">
+      <div class="card">
+        <ul>
+          <li>
+            <div class="status-bar status-bar-1">
+                <div class="status-bar-value" style="width:22%">22%</div>
+            </div>
+            <span>Users</span>
+            <i class="material-icons"></i>
+          </li>
+          <li>
+            <div class="status-bar status-bar-2">
+                <div class="status-bar-value" style="width:78%">78%</div>
+            </div>
+            <span>Confirmed</span>
+            <i class="material-icons"></i>
+          </li>
+          <li>
+            <div class="status-bar status-bar-3">
+                <div class="status-bar-value" style="width:51%">51%</div>
+            </div>
+            <span>Defects</span>
+            <i class="material-icons"></i>
+          </li>
+          <li>
+            <div class="status-bar status-bar-4">
+                <div class="status-bar-value" style="width:68%">68%</div>
+            </div>
+            <span>Issues</span>
+            <i class="material-icons"></i>
+          </li>
+          <li>
+            <div class="status-bar status-bar-5">
+                <div class="status-bar-value" style="width:80%">80%</div>
+            </div>
+            <span>Searches</span>
+            <i class="material-icons"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ui-g-12 ui-lg-6 ui-g-nopad">
+    <div class="ui-g-12 global-sales">
+      <p-panel>
+        <p-header>
+            Global Sales by Region
+            <span class="header-helper">Last Update: 21m</span>
+        </p-header>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Total Sales</th>
+              <th>Change</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><img library="serenity-layout" src="assets/images/dashboard/flag-brazil.png" width="45"></td>
+              <td>BRAZIL</td>
+              <td>4234</td>
+              <td>35%</td>
+              <td><i class="material-icons up-arrow"></i></td>
+              <td>
+                  <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+                  <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><img library="serenity-layout" src="assets/images/dashboard/flag-china.png" width="45"></td>
+              <td>CHINA</td>
+              <td>3214</td>
+              <td>25%</td>
+              <td><i class="material-icons up-arrow"></i></td>
+              <td>
+                  <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+                  <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><img library="serenity-layout" src="assets/images/dashboard/flag-belgium.png" width="45"></td>
+              <td>BELGIUM</td>
+              <td>2842</td>
+              <td>28%</td>
+              <td><i class="material-icons down-arrow"></i></td>
+              <td>
+                  <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+                  <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><img library="serenity-layout" src="assets/images/dashboard/flag-france.png" width="45"></td>
+              <td>FRANCE</td>
+              <td>1942</td>
+              <td>15%</td>
+              <td><i class="material-icons down-arrow"></i></td>
+              <td>
+                  <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+                  <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><img library="serenity-layout" src="assets/images/dashboard/flag-uk.png" width="45"></td>
+              <td>UK</td>
+              <td>1956</td>
+              <td>25%</td>
+              <td><i class="material-icons up-arrow"></i></td>
+              <td>
+                  <button class="remove-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-close" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+                  <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-message" pbutton="" title="Reply" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-message"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </p-panel>
+    </div>
+
+    <div class="ui-g-12 image-box">
+      <div class="card">
+        <img library="serenity-layout" src="assets/images/dashboard/gradient-waters.png">
+
+        <div class="image-box-content">
+            <h3>Gradient Waters</h3>
+            <span class="image-box-tag">article</span>
+            <p>
+                Derive inexpedient reason law virtues superiority victorious. Overcome pious horror suicide revaluation. Holiest ocean society disgust passion value love.
+                Faithful mountains morality hope disgust merciful moral will revaluation society fearful love.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis,
+                culpa ratione quam perferendis esse, cupiditate neque quas!
+            </p>
+            <p>
+                In et blandit turpis, ut congue nibh. Nam vitae tincidunt nunc, sed accumsan lacus. Sed efficitur malesuada augue ut varius. Pellentesque ultricies leo massa, eu posuere diam sodales quis.
+            </p>
+            <div class="image-box-footer">
+                <button class="remove-btn orange-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" icon="ui-icon-close" label="Close" pbutton="" style="margin-right:4px;" title="Close" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-close"></span><span class="ui-button-text ui-clickable">Close</span></button>
+                <button class="message-btn secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" icon="ui-icon-add" label="New" pbutton="" title="New" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-add"></span><span class="ui-button-text ui-clickable">New</span></button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-8">
+    <div class="card">
+      <p-dataTable [value]="cars" selectionmode="single">
+          <p-header>Recent Sales</p-header>
+          <p-column field="vin" header="Vin"></p-column>
+          <p-column field="year" header="Year"></p-column>
+          <p-column field="brand" header="Brand"></p-column>
+          <p-column field="color" header="Color"></p-column>
+      </p-dataTable>
+
+      <p-growl *ngIf="alertType=='toast'" [value]="msgs"></p-growl>
+      <p-messages *ngIf="alertType!=='toast'" [(value)]="msgs"></p-messages>
+
+      <p-panel header="Sales Graph">
+        <p-chart type="line" [data]="data" (onDataSelect)="selectData($event)"></p-chart>
+      </p-panel>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-lg-4">
+    <div class="user-card card">
+      <div class="user-card-header">
+          <img library="serenity-layout" src="assets/images/dashboard/usercard.png" width="100">
+      </div>
+      <div class="user-card-content">
+        <img library="serenity-layout" src="assets/images/avatar.png">
+        <button class="secondary-btn ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" icon="ui-icon-settings" pbutton="" type="button"><span class="ui-button-icon-left ui-clickable fa fa-fw ui-icon-settings"></span><span class="ui-button-text ui-clickable">ui-btn</span><span class="ink ripple-animate" style="height: 36px; width: 36px; top: -2.96875px; left: 5.39062px; pointer-events: none;"></span></button>
+
+        <div class="user-card-name">
+            <span>Wendy Lorina</span>
+        </div>
+
+        <div class="user-detail">
+         <ul>
+           <li class="clearfix">
+             <i class="material-icons">assignment</i>
+             <span class="project-title">Tasks</span>
+             <span class="project-detail">3 open</span>
+             <div class="project-progressbar">
+                 <div class="project-progressbar-value" style="width: 50%"></div>
+             </div>
+           </li>
+           <li class="clearfix">
+             <i class="material-icons">attach_money</i>
+             <span class="project-title">Revenue</span>
+             <span class="project-detail">+20%</span>
+             <div class="project-progressbar">
+                 <div class="project-progressbar-value" style="width: 20%"></div>
+             </div>
+           </li>
+           <li class="clearfix">
+             <i class="material-icons">payment</i>
+             <span class="project-title">Payments</span>
+             <span class="project-detail">24 new</span>
+             <div class="project-progressbar">
+                 <div class="project-progressbar-value" style="width: 65%"></div>
+             </div>
+           </li>
+           <li class="clearfix">
+             <i class="material-icons">business_center</i>
+             <span class="project-title">Clients</span>
+             <span class="project-detail">+80%</span>
+             <div class="project-progressbar">
+                 <div class="project-progressbar-value" style="width: 80%"></div>
+             </div>
+           </li>
+           <li class="clearfix">
+             <i class="material-icons">pie_chart</i>
+             <span class="project-title">Turnover</span>
+             <span class="project-detail">+40%</span>
+             <div class="project-progressbar">
+                 <div class="project-progressbar-value" style="width: 40%"></div>
+             </div>
+           </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-12 map">
+      <p-panel header="Map">
+        <img library="serenity-layout" src="assets/images/dashboard/map.png">
+      </p-panel>
+    </div>
+  </div>
+
+  <div class="ui-g-12 schedule">
+    <p-panel header="Calendar">
+      <p-schedule
+          [events]="events"
+          [header]="header"
+          defaultDate="2017-02-01"
+          [eventLimit]="4"
+          [editable]="true"
+          (onDayClick)="handleDayClick($event)"
+          (onEventClick)="handleEventClick($event)">
+      </p-schedule>
+
+      <p-dialog header="Event Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="false" [contentStyle]="{'overflow':'visible'}"
+          [style]="{'overflow':'visible'}" [resizable]="false">
+          <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="event">
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="vin">Title</label></div>
+                  <div class="ui-grid-col-8"><input pInputText id="title" [(ngModel)]="event.title" /></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="start">Start</label></div>
+                  <div class="ui-grid-col-8"><p-calendar [(ngModel)]="event.start" dateFormat="yy-mm-dd" dataType="string"></p-calendar></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="end">End</label></div>
+                  <div class="ui-grid-col-8"><p-calendar [(ngModel)]="event.end" dateFormat="yy-mm-dd" dataType="string"></p-calendar></div>
+              </div>
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-4"><label for="allday">All Day</label></div>
+                  <div class="ui-grid-col-8"><p-checkbox [(ngModel)]="event.allDay" binary="checkbox"></p-checkbox></div>
+              </div>
+          </div>
+          <p-footer>
+              <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                  <button type="button" pButton icon="fa-close" (click)="deleteEvent()" label="Delete" [disabled]="!event?.id"></button>
+                  <button type="button" pButton icon="fa-check" (click)="saveEvent()" label="Save" [disabled]="!event?.start"></button>
+              </div>
+          </p-footer>
+      </p-dialog>
+    </p-panel>
+  </div>
+
+</div>
+
+<h3 class="first">Basic</h3>
+<div class="ui-g">
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+  <div class="ui-g-1">1</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-3">3</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-4">4</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-6">6</div>
+  <div class="ui-g-6">6</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12">12</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-8">8</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-9">9</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-5">5</div>
+  <div class="ui-g-4">4</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-4">4</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-2">2</div>
+  <div class="ui-g-3">3</div>
+  <div class="ui-g-1">1</div>
+</div>
+
+<h3>Responsive</h3>
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+  <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+  <div class="ui-g-12 ui-lg-4">ui-g-12 ui-lg-4</div>
+</div> -->

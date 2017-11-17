@@ -16,24 +16,21 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "scss/style.scss",
+      "styles": [        
+        "../node_modules/prismjs/themes/prism.css",
+        "../node_modules/fullcalendar/dist/fullcalendar.css",
         "../node_modules/quill/dist/quill.core.css",
         "../node_modules/quill/dist/quill.snow.css",
-        "../node_modules/fullcalendar/dist/fullcalendar.css",
-        "../node_modules/prismjs/themes/prism.css",        
-        "../node_modules/primeng/resources/primeng.min.css",
-        "assets/css/primeng.omega.custom.theme.css",
-        "assets/css/site.css"
+        "scss/style.scss"
+
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/quill/dist/quill.js",
         "../node_modules/moment/min/moment.min.js",
-        "../node_modules/fullcalendar/dist/fullcalendar.js",
-        "../node_modules/prismjs/prism.js",
+        "../node_modules/chart.js/dist/Chart.min.js",
         "../node_modules/chart.js/dist/Chart.bundle.min.js",
-        "../node_modules/chart.js/dist/Chart.min.js"
+        "../node_modules/fullcalendar/dist/fullcalendar.js",
+        "../node_modules/quill/dist/quill.js",
+        "../node_modules/prismjs/prism.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

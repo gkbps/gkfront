@@ -1,27 +1,23 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">CALENDAR</span>
-        <span>Calendar is an input component to select a date.</span>
-    </div>
-  </div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>CALENDAR</h1>
 
-  <div class="content-section implementation">
+      <div class="ui-g form-group">
 
-    <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-md-4">
-            <h3>Basic</h3>
-            <p-calendar [(ngModel)]="date1"></p-calendar> {{date1|date}}
+          <h3>Basic</h3>
+          <p-calendar [(ngModel)]="date1"></p-calendar> {{date1|date}}
         </div>
 
         <div class="ui-g-12 ui-md-4">
-            <h3>Spanish</h3>
-            <p-calendar [(ngModel)]="date2" [locale]="es" dateFormat="dd/mm/yy"></p-calendar> {{date2|date}}
+          <h3>Spanish</h3>
+          <p-calendar [(ngModel)]="date2" [locale]="es" dateFormat="dd/mm/yy"></p-calendar> {{date2|date}}
         </div>
 
         <div class="ui-g-12 ui-md-4">
-            <h3>Icon</h3>
-            <p-calendar [(ngModel)]="date3" [showIcon]="true"></p-calendar> <span style="margin-left:35px">{{date3|date}}</span>
+          <h3>Icon</h3>
+          <p-calendar [(ngModel)]="date3" [showIcon]="true"></p-calendar> <span style="margin-left:35px">{{date3|date}}</span>
         </div>
 
         <div class="ui-g-12 ui-md-4">
@@ -58,10 +54,12 @@
             <h3>Range</h3>
             <p-calendar [(ngModel)]="rangeDates" selectionMode="range" readonlyInput="true"></p-calendar>
         </div>
+
+      </div>
+
+      <h3>Inline {{date8|date}}</h3>
+      <p-calendar [(ngModel)]="date9" [inline]="true"></p-calendar>
+      
     </div>
-
-    <h3>Inline {{date8|date}}</h3>
-    <p-calendar [(ngModel)]="date9" [inline]="true"></p-calendar>
-
   </div>
 </div>

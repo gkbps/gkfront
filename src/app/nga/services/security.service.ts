@@ -2,12 +2,14 @@ import { Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import { TcodeService } from './tcode.service';
+import { NavigationService } from './navigation.service';
 
 @Injectable()
 export class SecurityService {
 
   constructor(
     private tcodeService: TcodeService,
+    private navigationService: NavigationService,
   ) {
   }
 
@@ -102,9 +104,10 @@ export class SecurityService {
     // remove user from local storage to log user out
     localStorage.removeItem('errorHistory');
     localStorage.removeItem('history');
-    localStorage.removeItem('env');
     localStorage.removeItem('mana');
     localStorage.removeItem('currentUser');
+    // Becareful of looping in login - this can be managed via Guard
+    //this.navigationService.gotoLogin();
   }
 
 }

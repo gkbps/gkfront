@@ -1,17 +1,24 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">Menubar</span>
-        <span>Menubar is an horizontal menu components with support for nested submenus.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>MENUBAR</h1>
+      <span>Menubar is an horizontal menu components with support for nested submenus.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <p-menubar [model]="items">
+            <div class="ui-g-5">
+              <input type="text" pInputText placeholder="Search">
+            </div>
+            <div class="ui-g-2"></div>
+            <div class="ui-g-5">
+              <button pButton label="Logout" icon="fa-sign-out"></button>
+            </div>
+          </p-menubar>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <p-menubar [model]="items">
-        <input type="text" pInputText placeholder="Search">
-        <button pButton label="Logout" icon="fa-sign-out"></button>
-    </p-menubar>
-
   </div>
 </div>

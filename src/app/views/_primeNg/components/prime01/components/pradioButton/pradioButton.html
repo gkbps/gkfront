@@ -1,28 +1,32 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">RADIO BUTTON</span>
-        <span>RadioButton is an extension to standard radio button element with skinning capabilities.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>RADIO BUTTON</h1>
+      <span>RadioButton is an extension to standard radio button element with skinning capabilities.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <h3 class="first">Basic</h3>
+          <div class="ui-g" style="width:250px;margin-bottom:10px">
+              <div class="ui-g-12"><p-radioButton name="group1" value="Option 1" label="Option 1" [(ngModel)]="val1" inputId="opt1"></p-radioButton></div>
+              <div class="ui-g-12"><p-radioButton name="group1" value="Option 2" label="Option 2" [(ngModel)]="val1" inputId="opt2"></p-radioButton></div>
+              <div class="ui-g-12"><p-radioButton name="group1" value="Option 3" label="Option 3" [(ngModel)]="val1" inputId="opt3"></p-radioButton></div>
+          </div>
+          Selected Value = {{val1||'none'}}
+        </div>
+
+        <div class="ui-g-12">
+          <h3>Preselection</h3>
+          <div class="ui-g" style="width:250px;margin-bottom:10px">
+              <div class="ui-g-12"><p-radioButton name="group2" value="Option 1" label="Option 1" [(ngModel)]="val2" inputId="preopt1"></p-radioButton></div>
+              <div class="ui-g-12"><p-radioButton name="group2" value="Option 2" label="Option 2" [(ngModel)]="val2" inputId="preopt2"></p-radioButton></div>
+              <div class="ui-g-12"><p-radioButton name="group2" value="Option 3" label="Option 3" [(ngModel)]="val2" inputId="preopt3"></p-radioButton></div>
+          </div>
+          Selected Value = {{val2||'none'}}
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <h3 class="first">Basic</h3>
-    <div class="ui-g" style="width:250px;margin-bottom:10px">
-        <div class="ui-g-12"><p-radioButton name="group1" value="Option 1" label="Option 1" [(ngModel)]="val1" inputId="opt1"></p-radioButton></div>
-        <div class="ui-g-12"><p-radioButton name="group1" value="Option 2" label="Option 2" [(ngModel)]="val1" inputId="opt2"></p-radioButton></div>
-        <div class="ui-g-12"><p-radioButton name="group1" value="Option 3" label="Option 3" [(ngModel)]="val1" inputId="opt3"></p-radioButton></div>
-    </div>
-    Selected Value = {{val1||'none'}}
-
-    <h3>Preselection</h3>
-    <div class="ui-g" style="width:250px;margin-bottom:10px">
-        <div class="ui-g-12"><p-radioButton name="group2" value="Option 1" label="Option 1" [(ngModel)]="val2" inputId="preopt1"></p-radioButton></div>
-        <div class="ui-g-12"><p-radioButton name="group2" value="Option 2" label="Option 2" [(ngModel)]="val2" inputId="preopt2"></p-radioButton></div>
-        <div class="ui-g-12"><p-radioButton name="group2" value="Option 3" label="Option 3" [(ngModel)]="val2" inputId="preopt3"></p-radioButton></div>
-    </div>
-    Selected Value = {{val2||'none'}}
-
   </div>
 </div>

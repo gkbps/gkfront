@@ -76,7 +76,7 @@ export class PAutoComplete implements OnInit {
       }
   }
 
-  handleDropdownClick() {
+  handleDropdownClick($event) {
       this.filteredBrands = [];
 
       //mimic remote call

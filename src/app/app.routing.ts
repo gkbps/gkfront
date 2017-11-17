@@ -5,20 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
 import {
-  FullLayout,
-  SimpleLayout,
+  GkFullLayoutComponent,
+  GkSimpleLayoutComponent,
 
-  BaseLayout,
-  MainLayout,
-  MineLayout,
-  GkmLayout,
-  CoreUILayout,
+  GkBlankFullLayoutComponent,
+  GkMainFullLayoutComponent,
+  GkSettingFullLayoutComponent,
+  GkMineFullLayoutComponent,
+  GkmFullLayoutComponent,
+
+  PrimeNGFullLayoutComponent,
 } from './containers';
 
 export const routes: Routes = [
   {
     path: '',
-    component: SimpleLayout,
+    component: GkSimpleLayoutComponent,
     data: {
       title: 'Public'
     },
@@ -64,7 +66,35 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: BaseLayout,
+    component: GkMainFullLayoutComponent,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {
+        path: 'home',
+        loadChildren: './views/home/home.module#HomeModule'
+      },
+    ]
+  },
+  {
+    path: '',
+    component: GkSettingFullLayoutComponent,
+    canActivateChild: [AuthGuard],
+    data: {
+      title: 'System'
+    },
+    children: [
+      {
+        path: 'setting',
+        loadChildren: './views/_base/setting/setting.module#SettingModule'
+      }
+    ]
+  },
+  {
+    path: '',
+    component: GkBlankFullLayoutComponent,
     data: {
       title: 'Base'
     },
@@ -77,7 +107,7 @@ export const routes: Routes = [
   },
   {
     path: 'main',
-    component: MainLayout,
+    component: GkMainFullLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: ''
@@ -91,7 +121,7 @@ export const routes: Routes = [
   },
   {
     path: 'mine',
-    component: MineLayout,
+    component: GkMineFullLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: ''
@@ -105,7 +135,7 @@ export const routes: Routes = [
   },
   {
     path: 'gkm',
-    component: GkmLayout,
+    component: GkmFullLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: ''
@@ -119,7 +149,7 @@ export const routes: Routes = [
   },
   {
     path: 'gkcln',
-    component: GkmLayout,
+    component: GkmFullLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: ''
@@ -133,7 +163,7 @@ export const routes: Routes = [
   },
   {
     path: 'gksol',
-    component: GkmLayout,
+    component: GkmFullLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: ''
@@ -147,7 +177,7 @@ export const routes: Routes = [
   },
   {
     path: 'gktcd',
-    component: GkmLayout,
+    component: GkmFullLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: ''
@@ -161,7 +191,7 @@ export const routes: Routes = [
   },
   {
     path: 'system',
-    component: SimpleLayout,
+    component: GkSimpleLayoutComponent,
     canActivateChild: [AuthGuard],
     data: {
       title: 'System'
@@ -174,22 +204,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'coreui',
-    component: CoreUILayout,
-    canActivateChild: [AuthGuard],
-    data: {
-      title: 'Core UI'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: './views/_coreUI/coreUI.module#CoreUIModule'
-      },
-    ]
-  },
-  {
     path: 'prime',
-    component: SimpleLayout,
+    component: PrimeNGFullLayoutComponent, // SimpleLayout,
     canActivateChild: [AuthGuard],
     data: {
       title: 'PrimeNg'

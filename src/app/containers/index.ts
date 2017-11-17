@@ -1,3 +1,3 @@
-export * from './full-layout';
-export * from './simple-layout';
-export * from './custom-layout';
+export * from './gk-full-layout';
+export * from './gk-simple-layout';
+export * from './gk-custom-layout';

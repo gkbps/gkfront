@@ -1,100 +1,177 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">INPUT GROUP</span>
-        <span>Text, icon, buttons and other content can be grouped next to an input by wrapping the addons and input inside .ui-inputgroup element. Multiple addons can be used within the same group as well.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Input Groups</h1>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="material-icons">person</i></span>
+            <input pinputtext="" placeholder="Username" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="material-icons">credit_card</i></span>
+            <span class="ui-inputgroup-addon"><i class="material-icons">card_travel</i></span>
+            <input pinputtext="" placeholder="Price" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+            <span class="ui-inputgroup-addon">$</span>
+            <span class="ui-inputgroup-addon">.00</span>
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+            <button label="Search" pbutton="" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text ui-clickable">Search</span></button>
+            <input pinputtext="" placeholder="Keyword" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-6">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon ui-inputgroup-addon-checkbox">
+              <p-checkbox>
+                <div class="ui-chkbox ui-widget">
+                  <div class="ui-helper-hidden-accessible">
+                    <input type="checkbox" name="undefined" value="undefined">
+                  </div>
+                  <div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+                    <span class="ui-chkbox-icon ui-clickable"></span>
+                  </div>
+                </div>
+              </p-checkbox>
+            </span>
+            <input pinputtext="" placeholder="Username" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="content-section implementation">
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Addons</h1>
 
-    <h3 class="first">Addons</h3>
-      <div class="ui-g ui-fluid">
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" pInputText placeholder="Username">
-              </div>
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input type="text" pInputText placeholder="Username">
           </div>
+        </div>
 
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon">$</span>
-                  <input type="text" pInputText placeholder="Price">
-                  <span class="ui-inputgroup-addon">.00</span>
-              </div>
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">$</span>
+            <input type="text" pInputText placeholder="Price">
+            <span class="ui-inputgroup-addon">.00</span>
           </div>
+        </div>
 
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon">www</span>
-                  <input type="text" pInputText placeholder="Website">
-              </div>
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">www</span>
+            <input type="text" pInputText placeholder="Website">
           </div>
+        </div>
+
       </div>
+    </div>
+  </div>
+</div>
 
-      <h3>Multiple Addons</h3>
-      <div class="ui-g">
-          <div class="ui-g-12">
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="fa fa-credit-card"></i></span>
-                  <span class="ui-inputgroup-addon"><i class="fa fa-cc-visa"></i></span>
-                  <input type="text" pInputText placeholder="Price">
-                  <span class="ui-inputgroup-addon">$</span>
-                  <span class="ui-inputgroup-addon">.00</span>
-              </div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Multiple Addons</h1>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-credit-card"></i></span>
+            <span class="ui-inputgroup-addon"><i class="fa fa-cc-visa"></i></span>
+            <input type="text" pInputText placeholder="Price">
+            <span class="ui-inputgroup-addon">$</span>
+            <span class="ui-inputgroup-addon">.00</span>
           </div>
+        </div>
+
       </div>
+    </div>
+  </div>
+</div>
 
-      <h3>Button Addons</h3>
-      <div class="ui-g ui-fluid">
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <button pButton type="button" label="Search"></button>
-                  <input type="text" pInputText placeholder="Keyword">
-              </div>
-          </div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Button Addons</h1>
 
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <input type="text" pInputText placeholder="Keyword">
-                  <button pButton type="button" icon="fa-search" class="ui-button-secondary"></button>
-              </div>
-          </div>
+      <div class="ui-g form-group">
 
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <button pButton type="button" icon="fa-check" class="ui-button-success"></button>
-                  <input type="text" pInputText placeholder="Vote">
-                  <button pButton type="button" icon="fa-close" class="ui-button-danger"></button>
-              </div>
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <button pButton type="button" label="Search"></button>
+            <input type="text" pInputText placeholder="Keyword">
           </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <input type="text" pInputText placeholder="Keyword">
+            <button pButton type="button" icon="fa-search" class="ui-button-secondary"></button>
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <button pButton type="button" icon="fa-check" class="ui-button-success"></button>
+            <input type="text" pInputText placeholder="Vote">
+            <button pButton type="button" icon="fa-close" class="ui-button-danger"></button>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </div>
+</div>
 
-      <h3>Checkbox and RadioButton</h3>
-      <div class="ui-g ui-fluid">
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><p-checkbox></p-checkbox></span>
-                  <input type="text" pInputText placeholder="Username">
-              </div>
-          </div>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Checkbox and RadioButton</h1>
 
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <input type="text" pInputText placeholder="Price">
-                  <span class="ui-inputgroup-addon"><p-radioButton></p-radioButton></span>
-              </div>
-          </div>
+      <div class="ui-g form-group">
 
-          <div class="ui-g-12 ui-md-4">
-              <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><p-checkbox></p-checkbox></span>
-                  <input type="text" pInputText placeholder="Website">
-                  <span class="ui-inputgroup-addon"><p-radioButton></p-radioButton></span>
-              </div>
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><p-checkbox></p-checkbox></span>
+            <input type="text" pInputText placeholder="Username">
           </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <input type="text" pInputText placeholder="Price">
+            <span class="ui-inputgroup-addon"><p-radioButton></p-radioButton></span>
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-4">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><p-checkbox></p-checkbox></span>
+            <input type="text" pInputText placeholder="Website">
+            <span class="ui-inputgroup-addon"><p-radioButton></p-radioButton></span>
+          </div>
+        </div>
+
       </div>
-
+    </div>
   </div>
 </div>

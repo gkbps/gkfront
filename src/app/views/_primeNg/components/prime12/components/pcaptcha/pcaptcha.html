@@ -1,16 +1,18 @@
 <p-growl [value]="msgs" sticky="sticky"></p-growl>
 
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">Captcha</span>
-        <span>Captcha is a form validation component based on Recaptcha.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>Captcha</h1>
+      <span>Captcha is a form validation component based on Recaptcha.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
-
   </div>
 </div>

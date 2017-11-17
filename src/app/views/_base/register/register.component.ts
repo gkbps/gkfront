@@ -5,10 +5,16 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { EmailValidator, EqualPasswordsValidator } from '../../../nga/validators';
 import { UserService } from '../../../services';
-import { LocalStorageService, SecurityService } from '../../../nga/services';
+import {
+  LocalStorageService,
+  SecurityService,
+  BodyBackgroundService,
+  StateManagementService,
+} from '../../../nga/services';
 
 @Component({
-  templateUrl: 'register.component.html'
+  templateUrl: 'register.component.html',
+  styleUrls: ['../login/fixed.scss']
 })
 export class RegisterComponent {
 
@@ -34,7 +40,12 @@ export class RegisterComponent {
     private securityService: SecurityService,
     private translate: TranslateService,
     private localStorage: LocalStorageService,
+    private bodyBackgroundService:BodyBackgroundService,
+    private stateManagementService:StateManagementService,
   ) {
+    // Initialize state
+    this.stateManagementService.initState("login-body");
+
     // Initialize language
     translate.use(localStorage.getLang());
     // get token
@@ -55,7 +66,7 @@ export class RegisterComponent {
             validator: EqualPasswordsValidator.validate('password', 'repeatPassword'),
           },
         ),
-        'token': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        'token': [this.model.token, Validators.compose([Validators.required, Validators.minLength(4)])],
     });
 
     this.firstname = this.form.controls['firstname'];
@@ -79,7 +90,7 @@ export class RegisterComponent {
   // Add by HTD
   register() {
     this.loading = true;
-    this.securityService.setToken(this.model.token);
+    //this.securityService.setToken(this.model.token);
     console.log(this.model);
     this.userService.create(this.model)
         .subscribe(

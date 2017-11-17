@@ -1,11 +1,13 @@
-<div class="gk-content-section introduction">
-  <div>
-      <span class="gk-feature-title">PRIME NG</span>
-      <span>PrimeNg Library Demonstration</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <h1>PRIME NG</h1>
+    <span>PrimeNg Library Demonstration</span>
+    <p-menubar [model]="items">
+      <button pButton label="Return" icon="fa ui-icon-insert-chart" (click)="return()"></button>
+    </p-menubar>
+  </div>
+
+  <div class="ui-g-12">
+    <router-outlet></router-outlet>
   </div>
 </div>
-<p-menubar [model]="items">
-  <button pButton label="Return" icon="fa-sign-out" (click)="return()"></button>
-</p-menubar>
-
-<router-outlet></router-outlet>

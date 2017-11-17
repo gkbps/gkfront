@@ -5,10 +5,16 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { EmailValidator, EqualPasswordsValidator } from '../../../nga/validators';
 import { UserService } from '../../../services';
-import { SecurityService, LocalStorageService } from '../../../nga/services';
+import {
+  SecurityService,
+  LocalStorageService,
+  BodyBackgroundService,
+  StateManagementService,
+} from '../../../nga/services';
 
 @Component({
-  templateUrl: 'forgot.component.html'
+  templateUrl: 'forgot.component.html',
+  styleUrls: ['../login/fixed.scss']
 })
 export class ForgotComponent {
 
@@ -28,7 +34,12 @@ export class ForgotComponent {
       private securityService: SecurityService,
       private translate: TranslateService,
       private localStorage: LocalStorageService,
+      private bodyBackgroundService:BodyBackgroundService,
+      private stateManagementService:StateManagementService,
   ) {
+    // Initialize state
+    this.stateManagementService.initState("login-body");
+
     // Initialize language
     translate.use(localStorage.getLang());
 
@@ -38,7 +49,7 @@ export class ForgotComponent {
     this.form = fb.group(
       {
         'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
-        'token': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        'token': [this.model.token, Validators.compose([Validators.required, Validators.minLength(4)])],
     });
 
     this.email = this.form.controls['email'];

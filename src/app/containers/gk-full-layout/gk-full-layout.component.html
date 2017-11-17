@@ -1,0 +1,27 @@
+<div id="layout-wrapper" class="layout-wrapper layout-wrapper-static">  <!-- static: layout-wrapper-static; overlay menu: -->
+
+  <div id="layout-sidebar" class="layout-sidebar" gkSidebarToggler>     <!-- mouseenter: layout-sidebar-active; mouseleave: -->
+    <gk-logo></gk-logo>
+    <gk-sidebar1 [menu]="menu"></gk-sidebar1>
+  </div>
+
+  <div class="layout-main">
+    <gk-header></gk-header>
+    <gk-breadcrumbs></gk-breadcrumbs>
+    <gk-working></gk-working>
+    <div class="layout-content">
+
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="fixed-layout-footer">
+      <gk-footer></gk-footer>
+    </div>
+    <!-- <div class="layout-main-mask" *ngIf="mobileMenuActive"></div> -->
+  </div>
+  <!--
+  <div id="layout-aside" class="layout-aside">
+    <gk-aside></gk-aside>
+  </div>
+  -->
+</div>

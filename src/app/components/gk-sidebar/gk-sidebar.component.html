@@ -1,0 +1,70 @@
+<perfect-scrollbar>
+<div class="nano">
+  <div class="nano-content sidebar-scroll-content" tabindex="0">
+    <div class="layout-menu-container">
+      <div class="nano">
+        <div class="nano-content sidebar-scroll-content" tabindex="0">
+          <div class="layout-menu-container">
+
+            <!-- Menu Item -->
+            <ul app-submenu="" class="layout-menu" root="true" visible="true">
+              <li *ngFor="let item of menu" (click)="selectMenu($event, item)" [ngClass]="{'active-menuitem': isActiveMenu(item)}">
+                <a class="ripplelink" href="#" [routerLink]="item.routerLink">
+                  <i class="material-icons">{{item.icon}}</i>
+                  <span class="menuitem-text">{{item.label}}</span>
+                  <span *ngIf="isActiveMenu(item)" class="ink ripple-animate" style="height: 220px; width: 220px; top: -88px; left: -15px; pointer-events: none;"></span>
+                  <i *ngIf="item.items" class="material-icons layout-submenu-toggler">keyboard_arrow_down</i>
+                </a>
+
+                <!-- Menu Sub Item 1-->
+                <ul app-submenu *ngIf="item.items && isActiveMenu(item)">
+                  <li *ngFor="let subitem1 of item.items" (click)="selectSubMenu1($event, subitem1)" [ngClass]="{'active-menuitem': isActiveSubMenu1(subitem1)}">
+                    <a class="ripplelink" href="#" [routerLink]="subitem1.routerLink">
+                      <i class="material-icons">{{subitem1.icon}}</i>
+                      <span class="menuitem-text">{{subitem1.label}}</span>
+                      <span *ngIf ="isActiveSubMenu1(subitem1)" class="ink ripple-animate" style="height: 220px; width: 220px; top: -88px; left: -15px; pointer-events: none;"></span>
+                      <i *ngIf="subitem1.items" class="material-icons layout-submenu-toggler">keyboard_arrow_down</i>
+                    </a>
+
+                    <!-- Menu Sub Item 2-->
+                    <ul app-submenu *ngIf="subitem1.items && isActiveSubMenu1(subitem1)">
+                      <li *ngFor="let subitem2 of subitem1.items" (click)="selectSubMenu2($event, subitem2)" [ngClass]="{'active-menuitem': isActiveSubMenu2(subitem2)}">
+                        <a class="ripplelink" href="#" [routerLink]="subitem2.routerLink">
+                          <i class="material-icons">{{subitem2.icon}}</i>
+                          <span class="menuitem-text">{{subitem2.label}}</span>
+                          <span *ngIf="isActiveSubMenu2(subitem2)" class="ink ripple-animate" style="height: 220px; width: 220px; top: -88px; left: -15px; pointer-events: none;"></span>
+                          <i *ngIf="subitem2.items" class="material-icons layout-submenu-toggler">keyboard_arrow_down</i>
+                        </a>
+
+                        <!-- Menu Sub Item 3-->
+                        <ul app-submenu *ngIf="subitem2.items && isActiveSubMenu2(subitem2)">
+                          <li *ngFor="let subitem3 of subitem2.items" (click)="selectSubMenu3($event, subitem3)" [ngClass]="{'active-menuitem': isActiveSubMenu3(subitem3)}">
+                            <a class="ripplelink" href="#" [routerLink]="subitem3.routerLink">
+                              <i class="material-icons">{{subitem3.icon}}</i>
+                              <span class="menuitem-text">{{subitem3.label}}</span>
+                              <span *ngIf="isActiveSubMenu3(subitem3)" class="ink ripple-animate" style="height: 220px; width: 220px; top: -88px; left: -15px; pointer-events: none;"></span>
+                            </a>
+                          </li>
+                        </ul>
+                        <!-- ./Menu Sub Item 3-->
+
+                      </li>
+                    </ul>
+                    <!-- ./Menu Sub Item 2-->
+
+                  </li>
+                </ul>
+                <!-- ./Menu Sub Item 1-->
+
+              </li>
+            </ul>
+            <!-- ./Menu Item -->
+
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</div>
+</perfect-scrollbar>

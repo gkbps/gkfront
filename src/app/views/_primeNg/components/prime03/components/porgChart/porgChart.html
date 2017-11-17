@@ -1,32 +1,38 @@
 <p-growl [(value)]="messages"></p-growl>
 
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">ORGANIZATION CHART</span>
-        <span>OrganizationChart visualized hierarchical organization data.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>ORGANIZATION CHART</h1>
+      <span>OrganizationChart visualized hierarchical organization data.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-12">
+          <h3>Basic</h3>
+          <p>Hierarchical data with zero configuration.</p>
+          <p-organizationChart [value]="data2"></p-organizationChart>
+        </div>
+
+        <div class="ui-g-12">
+          <h3 class="first">Advanced</h3>
+          <p>Organization with advanced customization.</p>
+          <p-organizationChart [value]="data1" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="onNodeSelect($event)"
+              styleClass="company">
+              <ng-template let-node pTemplate="person">
+                  <div class="node-header ui-corner-top">{{node.label}}</div>
+                  <div class="node-content">
+                      <img src="assets/showcase/images/demo/person/{{node.data.avatar}}" width="32">
+                      <div>{{node.data.name}}</div>
+                  </div>
+              </ng-template>
+              <ng-template let-node pTemplate="department">
+                  {{node.label}}
+              </ng-template>
+          </p-organizationChart>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-    <h3 class="first">Advanced</h3>
-    <p>Organization with advanced customization.</p>
-    <p-organizationChart [value]="data1" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="onNodeSelect($event)"
-        styleClass="company">
-        <ng-template let-node pTemplate="person">
-            <div class="node-header ui-corner-top">{{node.label}}</div>
-            <div class="node-content">
-                <img src="assets/showcase/images/demo/person/{{node.data.avatar}}" width="32">
-                <div>{{node.data.name}}</div>
-            </div>
-        </ng-template>
-        <ng-template let-node pTemplate="department">
-            {{node.label}}
-        </ng-template>
-    </p-organizationChart>
-
-    <h3>Basic</h3>
-    <p>Hierarchical data with zero configuration.</p>
-    <p-organizationChart [value]="data2"></p-organizationChart>
   </div>
 </div>

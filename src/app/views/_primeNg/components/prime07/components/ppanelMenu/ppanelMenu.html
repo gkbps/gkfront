@@ -1,14 +1,16 @@
-<div class="content-section">
-  <div class="content-section introduction">
-    <div>
-        <span class="feature-title">Menu - PanelMenu</span>
-        <span>PanelMenu is a hybrid of accordion-tree components.</span>
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <h1>PANEL MENU</h1>
+      <span>PanelMenu is a hybrid of accordion-tree components.</span>
+
+      <div class="ui-g form-group">
+
+        <div class="ui-g-4">
+          <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <div class="content-section implementation">
-
-    <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
-
   </div>
 </div>

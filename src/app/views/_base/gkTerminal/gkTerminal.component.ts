@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class GkTerminalComponent implements OnDestroy {
 
-  user: string = '';
+  user: any;
   response: string ='';
   subscription: Subscription;
   langSubscription: Subscription;

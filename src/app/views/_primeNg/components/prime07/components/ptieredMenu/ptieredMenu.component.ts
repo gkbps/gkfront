@@ -13,7 +13,8 @@ import { MenuItem } from 'primeng/primeng';
 export class PTieredMenu implements OnInit {
 
   items: MenuItem[];
-
+  msg: any;
+  
   ngOnInit() {
       this.items = [
           {

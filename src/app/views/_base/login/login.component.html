@@ -1,58 +1,56 @@
-<div class="app flex-row align-items-center">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card-group mb-0">
-          <div class="card p-4">
-            <div class="card-body">
-
-              <h1>{{'login'|translate}}</h1>
-              <div *ngIf="message" class="alert alert-danger" role="alert">
-                {{message}}
+<div class="login-body login">
+  <div class="login-panel ui-fluid">
+      <div class="login-panel-header">
+          <img src="../assets/images/logo-slim.png">
+      </div>
+      <div class="login-panel-content">
+          <div class="ui-g">
+              <div class="ui-g-12">
+                  <h1>{{'login'|translate}}</h1>
+                  <p *ngIf="!message" class="text-muted">{{'loginMsg'|translate}}</p>
+                  <div *ngIf="message" class="alert alert-danger" role="alert">
+                    {{message}}
+                  </div>
               </div>
-              <p class="text-muted">{{'loginMsg'|translate}}</p>
-
               <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
 
-                <div class="input-group mb-3" [ngClass]="{'has-error': (!username.valid && username.touched), 'has-success': (username.valid && username.touched)}">
-                  <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input [formControl]="username" [(ngModel)]="model.username" type="text" class="form-control" placeholder="{{'username'|translate}}">
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input [formControl]="username" [(ngModel)]="model.username" type="text" class="ui-inputtext ui-corner-all ui-widget" [ngClass]="{'ui-state-filled': (username.touched && username.value)}"  autocomplete="off">
+                        <label>{{'username'|translate}}</label>
+                    </span>
                 </div>
 
-                <div class="input-group mb-4" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
-                  <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input [formControl]="password" [(ngModel)]="model.password" type="password" class="form-control" placeholder="{{'password'|translate}}">
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input [formControl]="password" [(ngModel)]="model.password" type="password" class="ui-inputtext ui-corner-all ui-widget" [ngClass]="{'ui-state-filled': (password.touched && password.value)}" autocomplete="new-password">
+                        <label>{{'password'|translate}}</label>
+                    </span>
                 </div>
 
-                <div class="input-group mb-4" [ngClass]="{'has-error': (!token.valid && token.touched), 'has-success': (token.valid && token.touched)}">
-                  <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                  <input [formControl]="token" [(ngModel)]="model.token" type="text" class="form-control" placeholder="{{'token'|translate}}">
+                <div class="ui-g-12">
+                    <span class="md-inputfield">
+                        <input [formControl]="token" [(ngModel)]="model.token" type="text" class="ui-inputtext ui-corner-all ui-widget" [ngClass]="{'ui-state-filled': (token.value)}" autocomplete="off">
+                        <label>{{'token'|translate}}</label>
+                    </span>
                 </div>
 
-                <div class="row">
-                  <div class="col-6">
-                    <button [disabled]="!form.valid" type="submit" class="btn btn-primary px-4">{{'login'|translate}}</button> <!-- [routerLink]="['/home/']" -->
+                <div class="ui-g-12">
+                    <button [disabled]="!form.valid" type="submit" class="ui-button ui-widget ui-corner-all ui-button-text-icon-left" style="width:100%">
+                        <span class="ui-button-icon-left fa ui-icon-person"></span>
+                        <span class="ui-button-text">{{'login'|translate}}</span>
+                        <span class="ink ripple-animate" style="height: 322px; width: 322px; top: -139.5px; left: 66px; pointer-events: none;"></span>
+                    </button>
+                </div>
+
+                  <div class="ui-g-6" style="text-align: center;">
+                    <a href="/#/register">{{'signUp'|translate}}</a> now.
                   </div>
-                  <div class="col-6 text-right">
-                    <button [routerLink]="['/forgot']" type="button" class="btn btn-link px-0">{{'forgot'|translate}} {{'password'|translate}}?</button>
+                  <div class="ui-g-6" style="text-align: center;">
+                    <a href="/#/forgot">{{'forgot'|translate}}</a> {{'password'|translate}}?.
                   </div>
-                </div>
-
               </form>
-
-            </div>
           </div>
-          <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
-            <div class="card-body text-center">
-              <div>
-                <h2>{{'signUp'|translate}}</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button type="button" class="btn btn-primary active mt-3" [routerLink]="['/register']">Register Now!</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
   </div>
 </div>

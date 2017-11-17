@@ -52,43 +52,43 @@ export class IndividualNav implements OnInit, OnDestroy {
 
         this.items = [
           {
-            label: res.create, icon: 'fa-plus',
+            label: res.create, icon: 'ui-icon-add',
             command: (event) => this.executeTCode('11')
           },
           {
-            label: res.view, icon: 'fa-search',
+            label: res.view, icon: 'ui-icon-search',
             command: (event) => this.executeTCode('12')
           },
           {
-            label: res.edit, icon: 'fa-pencil',
+            label: res.edit, icon: 'ui-icon-edit',
             command: (event) => this.executeTCode('13')
           },
           {separator:true},
           {
-            label: res.disable, icon: 'fa-bookmark',
+            label: res.disable, icon: 'ui-icon-bookmark',
             command: (event) => this.executeTCode('14')
           },
           {
-            label: res.enable, icon: 'fa-bookmark-o',
+            label: res.enable, icon: 'ui-icon-bookmark-border',
             command: (event) => this.executeTCode('15')
           },
           {separator:true},
           {
-            label: res.mark, icon: 'fa-flag',
+            label: res.mark, icon: 'ui-icon-visibility-off',
             command: (event) => this.executeTCode('16')
           },
           {
-            label: res.unmark, icon: 'fa-flag-o',
+            label: res.unmark, icon: 'ui-icon-visibility',
             command: (event) => this.executeTCode('17')
           },
           {separator:true},
           {
-            label: res.delete, icon: 'fa-trash',
+            label: res.delete, icon: 'ui-icon-delete-forever',
             command: (event) => this.executeTCode('18')
           },
           {separator:true},
           {
-            label: res.viewChange, icon: 'fa-files-o',
+            label: res.viewChange, icon: 'ui-icon-track-changes',
             command: (event) => this.executeTCode('19')
           },
         ];
@@ -115,5 +115,5 @@ export class IndividualNav implements OnInit, OnDestroy {
       this.langSubscription.unsubscribe();
     }
   }
-  
+
 }

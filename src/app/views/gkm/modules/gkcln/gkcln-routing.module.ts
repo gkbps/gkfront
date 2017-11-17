@@ -31,7 +31,10 @@ import { GkCln28Component } from './components/gkcln28';
 
 import { GkCln30Component } from './components/gkcln30';
 import { GkCln40Component } from './components/gkcln40';
+
 import { GkCln50Component } from './components/gkcln50';
+import { GkCln51Component } from './components/gkcln51';
+
 import { GkCln60Component } from './components/gkcln60';
 import { GkCln80Component } from './components/gkcln80';
 import { GkCln90Component } from './components/gkcln90';
@@ -285,6 +288,14 @@ const routes: Routes = [
       {
         path: 'gkcln50',
         component: GkCln50Component,
+        canActivate: [TcodeGuard],
+        data: {
+          title: 'Dashboard'
+        }
+      },
+      {
+        path: 'gkcln51',
+        component: GkCln51Component,
         canActivate: [TcodeGuard],
         data: {
           title: 'Dashboard'
